@@ -8,7 +8,9 @@ export default {
     extend: {
       fontFamily: {
         Inter: ["Inter", "sans-serif"],
-        Arima: ["Arima", "sans-serif"]
+        Arima: ["Arima", "sans-serif"],
+        OpenSans: ["Open Sans", "sans-serif"],
+        Outfit: ["Outfit", "sans-serif"]
       },
     },
   },
