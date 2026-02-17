@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 
 function Navbar() {
   return (
-    <nav className="h-[88px] bg-[#f3f4f6]  px-[80px] py-[30px] flex  flex justify-between items-center">
+    <nav className="h-[88px] bg-[#f3f4f6]  px-[80px] py-[30px] flex  justify-between items-center">
       <div>
         <img src={logo} alt="" />
       </div>
@@ -50,7 +50,7 @@ function Navbar() {
         </Link>
         <Link
           to="/register"
-          className="w-[156px] h-[48px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] rounded-full border border-[#D9D9D9] text-[16px] text-[#fff] font-Inter font-bold leading-[24px] tracking-normal text-[#2E2E2E] bg-[#fff]  flex items-center justify-center"
+          className="w-[156px] h-[48px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] rounded-full border border-[#D9D9D9] text-[16px] font-Inter font-bold leading-[24px] tracking-normal text-[#2E2E2E] bg-[#fff]  flex items-center justify-center"
         >
           Create Store
         </Link>
