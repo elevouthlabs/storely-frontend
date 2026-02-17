@@ -1,19 +1,42 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.jsx";
-import AuthLayout from "./components/Dashboard/AuthLayout.jsx";
-import SignUp from "./Pages/Dashboard/SignUp.jsx";
+import Register from "./pages/Register/Register.jsx";
+import Login from "./pages/Login/Login.jsx";
+import VerifyOtp from "./Pages/VerifyOtp/VerifyOtp.jsx";
+import { AuthProvider } from "./context/AuthContext";
+
+function AppWrapper() {
+  const location = useLocation();
+
+  const noNavbarRoutes = ["/register", "/login", "/verify-otp"];
+
+  const hideNavbar = noNavbarRoutes.includes(location.pathname);
+
+  return (
+    <>
+      {!hideNavbar && <Navbar />}
+
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
+        <Route path="/" element={<div>Home Page</div>} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
   return (
     <Router>
-      {/* <Navbar /> */}
-      <Routes>
-        <Route path="/"></Route>
-
-        <Route path="/sign-up" element={<AuthLayout />}>
-          <Route index element={<SignUp />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <AppWrapper />
+      </AuthProvider>
     </Router>
   );
 }
