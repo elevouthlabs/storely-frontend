@@ -12,6 +12,7 @@ import { AuthProvider } from "./context/AuthContext";
 import AboutBusiness from "./Pages/RegisterBusiness/AboutBusiness.jsx";
 import Contact from "./Pages/RegisterBusiness/Contact.jsx";
 import AddItems from "./Pages/RegisterBusiness/AddItems.jsx";
+import Launch from "./Pages/RegisterBusiness/Launch.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function AppWrapper() {
     "/about-business",
     "/contact-business",
     "/addItem",
+    "/launch",
   ];
 
   const hideNavbar = noNavbarRoutes.includes(location.pathname);
@@ -38,6 +40,7 @@ function AppWrapper() {
         <Route path="/about-business" element={<AboutBusiness />} />
         <Route path="/contact-business" element={<Contact />} />
         <Route path="/addItem" element={<AddItems />} />
+        <Route path="/launch" element={<Launch />} />
         <Route path="/" element={<div>Home Page</div>} />
       </Routes>
     </>
