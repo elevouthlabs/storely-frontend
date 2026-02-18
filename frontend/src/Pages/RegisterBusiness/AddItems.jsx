@@ -2,15 +2,24 @@ import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
+import upload from "../../assets/Container.svg";
+import AI from "../../assets/suggest.png";
+import { useNavigate } from "react-router-dom";
 
 const AddItems = () => {
+  const Navigate = useNavigate();
   const [form, setForm] = useState({
-    businessName: "",
-    businessType: "",
-    category: "",
-    storeURL: "",
+    itemName: "",
     description: "",
+    price: "",
+    productImage: "",
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Navigate("/launch");
+    console.log("works perfectly");
+  };
 
   return (
     <div className="flex h-screen bg-[#F5F5F5]">
@@ -36,9 +45,10 @@ const AddItems = () => {
               <p className="font-Inter font-medium text-[#2E2E2E]">Item Name</p>
               <input
                 type="text"
-                value={``}
+                value={form.itemName}
                 placeholder="e.g. Classic White T-Shirt"
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) => setForm({ ...form, itemName: e.target.value })}
               />
             </div>
             <div>
@@ -46,24 +56,29 @@ const AddItems = () => {
                 <p className="font-Inter font-medium text-[#2E2E2E]">
                   Description
                 </p>
-                <span className="p-[6px] px-3 text-[10.2px] rounded-full bg-gradient-to-t from-[#4B0082] to-[#8A2BE2] text-white">
-                  Improve with AI
+                <span className="p-[6px] flex items-center gap-1 px-3 text-[10.2px] rounded-full bg-gradient-to-t from-[#4B0082] to-[#8A2BE2] text-white">
+                  <img className="w-3 h-3" src={AI} alt="suggest" /> Improve
+                  with AI
                 </span>
               </div>
               <textarea
                 type="text"
-                value={``}
+                value={form.description}
                 placeholder="Describe your product..."
                 className="w-[560px] h-[134px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
               />
             </div>
             <div>
               <p className="font-Inter font-medium text-[#2E2E2E]">Price</p>
               <input
                 type="number"
-                value={``}
+                value={form.price}
                 placeholder="0.00"
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) => setForm({ ...form, price: e.target.value })}
               />
             </div>
             <div>
@@ -71,7 +86,8 @@ const AddItems = () => {
                 Product Image
               </p>
               <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center">
-                <div className="flex flex-col gap-[10px]">
+                <div className="flex flex-col items-center gap-[10px]">
+                  <img className="w-10" src={upload} alt="upload logo" />
                   <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
                     Upload your logo
                   </p>
@@ -82,7 +98,7 @@ const AddItems = () => {
               </div>
             </div>
 
-            <Buttons label={`Continue`} />
+            <Buttons onSubmit={handleSubmit} label={`Continue`} />
           </form>
         </div>
       </div>

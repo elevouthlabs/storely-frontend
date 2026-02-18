@@ -2,15 +2,23 @@ import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
+import { useNavigate } from "react-router-dom";
+import upload from "../../assets/Container.svg";
 
 const Contact = () => {
+  const Navigate = useNavigate();
   const [form, setForm] = useState({
-    businessName: "",
-    businessType: "",
-    category: "",
-    storeURL: "",
-    description: "",
+    phoneNumber: "",
+    whatsappNumber: "",
+    color: "",
+    logo: "",
+    location: "",
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Navigate("/addItem");
+  };
 
   return (
     <div className="flex h-screen bg-[#F5F5F5]">
@@ -38,9 +46,12 @@ const Contact = () => {
               </p>
               <input
                 type="number"
-                value={``}
+                value={form.phoneNumber}
                 placeholder="+234678950506969"
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) =>
+                  setForm({ ...form, phoneNumber: e.target.value })
+                }
               />
             </div>
             <div>
@@ -49,9 +60,12 @@ const Contact = () => {
               </p>
               <input
                 type="number"
-                value={``}
+                value={form.whatsappNumber}
                 placeholder="+234678950506969"
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) =>
+                  setForm({ ...form, whatsappNumber: e.target.value })
+                }
               />
             </div>
             <div>
@@ -72,7 +86,8 @@ const Contact = () => {
                 Logo (Optional)
               </p>
               <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center">
-                <div className="flex flex-col gap-[10px]">
+                <div className="flex flex-col gap-[10px] items-center">
+                  <img className="w-10" src={upload} alt="upload logo" />
                   <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
                     Upload your logo
                   </p>
@@ -88,13 +103,14 @@ const Contact = () => {
               </p>
               <input
                 type="text"
-                value={``}
+                value={form.location}
                 placeholder="City, State or Country"
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) => setForm({ ...form, location: e.target.value })}
               />
             </div>
 
-            <Buttons link="/addItem" label={`Continue`} />
+            <Buttons onSubmit={handleSubmit} label={`Continue`} />
           </form>
         </div>
       </div>

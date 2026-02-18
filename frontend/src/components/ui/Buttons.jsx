@@ -1,12 +1,13 @@
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Buttons = ({ label, link }) => {
+const Buttons = ({ label, link, onSubmit }) => {
   const Navigate = useNavigate();
 
   return (
     <div>
       <button
-        onClick={() => Navigate(`${link}`)}
+        onClick={onSubmit}
+        // onClick={() => Navigate(`${link}`)}
         className="text-white w-[560px] h-[50px] mt-[40px] rounded-lg bg-gradient-to-t from-[#4B0082] to-[#8A2BE2]"
       >
         {label}
