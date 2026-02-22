@@ -4,21 +4,59 @@ import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
 import upload from "../../assets/Container.svg";
+import api from "../../api/axios";
 
-const Contact = () => {
+const Contact = ({ form, setForm, back }) => {
   const Navigate = useNavigate();
-  const [form, setForm] = useState({
-    phoneNumber: "",
-    whatsappNumber: "",
-    color: "",
-    logo: "",
-    location: "",
-  });
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    Navigate("/addItem");
+    const body = new FormData();
+    body.append("name", form.name);
+    body.append("category", form.category);
+    body.append("description", form.description);
+    body.append("phone", form.phone);
+    body.append("location", form.location);
+    body.append("logo", form.logo);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await api.post("/business", body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response);
+      Navigate("/addItem");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedType = ["image/png", "image/jpeg"];
+    const maxSize = 2 * 1024 * 1024;
+
+    if (!allowedType.includes(file.type)) {
+      setError("Only PNG and JPG images are allowed");
+      return;
+    }
+
+    if (file.size > maxSize) {
+      setError("Image must be less than 2MB");
+      return;
+    }
+    const previewUrl = URL.createObjectURL(file);
+    setForm((prev) => ({ ...prev, logo: previewUrl, logoName: file.name }));
+
+    setError("");
+  };
+
+  console.log(form.logo);
+  console.log(error);
 
   return (
     <div className="flex h-screen bg-[#F5F5F5]">
@@ -46,12 +84,11 @@ const Contact = () => {
               </p>
               <input
                 type="number"
-                value={form.phoneNumber}
+                value={form.phone}
                 placeholder="+234678950506969"
+                required
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) =>
-                  setForm({ ...form, phoneNumber: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
               />
             </div>
             <div>
@@ -62,6 +99,7 @@ const Contact = () => {
                 type="number"
                 value={form.whatsappNumber}
                 placeholder="+234678950506969"
+                required
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) =>
                   setForm({ ...form, whatsappNumber: e.target.value })
@@ -85,15 +123,34 @@ const Contact = () => {
               <p className="font-Inter font-medium text-[#2E2E2E]">
                 Logo (Optional)
               </p>
-              <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center">
-                <div className="flex flex-col gap-[10px] items-center">
-                  <img className="w-10" src={upload} alt="upload logo" />
-                  <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
-                    Upload your logo
-                  </p>
-                  <p className="text-[10.2px] text-[#9CA3AF]">
-                    PNG, JPG up to 2MB
-                  </p>
+              <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center relative transition">
+                <div className="flex flex-col gap-[10px] items-center relative cursor-pointer">
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    onChange={handleImageUpload}
+                    className="absolute inset-0 opacity-0 cursor-pointer"
+                  />
+                  {form.logo ? (
+                    <div className="flex flex-col items-center gap-1.5">
+                      <img className="w-10 h-10" src={form.logo} alt="" />
+                      <p>{form.logoName}</p>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-[10px] items-center cursor-pointer">
+                      <img
+                        className="w-10 cursor-pointer"
+                        src={upload}
+                        alt="upload logo"
+                      />
+                      <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
+                        Upload your logo
+                      </p>
+                      <p className="text-[10.2px] text-[#9CA3AF]">
+                        PNG, JPG up to 2MB
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

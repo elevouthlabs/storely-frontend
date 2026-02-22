@@ -13,12 +13,39 @@ const AddItems = () => {
     description: "",
     price: "",
     productImage: "",
+    productImageName: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     Navigate("/launch");
     console.log("works perfectly");
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedType = ["image/png", "image/jpeg"];
+    const maxSize = 2 * 1024 * 1024;
+
+    if (!allowedType.includes(file.type)) {
+      setError("Only PNG and JPG images are allowed");
+      return;
+    }
+
+    if (file.size > maxSize) {
+      setError("Image must be less than 2MB");
+      return;
+    }
+    const previewUrl = URL.createObjectURL(file);
+    setForm((prev) => ({
+      ...prev,
+      productImage: previewUrl,
+      productImageName: file.name,
+    }));
+
+    setError("");
   };
 
   return (
@@ -47,6 +74,7 @@ const AddItems = () => {
                 type="text"
                 value={form.itemName}
                 placeholder="e.g. Classic White T-Shirt"
+                required
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) => setForm({ ...form, itemName: e.target.value })}
               />
@@ -65,6 +93,7 @@ const AddItems = () => {
                 type="text"
                 value={form.description}
                 placeholder="Describe your product..."
+                required
                 className="w-[560px] h-[134px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
@@ -77,6 +106,7 @@ const AddItems = () => {
                 type="number"
                 value={form.price}
                 placeholder="0.00"
+                required
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) => setForm({ ...form, price: e.target.value })}
               />
@@ -85,15 +115,38 @@ const AddItems = () => {
               <p className="font-Inter font-medium text-[#2E2E2E]">
                 Product Image
               </p>
-              <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center">
-                <div className="flex flex-col items-center gap-[10px]">
-                  <img className="w-10" src={upload} alt="upload logo" />
-                  <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
-                    Upload your logo
-                  </p>
-                  <p className="text-[10.2px] text-[#9CA3AF]">
-                    PNG, JPG up to 2MB
-                  </p>
+              <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center relative">
+                <div className="flex flex-col items-center gap-[10px] relative cursor-pointer">
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    onChange={handleImageUpload}
+                    className="absolute inset-0 opacity-0 cursor-pointer"
+                  />
+                  {form.productImage ? (
+                    <div className="flex flex-col items-center gap-1.5">
+                      <img
+                        className="w-10 h-10"
+                        src={form.productImage}
+                        alt=""
+                      />
+                      <p>{form.productImageName}</p>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-[10px] items-center cursor-pointer">
+                      <img
+                        className="w-10 cursor-pointer"
+                        src={upload}
+                        alt="upload logo"
+                      />
+                      <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
+                        Upload your logo
+                      </p>
+                      <p className="text-[10.2px] text-[#9CA3AF]">
+                        PNG, JPG up to 2MB
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
