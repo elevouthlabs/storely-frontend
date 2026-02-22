@@ -3,21 +3,10 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
 
-const AboutBusiness = () => {
+const AboutBusiness = ({ form, setForm, next }) => {
   const Navigate = useNavigate();
-  const [form, setForm] = useState({
-    businessName: "",
-    businessType: "",
-    category: "",
-    storeURL: "",
-    description: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    Navigate("/contact-business");
-  };
 
   return (
     <div className="flex h-screen bg-[#F5F5F5]">
@@ -43,12 +32,11 @@ const AboutBusiness = () => {
               <p className="font-Inter font-medium">Business Name</p>
               <input
                 type="text"
-                value={form.businessName}
+                value={form.name}
                 placeholder="Name@company.com"
+                required
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) =>
-                  setForm({ ...form, businessName: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
             </div>
             <div>
@@ -58,6 +46,7 @@ const AboutBusiness = () => {
               <select
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
                 value={form.businessType}
+                required
                 onChange={(e) =>
                   setForm({ ...form, businessType: e.target.value })
                 }
@@ -71,23 +60,14 @@ const AboutBusiness = () => {
               <select
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
                 value={form.category}
+                required
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
               >
                 <option>Select a category</option>
                 <option>Finance</option>
+                <option>Education</option>
+                <option>Commerce</option>
               </select>
-            </div>
-            <div>
-              <p className="font-Inter font-medium text-[#2E2E2E]">
-                Store URL (Optional)
-              </p>
-              <input
-                type="text"
-                value={form.storeURL}
-                placeholder="storely.com/your-store"
-                className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) => setForm({ ...form, storeURL: e.target.value })}
-              />
             </div>
             <div>
               <p className="font-Inter font-medium text-[#2E2E2E]">
@@ -97,6 +77,7 @@ const AboutBusiness = () => {
                 type="text"
                 value={form.description}
                 placeholder="Enter Business Description"
+                required
                 className="w-[560px] h-[134px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
@@ -105,8 +86,10 @@ const AboutBusiness = () => {
             </div>
 
             <Buttons
-              onSubmit={handleSubmit}
-              link="/contact-business"
+              onSubmit={(e) => {
+                e.preventDefault();
+                next();
+              }}
               label={`Sign in`}
             />
           </form>
