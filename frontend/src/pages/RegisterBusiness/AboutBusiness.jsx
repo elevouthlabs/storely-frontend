@@ -3,7 +3,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
-import api from "../../api/axios";
 
 const AboutBusiness = ({ form, setForm, next }) => {
   const Navigate = useNavigate();
@@ -14,7 +13,7 @@ const AboutBusiness = ({ form, setForm, next }) => {
       {/* Beginning of the RHS */}
       <div className="w-1/2 my-[32px] ml-[28px]">
         {/* Step Loader */}
-        <StepLoader />
+        <StepLoader currentStep={1} totalSteps={4} />
         {/* Step Loader end */}
         <div>
           <div className="mt-[22.5px] font-Inter">

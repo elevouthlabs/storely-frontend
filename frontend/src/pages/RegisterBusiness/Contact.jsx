@@ -64,7 +64,7 @@ const Contact = ({ form, setForm, back }) => {
       {/* Beginning of the RHS */}
       <div className="w-1/2 my-[32px] ml-[28px]">
         {/* Step Loader */}
-        <StepLoader />
+        <StepLoader currentStep={2} totalSteps={4} />
         {/* Step Loader end */}
         <div>
           <div className="mt-[22.5px] font-Inter">
