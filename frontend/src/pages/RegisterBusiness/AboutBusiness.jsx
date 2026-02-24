@@ -3,7 +3,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
-import api from "../../api/axios";
 
 const AboutBusiness = ({ form, setForm, next }) => {
   const Navigate = useNavigate();
