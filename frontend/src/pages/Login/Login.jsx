@@ -24,7 +24,7 @@ const Login = () => {
 
       const userResponse = await AuthRequests.currentUser();
       setUser(userResponse.data);
-      // navigate("/register-business");
+      navigate("/register-business");
     } catch (err) {
       console.log(err);
       alert("Login failed");

@@ -1,9 +1,8 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "https://storely-production.up.railway.app/api/v1";
-// axios.defaults.withCredentials = true;
 
-// Dynamically attach Authorization header
+
 axios.interceptors.request.use(async (config) => {
   const token = localStorage.getItem("storelyToken");
   if (token) {
@@ -12,10 +11,9 @@ axios.interceptors.request.use(async (config) => {
   return config;
 });
 
-// Handle responses
 const responseBody = (response) => response.data;
 
-// Base requests
+
 const requests = {
   get: (url, params) => axios.get(url, { params }).then(responseBody),
 
