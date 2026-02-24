@@ -4,8 +4,7 @@ import Buttons from "../../components/ui/buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
 import upload from "../../assets/Container.svg";
-import api from "../../api/axios";
-
+import { BusinessRequests } from "../../api/axios";
 const Contact = ({ form, setForm, back }) => {
   const Navigate = useNavigate();
   const [error, setError] = useState("");
@@ -20,12 +19,7 @@ const Contact = ({ form, setForm, back }) => {
     body.append("location", form.location);
     body.append("logo", form.logo);
     try {
-      const token = localStorage.getItem("token");
-      const response = await api.post("/business", body, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await BusinessRequests.createBusiness(body);
       console.log(response);
       Navigate("/addItem");
     } catch (err) {

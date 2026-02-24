@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../../api/axios.js";
+import { AuthRequests } from "../../api/axios.js";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
@@ -17,7 +17,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/auth/register", form);
+      await AuthRequests.register(form);
 
       localStorage.setItem("otpEmail", form.email);
 
