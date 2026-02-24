@@ -9,15 +9,12 @@ const AboutBusiness = ({ form, setForm, next }) => {
   const Navigate = useNavigate();
 
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex h-auto bg-[#F5F5F5]">
       <Sidebar />
-      {/* Beginning of the RHS */}
       <div className="w-1/2 my-[32px] ml-[28px]">
-        {/* Step Loader */}
         <StepLoader />
-        {/* Step Loader end */}
         <div>
-          <div className="mt-[22.5px] font-Inter">
+          <div className="mt-[20px] font-Inter">
             <h2 className="font-bold font-Inter text-[25.5px] text-[#0F172A]">
               Tell us about your business
             </h2>
@@ -25,9 +22,7 @@ const AboutBusiness = ({ form, setForm, next }) => {
               Helps us customize your store experience
             </p>
           </div>
-
-          {/* Form section */}
-          <form className="mt-[48px] font-Inter flex flex-col gap-5">
+          <form className="mt-[28px] font-Inter flex flex-col gap-5">
             <div>
               <p className="font-Inter font-medium">Business Name</p>
               <input

@@ -1,6 +1,6 @@
 const StepLoader = () => {
   return (
-    <div className="flex items-center justify-center w-full max-w-xl mx-auto">
+    <div className="flex items-center justify-center w-full max-w-xl">
       {/* Step 1 - Active */}
       <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5739BF] text-white font-semibold">
         1

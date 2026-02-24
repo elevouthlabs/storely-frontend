@@ -7,8 +7,8 @@ import avatar from "../../assets/avatar.png";
 
 const Sidebar = () => {
   return (
-    <div className="w-1/2 bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex flex-col justify-between pt-12 pl-12">
-      <div>
+    <div className="w-1/2 h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex flex-col justify-between pt-12 pl-12">
+      <div className="flex flex-col gap-[30px]">
         <div className="flex gap-[6px]">
           <div>
             <img src={storely} alt="" />
@@ -28,7 +28,7 @@ const Sidebar = () => {
             powerful platform.
           </p>
         </div>
-        <div className="mt-[40px]">
+        <div className="mt-[20px]">
           <div className="flex gap-[10px]">
             <div>
               <img src={icon1} alt="" />
@@ -70,7 +70,7 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-        <div className="mt-[60px] flex items-center gap-[10px]">
+        <div className="flex items-center gap-[10px]">
           <div>
             <img src={avatar} alt="" />
           </div>

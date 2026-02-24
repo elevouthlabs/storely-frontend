@@ -59,15 +59,12 @@ const Contact = ({ form, setForm, back }) => {
   console.log(error);
 
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex h-auto bg-[#F5F5F5]">
       <Sidebar />
-      {/* Beginning of the RHS */}
       <div className="w-1/2 my-[32px] ml-[28px]">
-        {/* Step Loader */}
         <StepLoader />
-        {/* Step Loader end */}
         <div>
-          <div className="mt-[22.5px] font-Inter">
+          <div className="mt-[20px] font-Inter">
             <h2 className="font-bold font-Inter text-[25.5px] text-[#0F172A]">
               Content & Branding
             </h2>
@@ -75,9 +72,7 @@ const Contact = ({ form, setForm, back }) => {
               How can customers reach you?
             </p>
           </div>
-
-          {/* Form section */}
-          <form className="mt-[48px] font-Inter flex flex-col gap-5">
+          <form className="mt-[28px] font-Inter flex flex-col gap-5">
             <div>
               <p className="font-Inter font-medium text-[#2E2E2E]">
                 Phone Number
