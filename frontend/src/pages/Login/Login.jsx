@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import api from "../../api/axios.js";
+import { AuthRequests } from "../../api/axios.js";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,16 +12,21 @@ const Login = () => {
     password: "",
   });
 
-  const { saveToken } = useContext(AuthContext);
+  const { saveToken, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/auth/login", form);
+      const res = await AuthRequests.login(form);
+      console.log(res.data.token);
       saveToken(res.data.token);
+
+      const userResponse = await AuthRequests.currentUser();
+      setUser(userResponse.data);
       navigate("/register-business");
     } catch (err) {
+      console.log(err);
       alert("Login failed");
     }
   };

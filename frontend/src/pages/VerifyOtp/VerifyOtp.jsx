@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import api from "../../api/axios.js";
+import { AuthRequests } from "../../api/axios.js";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import arrow from "../../assets/arrow.png";
@@ -21,7 +21,7 @@ const VerifyOtp = () => {
 
   const handleVerify = async () => {
     try {
-      await api.post("/auth/verify-otp", {
+      await AuthRequests.verifyOtp({
         email,
         otp,
       });
@@ -35,7 +35,7 @@ const VerifyOtp = () => {
 
   const handleResendOtp = async () => {
     try {
-      await api.post("/auth/resend-otp", {
+      await AuthRequests.resendOtp({
         email,
       });
       alert("OTP resent successfully");
