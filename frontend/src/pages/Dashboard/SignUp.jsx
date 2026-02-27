@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import InputBox from "../../components/ui/InputBox";
-import Buttons from "../../components/ui/buttons";
+import InputBox from "../../components/ui/InputBox.jsx";
+import Buttons from "../../components/ui/Buttons.sx";
 
 const SignUp = () => {
   return (

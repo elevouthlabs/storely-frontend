@@ -11,7 +11,8 @@ export default {
         Arima: ["Arima", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
         Outfit: ["Outfit", "sans-serif"],
-        Arimo: ["Arimo", "sans-serif"]
+        Arimo: ["Arimo", "sans-serif"],
+        Urbanist: ["Urbanist", "sans-serif"]
       },
     },
   },

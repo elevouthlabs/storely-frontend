@@ -8,7 +8,7 @@ const Hero = () => {
     return (
         <div className="h-auto">
             <div className="flex items-center relative">
-                <div className="ml-[60px] mt-[180px]">
+                <div className="ml-[60px] mt-[210px]">
                     <div className="flex items-center justify-center gap-[5px] w-[240px] h-[38px] rounded-full border border-t border-t-[#0000001A] bg-[#FFFFFFCC] opacity-100">
                         <div className="w-2 h-2  bg-[#00C950] opacity-[0.85] rounded-full"></div>
                         <p className="font-Arimo font-normal text-[14px] leading-[20px] tracking-normal text-[#0A0A0A]">Join 10,000+ businesses online</p>

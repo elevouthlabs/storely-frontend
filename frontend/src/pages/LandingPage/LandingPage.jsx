@@ -5,8 +5,9 @@ import Started from "./Started.jsx";
 import Run from "./Run.jsx";
 import Protect from "./Protect.jsx";
 import FAQ from "./Faq.jsx";
+import Business from "./Business.jsx";
 
-const HomePage = () => {
+const LandingPage = () => {
     return (
         <div>
             <Hero />
@@ -16,8 +17,9 @@ const HomePage = () => {
             <Run />
             <Protect />
             <FAQ />
+            <Business />
         </div>
     )
 }
 
-export default HomePage;
+export default LandingPage;
