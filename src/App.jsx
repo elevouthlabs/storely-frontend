@@ -5,15 +5,15 @@ import {
   useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.jsx";
-import Register from "./Pages/Register/Register.jsx";
-import Login from "./Pages/Login/Login.jsx";
-import VerifyOtp from "./Pages/VerifyOtp/VerifyOtp.jsx";
+import Register from "./pages/Register/Register.jsx";
+import Login from "./pages/Login/Login.jsx";
+import VerifyOtp from "./pages/VerifyOtp/VerifyOtp.jsx";
 import { AuthProvider } from "./context/AuthContext";
-import AboutBusiness from "./Pages/RegisterBusiness/AboutBusiness.jsx";
+import AboutBusiness from "./pages/RegisterBusiness/AboutBusiness.jsx";
 // import Contact from "./Pages/RegisterBusiness/Contact.jsx";
-import AddItems from "./Pages/RegisterBusiness/AddItems.jsx";
-import Launch from "./Pages/RegisterBusiness/Launch.jsx";
-import RegisterBusiness from "./Pages/RegisterBusiness/RegisterBusiness.jsx";
+import AddItems from "./pages/RegisterBusiness/AddItems.jsx";
+import Launch from "./pages/RegisterBusiness/Launch.jsx";
+import RegisterBusiness from "./pages/RegisterBusiness/RegisterBusiness.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
