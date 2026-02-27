@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register.jsx";
 import Login from "./pages/Login/Login.jsx";
 import VerifyOtp from "./pages/VerifyOtp/VerifyOtp.jsx";
 import { AuthProvider } from "./context/AuthContext";
+<<<<<<< HEAD:src/App.jsx
 import AboutBusiness from "./pages/RegisterBusiness/AboutBusiness.jsx";
 // import Contact from "./Pages/RegisterBusiness/Contact.jsx";
 import AddItems from "./pages/RegisterBusiness/AddItems.jsx";
@@ -16,6 +17,12 @@ import Launch from "./pages/RegisterBusiness/Launch.jsx";
 import RegisterBusiness from "./pages/RegisterBusiness/RegisterBusiness.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+=======
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import AddItems from "./Pages/RegisterBusiness/AddItems.jsx";
+import Launch from "./Pages/RegisterBusiness/Launch.jsx";
+import RegisterBusiness from "./Pages/RegisterBusiness/RegisterBusiness.jsx";
+>>>>>>> fe6bf48 (Landing Page):frontend/src/App.jsx
 
 function AppWrapper() {
   const location = useLocation();
@@ -45,7 +52,11 @@ function AppWrapper() {
         {/* <Route path="/contact-business" element={<Contact />} /> */}
         <Route path="/addItem" element={<AddItems />} />
         <Route path="/launch" element={<Launch />} />
+<<<<<<< HEAD:src/App.jsx
         <Route path="/" element={<LandingPage />} />
+=======
+        <Route path="/" element={<HomePage />} />
+>>>>>>> fe6bf48 (Landing Page):frontend/src/App.jsx
       </Routes>
       {!hideNavbar && <Footer />}
     </>

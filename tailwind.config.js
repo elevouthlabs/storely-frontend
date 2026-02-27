@@ -10,7 +10,8 @@ export default {
         Inter: ["Inter", "sans-serif"],
         Arima: ["Arima", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
-        Outfit: ["Outfit", "sans-serif"]
+        Outfit: ["Outfit", "sans-serif"],
+        Arimo: ["Arimo", "sans-serif"]
       },
     },
   },
