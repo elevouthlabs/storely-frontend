@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Buttons from "../../components/ui/buttons";
+import Buttons from "../../components/ui/Buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
 
