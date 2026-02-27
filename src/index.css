@@ -5,3 +5,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.vector-background {
+  background: url('./assets/vector-bg.png') top / 100% no-repeat,
+    linear-gradient(#8a2be2, #4b0083);
+}

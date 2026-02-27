@@ -10,10 +10,12 @@ import Login from "./Pages/Login/Login.jsx";
 import VerifyOtp from "./Pages/VerifyOtp/VerifyOtp.jsx";
 import { AuthProvider } from "./context/AuthContext";
 import AboutBusiness from "./Pages/RegisterBusiness/AboutBusiness.jsx";
-import Contact from "./Pages/RegisterBusiness/Contact.jsx";
+// import Contact from "./Pages/RegisterBusiness/Contact.jsx";
 import AddItems from "./Pages/RegisterBusiness/AddItems.jsx";
 import Launch from "./Pages/RegisterBusiness/Launch.jsx";
 import RegisterBusiness from "./Pages/RegisterBusiness/RegisterBusiness.jsx";
+import LandingPage from "./pages/LandingPage/LandingPage.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -43,8 +45,9 @@ function AppWrapper() {
         {/* <Route path="/contact-business" element={<Contact />} /> */}
         <Route path="/addItem" element={<AddItems />} />
         <Route path="/launch" element={<Launch />} />
-        <Route path="/" element={<div>Home Page</div>} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
+      {!hideNavbar && <Footer />}
     </>
   );
 }

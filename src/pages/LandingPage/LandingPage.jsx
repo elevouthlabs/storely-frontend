@@ -1,0 +1,769 @@
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+import LandingPageImage1 from "../../assets/landing-page-img-1.png";
+import LandingPageImage2 from "../../assets/landing-page-img-2.png";
+import LandingPageImage3 from "../../assets/landing-page-img-3.png";
+import LandingPageImage4 from "../../assets/landing-page-img-4.png";
+import LandingPageImage5 from "../../assets/landing-page-img-5.png";
+
+import LPGrid1 from "../../assets/lp-grid-1.png";
+import LPGrid2 from "../../assets/lp-grid-2.png";
+import LPGrid3 from "../../assets/lp-grid-3.png";
+import LPGrid4 from "../../assets/lp-grid-4.png";
+import LPGrid5 from "../../assets/lp-grid-5.png";
+import LPGrid6 from "../../assets/lp-grid-6.png";
+
+import FiveStars from "../../assets/5-stars.png";
+import ReviewUser from "../../assets/review-user.png";
+
+const LandingPage = () => {
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+  const faqs = [
+    {
+      question: "Is Storely really free to start?",
+      answer:
+        "We offer branding, performance marketing, content strategy, and campaign development — all tailored to drive growth, impact, and lasting brand value.",
+    },
+    {
+      question: "Do I need any technical skills?",
+      answer:
+        "No technical skills needed. Your store goes live faster than making coffee.",
+    },
+    {
+      question: "How do I receive payments?",
+      answer:
+        "Get paid immediately with secure checkout trusted by thousands. We integrate with leading payment providers to ensure your transactions are safe and seamless.    ",
+    },
+    {
+      question: "Can I sell services, not just products?",
+      answer:
+        "One platform for everything you sell. Products, services, bookings—all in one place.",
+    },
+    {
+      question: "How do my customers find my store?",
+      answer:
+        "You get a unique Storely link that you can share anywhere — WhatsApp, Instagram, Facebook, email, or even printed on a flyer. One link does it all.",
+    },
+  ];
+  return (
+    <div className=" max-w-6xl mx-auto">
+      {/*  */}
+      <div className="px-4 py-8">
+        <div className="md:flex md:items-center md:gap-8">
+          <div>
+            <button className="border border-2 border-[#00000030] rounded-full px-4 py-2  font-Inter font-medium text-base leading-6 flex items-center">
+              <span className="h-2 w-2 bg-[#00C950] rounded-full inline-block mr-2"></span>
+              <span className="text-sm">Join 10,000+ Businesses online</span>
+            </button>
+            <div className="font-bold text-[35px] font-Inter mt-8 leading-[42px] text-[#000000]">
+              Start selling online in minutes
+            </div>{" "}
+            <div className="font-Inter text-[18px] mt-4 leading-[28px] text-gray-700">
+              Create a professional business page, list your products or
+              services, share one link, and receive payments instantly — no
+              technical skills required.
+            </div>
+            <div className="flex flex-col gap-4 mt-6   ">
+              <NavLink to="/register-business">
+                <button className=" w-full rounded-lg p-3 bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-Inter font-semibold text-base leading-6 text-[#CCCCCC]">
+                  Create My Store
+                </button>
+              </NavLink>
+              <NavLink to="/about-business">
+                <button className="w-full  border border-[#00000030] px-6 py-3 rounded-lg font-Inter font-medium   leading-6  ">
+                  See how it works
+                </button>
+              </NavLink>
+            </div>
+            <div className="mt-10 flex flex gap-4">
+              <div className="flex items-center gap-2 text-[13px]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#00A63E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-check-icon lucide-check"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                <span>Secure payments</span>
+              </div>
+              <div className="flex items-center gap-2  text-[13px]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#00A63E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-check-icon lucide-check"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                <span>Built for whatsapp selling</span>
+              </div>
+            </div>
+            {/*  */}
+          </div>
+          <div className="mt-10">
+            <img
+              src={LandingPageImage1}
+              alt="Landing Page Image"
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="px-4 py-8 bg-[#f5f5f5]">
+        <div>
+          <div className="font-bold text-[24px] text-center font-Inter mt-10 leading-[32px] text-[#000000]">
+            Everything You Need to Start Selling Online
+          </div>
+          <div className="font-Inter text-[18px] text-center mt-6 leading-[28px] text-gray-700">
+            Powerful features designed to help you grow, without the complexity
+            of traditional e-commerce platforms.
+          </div>
+        </div>
+        {/* cards */}
+        <div>
+          <div className="mt-10 flex flex-col gap-6  md:grid md:grid-cols-3 gap-6">
+            <div className="flex-1  rounded-[20px] px-6 pt-4 bg-white shadow-md">
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Get Online Instantly
+              </div>
+              <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                No technical skills needed. Your store goes live faster than
+                making coffee.
+              </div>
+              <img
+                src={LPGrid1}
+                alt="Business Page"
+                className="w-full h-auto mt-4 rounded-lg"
+              />
+            </div>
+            {/*  */}
+            <div className="flex-1  rounded-[20px] px-6 pt-4 bg-white shadow-md">
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Your Own Professional Storefront
+              </div>
+              <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                Beautiful, branded storefront that builds trust and drives
+                sales.
+              </div>
+              <img
+                src={LPGrid2}
+                alt="Business Page"
+                className="w-full h-auto mt-4 rounded-lg"
+              />
+            </div>
+            {/*  */}
+            <div className="flex-1  rounded-[20px] px-6 pt-4 bg-white shadow-md">
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Sell Products & Services
+              </div>
+              <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                One platform for everything you sell. Products, services,
+                bookings—all in one place.
+              </div>
+              <img
+                src={LPGrid3}
+                alt="Business Page"
+                className="w-full h-auto mt-4 rounded-lg"
+              />
+            </div>
+            {/*  */}
+            <div className="flex-1  rounded-[20px] px-6 pt-4 bg-white shadow-md">
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Accept Payments Instantly
+              </div>
+              <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                Get paid immediately with secure checkout trusted by thousands.
+              </div>
+              <img
+                src={LPGrid4}
+                alt="Business Page"
+                className="w-full h-auto mt-4 rounded-lg"
+              />
+            </div>
+            {/*  */}
+            <div className="flex-1  rounded-[20px] px-6 pt-4 bg-white shadow-md">
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Track Sales Easily
+              </div>
+              <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                Clear dashboard shows what's working. No confusion, just
+                clarity.
+              </div>
+              <img
+                src={LPGrid5}
+                alt="Business Page"
+                className="w-full h-auto mt-4 rounded-lg"
+              />
+            </div>
+            {/*  */}
+            <div className="flex-1  rounded-[20px] px-6 pt-4 bg-white shadow-md">
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                AI That Helps You Sell Better
+              </div>
+              <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                Write better descriptions, reach more customers—AI does the
+                heavy lifting.
+              </div>
+              <img
+                src={LPGrid6}
+                alt="Business Page"
+                className="w-full h-auto mt-4 rounded-lg"
+              />
+            </div>
+            {/*  */}
+          </div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="px-4 py-8">
+        <div className="md:flex md:gap-6">
+          <div className="">
+            <div className="font-bold text-[24px]  font-Inter mt-10 leading-[32px] text-[#000000]">
+              Everything You Need to Start Selling Online
+            </div>
+            <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
+              Storely turns WhatsApp conversations into real sales without long
+              chats or manual transfers. Send a link, get paid, and manage
+              orders automatically.
+            </div>
+            <div className="mt-10">
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>No more "DM for price"</span>
+              </div>
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>Automatic order tracking</span>
+              </div>
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>Instant payment confirmation</span>
+              </div>
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>Professional look for your business</span>
+              </div>
+            </div>
+            <div className="mt-10">
+              <button className=" flex gap-4 items-center justify-center w-full rounded-lg px-3 py-4 bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-Inter font-semibold text-base leading-6 text-[#CCCCCC]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-message-circle-icon lucide-message-circle"
+                >
+                  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
+                </svg>
+                <span>Start Selling On Whatsapp</span>
+              </button>
+            </div>
+          </div>
+          <div className="md:w-1/2">
+            <img
+              src={LandingPageImage2}
+              alt="Landing Page Image"
+              className="w-full mt-10 rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="px-4 py-8 bg-[#f5f5f5]">
+        <div className="md:flex md:gap-6">
+          <div>
+            <button className="border border-2 border-[#00000030] rounded-full px-4 py-2  font-Inter font-medium text-base leading-6 flex items-center">
+              <span className="text-sm">How it works</span>
+            </button>
+            <div className="font-bold text-[24px] font-Inter mt-5 leading-[32px] text-[#000000]">
+              Get started in three simple steps
+            </div>
+            <div className="flex flex-col gap-3 mt-6">
+              <div className="flex items-start gap-5 my-4 font-Inter">
+                <span className="text-[#8A2BE2] text-[50px] font-bold">01</span>
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-bold">
+                    Create your store
+                  </span>
+                  <span className="text-[18px] text-gray-600">
+                    Sign up and customize your business page in minutes
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-5 my-4 font-Inter">
+                <span className="text-[#8A2BE2] text-[50px] font-bold">02</span>
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-bold">
+                    Add products or services
+                  </span>
+                  <span className="text-[18px] text-gray-600">
+                    Upload photos, set prices, and write descriptions
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-5 my-4 font-Inter">
+                <span className="text-[#8A2BE2] text-[50px] font-bold">03</span>
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-bold">
+                    Share link & get paid
+                  </span>
+                  <span className="text-[18px] text-gray-600">
+                    Send your link anywhere and start receiving payments
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 bg-white pt-5 px-4 rounded-[10px] md:w-1/2">
+            <img
+              src={LandingPageImage3}
+              alt="Landing Page Image"
+              className="w-full h-auto mt-10 rounded-lg"
+            />{" "}
+          </div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="px-4 py-8">
+        <div className="md:flex md:gap-6">
+          <div>
+            <div className="font-bold text-[24px]  font-Inter mt-10 leading-[32px] text-[#000000]">
+              Everything You Need to Start Selling Online
+            </div>
+            <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
+              Storely turns WhatsApp conversations into real sales without long
+              chats or manual transfers. Send a link, get paid, and manage
+              orders automatically.
+            </div>
+            <div className="mt-10">
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>Add, edit, hide products & services</span>
+              </div>
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>View and manage orders</span>
+              </div>
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>Update order status</span>
+              </div>
+              <div className="flex items-center gap-3 my-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big-icon lucide-circle-check-big"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <span>Share store link anytime</span>
+              </div>
+            </div>{" "}
+          </div>
+          <div className="mt-10">
+            <img
+              src={LandingPageImage4}
+              alt="Landing Page Image"
+              className="w-full h-auto mt-10 rounded-lg"
+            />
+          </div>{" "}
+        </div>
+      </div>
+      {/*  */}
+
+      <div className="px-4 py-8 bg-[#f5f5f5]">
+        <div>
+          <div className="font-bold text-[24px] text-center font-Inter mt-10 leading-[32px] text-[#000000]">
+            Built to Protect Businesses and Buyers{" "}
+          </div>
+          <div className="font-Inter text-[18px] text-center mt-6 leading-[28px] text-gray-700">
+            We take security seriously so you can focus on growing your
+            business.
+          </div>
+        </div>
+        {/* cards */}
+        <div>
+          <div className="mt-10 flex flex-col md:flex-row gap-6 ">
+            <div className="flex flex-col items-center  rounded-[20px] p-6 bg-white shadow-md">
+              <div className="bg-[#8A2BE220] p-3 rounded-full mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-badge-check-icon lucide-badge-check"
+                >
+                  <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Verified Businesses
+              </div>
+              <div className="font-Inter text-center text-[14px] mt-2 leading-[24px] text-gray-700">
+                Phone and email verification for every seller to ensure
+                legitimacy
+              </div>
+            </div>
+            {/*  */}
+            <div className="flex flex-col items-center  rounded-[20px] p-6 bg-white shadow-md">
+              <div className="bg-[#8A2BE220] p-3 rounded-full mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-lock-icon lucide-lock"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Secure Payments
+              </div>
+              <div className="font-Inter text-center text-[14px] mt-2 leading-[24px] text-gray-700">
+                Payments processed through trusted, encrypted providers
+              </div>
+            </div>
+            {/*  */}
+            <div className="flex flex-col items-center  rounded-[20px] p-6 bg-white shadow-md">
+              <div className="bg-[#8A2BE220] p-3 rounded-full mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A2BE2"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-eye-icon lucide-eye"
+                >
+                  <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+              <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                Platform Monitoring
+              </div>
+              <div className="font-Inter text-center text-[14px] mt-2 leading-[24px] text-gray-700">
+                Active fraud detection and prevention systems working 24/7.
+              </div>
+            </div>
+
+            {/*  */}
+          </div>
+        </div>
+      </div>
+      <div className="px-4 py-8">
+        <div className="md:flex md:gap-6">
+          <div>
+            <span>FAQs</span>
+            <div className="font-bold text-[24px] font-Inter mt-10 leading-[32px] text-[#000000]">
+              Frequently Asked Questions
+            </div>
+            <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
+              Find quick answers to the most common questions about our
+              services, process, and support
+            </div>
+            <button className="flex items-center justify-center gap-4 mt-5  rounded-full   py-3 px-7 bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-Inter font-semibold text-base leading-6 text-[#CCCCCC]">
+              <span>Let's Talk</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-chevron-right-icon lucide-circle-chevron-right"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m10 8 4 4-4 4" />
+              </svg>
+            </button>
+            <div className="mt-10">
+              <img
+                src={LandingPageImage5}
+                alt="Landing Page Image"
+                className="w-full h-auto mt-10 rounded-lg md:max-w-[75%]"
+              />
+            </div>
+          </div>
+          <ul className="mt-10 flex flex-col gap-4">
+            {faqs.map((faq, index) => (
+              <li
+                key={index}
+                className="bg-gray-100 p-3 py-2 rounded-lg cursor-pointer"
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="flex items-center justify-between">
+                  <motion.span
+                    className={`font-bold font-Inter ${activeFaq === index ? "text-[12px]" : "text-[14px]"} `}
+                  >
+                    {faq.question}
+                  </motion.span>
+                  <div className="rounded-full border border-gray-500 p-1 ml-2">
+                    {activeFaq !== index ? (
+                      <motion.svg
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-chevron-down-icon lucide-chevron-down"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </motion.svg>
+                    ) : (
+                      <motion.svg
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-chevron-up-icon lucide-chevron-up"
+                      >
+                        <path d="m18 15-6-6-6 6" />
+                      </motion.svg>
+                    )}
+                  </div>
+                </div>
+
+                <motion.p
+                  className="mt-2 text-gray-700 overflow-hidden"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{
+                    opacity: 1,
+                    height: activeFaq === index ? "auto" : 0,
+                  }}
+                  exit={{ opacity: 0, height: 0 }}
+                >
+                  {faq.answer}
+                </motion.p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="px-4 py-8 bg-[#f5f5f5]">
+        <div className="font-bold text-[24px] text-center font-Inter mt-10 leading-[32px] text-[#000000]">
+          Loved by Small Business Owners
+        </div>
+        <div className="font-Inter text-[18px] text-center mt-6 leading-[28px] text-gray-700">
+          Join thousands of entrepreneurs who are growing their businesses with
+          Storely
+        </div>
+        <div className="mt-10">
+          <div
+            className="flex flex-col gap-5 md:flex-row
+          "
+          >
+            <div className="card rounded-lg flex flex-col gap-3 bg-white shadow-md p-4">
+              <img src={FiveStars} alt="5 Stars" className="w-24 h-auto mb-2" />
+              <p className="text-gray-700 text-[14px]">
+                "Storely changed my business! I went from Instagram DMs to a
+                professional store in minutes. My sales tripled in the first
+                month."
+              </p>
+              <div className="flex gap-3 mt-3">
+                <img
+                  src={ReviewUser}
+                  alt="Review User"
+                  className="w-10 h-10 rounded-full inline-block mr-2"
+                />
+                <div className="flex flex-col">
+                  <span className="text-gray-900 font-bold text-[14px]">
+                    Sarah K.
+                  </span>
+                  <span>Fashion Designer</span>
+                </div>
+              </div>
+            </div>
+            <div className="card rounded-lg flex flex-col gap-3 bg-white shadow-md p-4">
+              <img src={FiveStars} alt="5 Stars" className="w-24 h-auto mb-2" />
+              <p className="text-gray-700 text-[14px]">
+                "The payment integration is seamless. I get paid instantly and
+                the order management keeps me organized. Best decision ever!"
+              </p>
+              <div className="flex gap-3 mt-3">
+                <img
+                  src={ReviewUser}
+                  alt="Review User"
+                  className="w-10 h-10 rounded-full inline-block mr-2"
+                />
+                <div className="flex flex-col">
+                  <span className="text-gray-900 font-bold text-[14px]">
+                    Maria S.
+                  </span>
+                  <span>Catering Services</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*  */}
+
+      {/*  */}
+    </div>
+  );
+};
+export default LandingPage;
