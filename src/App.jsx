@@ -27,7 +27,7 @@ import DashboardInventory from "./pages/Dashboard/DashboardInventory.jsx";
 import DashboardCustomers from "./pages/Dashboard/DashboardCustomers.jsx";
 import DashboardPayments from "./pages/Dashboard/DashboardPayments.jsx";
 import DashboardAnalytics from "./pages/Dashboard/DashboardAnalytics.jsx";
-import DashboardSettings from "./pages/Dashboard/DAshboardSettings.jsx";
+import DashboardSettings from "./pages/Dashboard/DashboardSettings.jsx";
 
 function AppWrapper() {
   const location = useLocation();
