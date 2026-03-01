@@ -66,12 +66,16 @@ function Navbar() {
 
       {/* Desktop Buttons */}
       <div className="hidden md:flex items-center gap-3">
-        <button className="text-[#8a2be2] border border-[#8a2be2] px-5 py-2 rounded-[40px] text-sm font-medium hover:bg-purple-50 transition-colors">
-          Login
-        </button>
-        <button className="bg-[#8a2be2] text-white px-5 py-2 rounded-[40px] text-sm font-medium hover:bg-purple-700 transition-colors">
-          Create Account
-        </button>
+        <NavLink to={"/login"}>
+          <button className="text-[#8a2be2] border border-[#8a2be2] px-5 py-2 rounded-[40px] text-sm font-medium hover:bg-purple-50 transition-colors">
+            Login
+          </button>
+        </NavLink>
+        <NavLink to={"/register"}>
+          <button className="bg-[#8a2be2] text-white px-5 py-2 rounded-[40px] text-sm font-medium hover:bg-purple-700 transition-colors">
+            Create Account
+          </button>
+        </NavLink>
       </div>
 
       {/* Mobile Menu Overlay */}

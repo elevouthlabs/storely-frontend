@@ -1,7 +1,7 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://storely-production.up.railway.app/api/v1";
-
+// axios.defaults.baseURL = "https://storely-production.up.railway.app/api/v1";
+axios.defaults.baseURL = "http://localhost:5000/api/v1";
 
 axios.interceptors.request.use(async (config) => {
   const token = localStorage.getItem("storelyToken");
@@ -12,7 +12,6 @@ axios.interceptors.request.use(async (config) => {
 });
 
 const responseBody = (response) => response.data;
-
 
 const requests = {
   get: (url, params) => axios.get(url, { params }).then(responseBody),

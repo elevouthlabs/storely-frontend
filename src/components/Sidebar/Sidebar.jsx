@@ -7,7 +7,7 @@ import avatar from "../../assets/avatar.png";
 
 const Sidebar = () => {
   return (
-    <div className="w-1/2 h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex flex-col justify-between pt-12 pl-12">
+    <div className="hidden w-1/2 h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex flex-col justify-between pt-12 pl-12">
       <div className="flex flex-col gap-[30px]">
         <div className="flex gap-[6px]">
           <div>
