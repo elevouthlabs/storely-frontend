@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView, useAnimation, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useAnimation,
+  AnimatePresence,
+} from "framer-motion";
 
 import LandingPageImage1 from "../../assets/landing-page-img-1.png";
 import LandingPageImage2 from "../../assets/landing-page-img-2.png";
@@ -74,7 +79,11 @@ const StaggerItem = ({ children, className = "" }) => (
   <motion.div
     variants={{
       hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+      },
     }}
     className={className}
   >
@@ -98,11 +107,26 @@ const CheckItem = ({ children, delay = 0 }) => {
       <motion.div
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
-        transition={{ duration: 0.35, delay: delay + 0.15, type: "spring", stiffness: 260 }}
+        transition={{
+          duration: 0.35,
+          delay: delay + 0.15,
+          type: "spring",
+          stiffness: 260,
+        }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-          fill="none" stroke="#8A2BE2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21.801 10A10 10 0 1 1 17 3.335" /><path d="m9 11 3 3L22 4" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#8A2BE2"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+          <path d="m9 11 3 3L22 4" />
         </svg>
       </motion.div>
       <span>{children}</span>
@@ -171,25 +195,68 @@ const LandingPage = () => {
   const toggleFaq = (index) => setActiveFaq(activeFaq === index ? null : index);
 
   const faqs = [
-    { question: "Is Storely really free to start?", answer: "We offer branding, performance marketing, content strategy, and campaign development — all tailored to drive growth, impact, and lasting brand value." },
-    { question: "Do I need any technical skills?", answer: "No technical skills needed. Your store goes live faster than making coffee." },
-    { question: "How do I receive payments?", answer: "Get paid immediately with secure checkout trusted by thousands. We integrate with leading payment providers to ensure your transactions are safe and seamless." },
-    { question: "Can I sell services, not just products?", answer: "One platform for everything you sell. Products, services, bookings—all in one place." },
-    { question: "How do my customers find my store?", answer: "You get a unique Storely link that you can share anywhere — WhatsApp, Instagram, Facebook, email, or even printed on a flyer. One link does it all." },
+    {
+      question: "Is Storely really free to start?",
+      answer:
+        "We offer branding, performance marketing, content strategy, and campaign development — all tailored to drive growth, impact, and lasting brand value.",
+    },
+    {
+      question: "Do I need any technical skills?",
+      answer:
+        "No technical skills needed. Your store goes live faster than making coffee.",
+    },
+    {
+      question: "How do I receive payments?",
+      answer:
+        "Get paid immediately with secure checkout trusted by thousands. We integrate with leading payment providers to ensure your transactions are safe and seamless.",
+    },
+    {
+      question: "Can I sell services, not just products?",
+      answer:
+        "One platform for everything you sell. Products, services, bookings—all in one place.",
+    },
+    {
+      question: "How do my customers find my store?",
+      answer:
+        "You get a unique Storely link that you can share anywhere — WhatsApp, Instagram, Facebook, email, or even printed on a flyer. One link does it all.",
+    },
   ];
 
   const gridCards = [
-    { title: "Get Online Instantly", desc: "No technical skills needed. Your store goes live faster than making coffee.", img: LPGrid1 },
-    { title: "Your Own Professional Storefront", desc: "Beautiful, branded storefront that builds trust and drives sales.", img: LPGrid2 },
-    { title: "Sell Products & Services", desc: "One platform for everything you sell. Products, services, bookings—all in one place.", img: LPGrid3 },
-    { title: "Accept Payments Instantly", desc: "Get paid immediately with secure checkout trusted by thousands.", img: LPGrid4 },
-    { title: "Track Sales Easily", desc: "Clear dashboard shows what's working. No confusion, just clarity.", img: LPGrid5 },
-    { title: "AI That Helps You Sell Better", desc: "Write better descriptions, reach more customers—AI does the heavy lifting.", img: LPGrid6 },
+    {
+      title: "Get Online Instantly",
+      desc: "No technical skills needed. Your store goes live faster than making coffee.",
+      img: LPGrid1,
+    },
+    {
+      title: "Your Own Professional Storefront",
+      desc: "Beautiful, branded storefront that builds trust and drives sales.",
+      img: LPGrid2,
+    },
+    {
+      title: "Sell Products & Services",
+      desc: "One platform for everything you sell. Products, services, bookings—all in one place.",
+      img: LPGrid3,
+    },
+    {
+      title: "Accept Payments Instantly",
+      desc: "Get paid immediately with secure checkout trusted by thousands.",
+      img: LPGrid4,
+    },
+    {
+      title: "Track Sales Easily",
+      desc: "Clear dashboard shows what's working. No confusion, just clarity.",
+      img: LPGrid5,
+    },
+    {
+      title: "AI That Helps You Sell Better",
+      desc: "Write better descriptions, reach more customers—AI does the heavy lifting.",
+      img: LPGrid6,
+    },
   ];
 
   return (
     <div className="max-w-6xl mx-auto">
-
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <div className="px-4 py-8">
         <div className="md:flex md:items-center md:gap-8">
@@ -198,7 +265,11 @@ const LandingPage = () => {
               <motion.span
                 className="h-2 w-2 bg-[#00C950] rounded-full inline-block mr-2"
                 animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
               <span className="text-sm">Join 10,000+ Businesses online</span>
             </FloatingBadge>
@@ -207,7 +278,11 @@ const LandingPage = () => {
               className="font-bold text-[35px] font-Inter mt-8 leading-[42px] text-[#000000]"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.65,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
               Start selling online in minutes
             </motion.div>
@@ -216,9 +291,15 @@ const LandingPage = () => {
               className="font-Inter text-[18px] mt-4 leading-[28px] text-gray-700"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.65,
+                delay: 0.22,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
-              Create a professional business page, list your products or services, share one link, and receive payments instantly — no technical skills required.
+              Create a professional business page, list your products or
+              services, share one link, and receive payments instantly — no
+              technical skills required.
             </motion.div>
 
             <motion.div
@@ -227,8 +308,10 @@ const LandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.34 }}
             >
-              <NavLink to="/register-business">
-                <PurpleBtn className="w-full rounded-lg p-3">Create My Store</PurpleBtn>
+              <NavLink to="/auth/register-business">
+                <PurpleBtn className="w-full rounded-lg p-3">
+                  Create My Store
+                </PurpleBtn>
               </NavLink>
               <NavLink to="/about-business">
                 <motion.button
@@ -248,15 +331,26 @@ const LandingPage = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              {["Secure payments", "Built for whatsapp selling"].map((text, i) => (
-                <div key={i} className="flex items-center gap-2 text-[13px]">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="#00A63E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  <span>{text}</span>
-                </div>
-              ))}
+              {["Secure payments", "Built for whatsapp selling"].map(
+                (text, i) => (
+                  <div key={i} className="flex items-center gap-2 text-[13px]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#00A63E"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    <span>{text}</span>
+                  </div>
+                ),
+              )}
             </motion.div>
           </div>
 
@@ -264,10 +358,18 @@ const LandingPage = () => {
             className="mt-10"
             initial={{ opacity: 0, x: 40, scale: 0.96 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.75,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             whileHover={{ scale: 1.01 }}
           >
-            <img src={LandingPageImage1} alt="Landing Page Image" className="w-full h-auto rounded-lg" />
+            <img
+              src={LandingPageImage1}
+              alt="Landing Page Image"
+              className="w-full h-auto rounded-lg"
+            />
           </motion.div>
         </div>
       </div>
@@ -279,16 +381,24 @@ const LandingPage = () => {
             Everything You Need to Start Selling Online
           </div>
           <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
-            Powerful features designed to help you grow, without the complexity of traditional e-commerce platforms.
+            Powerful features designed to help you grow, without the complexity
+            of traditional e-commerce platforms.
           </div>
         </Reveal>
 
-        <StaggerContainer className="mt-10 flex flex-col gap-6 md:grid md:grid-cols-3" stagger={0.08}>
+        <StaggerContainer
+          className="mt-10 flex flex-col gap-6 md:grid md:grid-cols-3"
+          stagger={0.08}
+        >
           {gridCards.map((card, i) => (
             <StaggerItem key={i}>
               <HoverCard className="flex-1 rounded-[20px] px-6 pt-4 bg-white shadow-md overflow-hidden">
-                <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">{card.title}</div>
-                <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">{card.desc}</div>
+                <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                  {card.title}
+                </div>
+                <div className="font-Inter text-[16px] mt-2 leading-[24px] text-gray-700">
+                  {card.desc}
+                </div>
                 <motion.img
                   src={card.img}
                   alt={card.title}
@@ -311,19 +421,37 @@ const LandingPage = () => {
                 Everything You Need to Start Selling Online
               </div>
               <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
-                Storely turns WhatsApp conversations into real sales without long chats or manual transfers. Send a link, get paid, and manage orders automatically.
+                Storely turns WhatsApp conversations into real sales without
+                long chats or manual transfers. Send a link, get paid, and
+                manage orders automatically.
               </div>
             </Reveal>
             <div className="mt-10">
-              {["No more 'DM for price'", "Automatic order tracking", "Instant payment confirmation", "Professional look for your business"  ].map((text, i) => (
-                <CheckItem key={i} delay={i * 0.1}>{text}</CheckItem>
+              {[
+                "No more 'DM for price'",
+                "Automatic order tracking",
+                "Instant payment confirmation",
+                "Professional look for your business",
+              ].map((text, i) => (
+                <CheckItem key={i} delay={i * 0.1}>
+                  {text}
+                </CheckItem>
               ))}
             </div>
             <Reveal delay={0.3}>
               <div className="mt-10">
                 <PurpleBtn className="flex gap-4 items-center justify-center w-full rounded-lg px-3 py-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
                   </svg>
                   <span>Start Selling On Whatsapp</span>
@@ -333,7 +461,11 @@ const LandingPage = () => {
           </div>
 
           <Reveal direction="left" className="md:w-1/2">
-            <img src={LandingPageImage2} alt="Landing Page Image" className="w-full mt-10 rounded-lg" />
+            <img
+              src={LandingPageImage2}
+              alt="Landing Page Image"
+              className="w-full mt-10 rounded-lg"
+            />
           </Reveal>
         </div>
       </div>
@@ -343,7 +475,9 @@ const LandingPage = () => {
         <div className="md:flex md:gap-6">
           <div>
             <Reveal>
-              <FloatingBadge><span className="text-sm">How it works</span></FloatingBadge>
+              <FloatingBadge>
+                <span className="text-sm">How it works</span>
+              </FloatingBadge>
               <div className="font-bold text-[24px] font-Inter mt-5 leading-[32px] text-[#000000]">
                 Get started in three simple steps
               </div>
@@ -351,9 +485,21 @@ const LandingPage = () => {
 
             <div className="flex flex-col gap-3 mt-6">
               {[
-                { n: "01", title: "Create your store", desc: "Sign up and customize your business page in minutes" },
-                { n: "02", title: "Add products or services", desc: "Upload photos, set prices, and write descriptions" },
-                { n: "03", title: "Share link & get paid", desc: "Send your link anywhere and start receiving payments" },
+                {
+                  n: "01",
+                  title: "Create your store",
+                  desc: "Sign up and customize your business page in minutes",
+                },
+                {
+                  n: "02",
+                  title: "Add products or services",
+                  desc: "Upload photos, set prices, and write descriptions",
+                },
+                {
+                  n: "03",
+                  title: "Share link & get paid",
+                  desc: "Send your link anywhere and start receiving payments",
+                },
               ].map((step, i) => (
                 <motion.div
                   key={i}
@@ -361,20 +507,34 @@ const LandingPage = () => {
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.55, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 0.55,
+                    delay: i * 0.12,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
                   <StepNumber number={step.n} delay={i * 0.12} />
                   <div className="flex flex-col gap-2">
                     <span className="text-[18px] font-bold">{step.title}</span>
-                    <span className="text-[18px] text-gray-600">{step.desc}</span>
+                    <span className="text-[18px] text-gray-600">
+                      {step.desc}
+                    </span>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          <Reveal direction="left" delay={0.15} className="mt-5 bg-white pt-5 px-4 rounded-[10px] md:w-1/2">
-            <img src={LandingPageImage3} alt="Landing Page Image" className="w-full h-auto mt-10 rounded-lg" />
+          <Reveal
+            direction="left"
+            delay={0.15}
+            className="mt-5 bg-white pt-5 px-4 rounded-[10px] md:w-1/2"
+          >
+            <img
+              src={LandingPageImage3}
+              alt="Landing Page Image"
+              className="w-full h-auto mt-10 rounded-lg"
+            />
           </Reveal>
         </div>
       </div>
@@ -388,18 +548,31 @@ const LandingPage = () => {
                 Everything You Need to Start Selling Online
               </div>
               <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
-                Storely turns WhatsApp conversations into real sales without long chats or manual transfers. Send a link, get paid, and manage orders automatically.
+                Storely turns WhatsApp conversations into real sales without
+                long chats or manual transfers. Send a link, get paid, and
+                manage orders automatically.
               </div>
             </Reveal>
             <div className="mt-10">
-              {["Add, edit, hide products & services", "View and manage orders", "Update order status", "Share store link anytime"].map((text, i) => (
-                <CheckItem key={i} delay={i * 0.1}>{text}</CheckItem>
+              {[
+                "Add, edit, hide products & services",
+                "View and manage orders",
+                "Update order status",
+                "Share store link anytime",
+              ].map((text, i) => (
+                <CheckItem key={i} delay={i * 0.1}>
+                  {text}
+                </CheckItem>
               ))}
             </div>
           </div>
 
           <Reveal direction="left" className="mt-10">
-            <img src={LandingPageImage4} alt="Landing Page Image" className="w-full h-auto mt-10 rounded-lg" />
+            <img
+              src={LandingPageImage4}
+              alt="Landing Page Image"
+              className="w-full h-auto mt-10 rounded-lg"
+            />
           </Reveal>
         </div>
       </div>
@@ -411,24 +584,43 @@ const LandingPage = () => {
             Built to Protect Businesses and Buyers
           </div>
           <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
-            We take security seriously so you can focus on growing your business.
+            We take security seriously so you can focus on growing your
+            business.
           </div>
         </Reveal>
 
-        <StaggerContainer className="mt-10 flex flex-col md:flex-row gap-6" stagger={0.12}>
+        <StaggerContainer
+          className="mt-10 flex flex-col md:flex-row gap-6"
+          stagger={0.12}
+        >
           {[
             {
-              icon: <><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m9 12 2 2 4-4" /></>,
+              icon: (
+                <>
+                  <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </>
+              ),
               title: "Verified Businesses",
               desc: "Phone and email verification for every seller to ensure legitimacy",
             },
             {
-              icon: <><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>,
+              icon: (
+                <>
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </>
+              ),
               title: "Secure Payments",
               desc: "Payments processed through trusted, encrypted providers",
             },
             {
-              icon: <><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></>,
+              icon: (
+                <>
+                  <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                  <circle cx="12" cy="12" r="3" />
+                </>
+              ),
               title: "Platform Monitoring",
               desc: "Active fraud detection and prevention systems working 24/7.",
             },
@@ -440,13 +632,26 @@ const LandingPage = () => {
                   whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="#8A2BE2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#8A2BE2"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     {card.icon}
                   </svg>
                 </motion.div>
-                <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">{card.title}</div>
-                <div className="font-Inter text-center text-[14px] mt-2 leading-[24px] text-gray-700">{card.desc}</div>
+                <div className="font-bold text-[18px] font-Inter leading-[28px] text-[#000000]">
+                  {card.title}
+                </div>
+                <div className="font-Inter text-center text-[14px] mt-2 leading-[24px] text-gray-700">
+                  {card.desc}
+                </div>
               </HoverCard>
             </StaggerItem>
           ))}
@@ -463,24 +668,38 @@ const LandingPage = () => {
                 Frequently Asked Questions
               </div>
               <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
-                Find quick answers to the most common questions about our services, process, and support
+                Find quick answers to the most common questions about our
+                services, process, and support
               </div>
             </Reveal>
 
             <Reveal delay={0.15}>
               <PurpleBtn className="flex items-center justify-center gap-4 mt-5 rounded-full py-3 px-7">
                 <span>Let's Talk</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" /><path d="m10 8 4 4-4 4" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m10 8 4 4-4 4" />
                 </svg>
               </PurpleBtn>
             </Reveal>
 
             <Reveal delay={0.2}>
               <div className="mt-10">
-                <img src={LandingPageImage5} alt="Landing Page Image"
-                  className="w-full h-auto mt-10 rounded-lg md:max-w-[75%]" />
+                <img
+                  src={LandingPageImage5}
+                  alt="Landing Page Image"
+                  className="w-full h-auto mt-10 rounded-lg md:max-w-[75%]"
+                />
               </div>
             </Reveal>
           </div>
@@ -500,7 +719,9 @@ const LandingPage = () => {
                 <div className="flex items-center justify-between">
                   <motion.span
                     className="font-bold font-Inter text-[14px]"
-                    animate={{ color: activeFaq === index ? "#8A2BE2" : "#000000" }}
+                    animate={{
+                      color: activeFaq === index ? "#8A2BE2" : "#000000",
+                    }}
                     transition={{ duration: 0.2 }}
                   >
                     {faq.question}
@@ -508,7 +729,8 @@ const LandingPage = () => {
                   <motion.div
                     className="rounded-full border border-gray-500 p-1 ml-2 flex-shrink-0"
                     animate={{
-                      backgroundColor: activeFaq === index ? "#8A2BE2" : "transparent",
+                      backgroundColor:
+                        activeFaq === index ? "#8A2BE2" : "transparent",
                       borderColor: activeFaq === index ? "#8A2BE2" : "#6b7280",
                     }}
                     transition={{ duration: 0.25 }}
@@ -516,8 +738,14 @@ const LandingPage = () => {
                     <motion.svg
                       animate={{ rotate: activeFaq === index ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                      fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       stroke={activeFaq === index ? "#fff" : "currentColor"}
                     >
                       <path d="m6 9 6 6 6-6" />
@@ -552,34 +780,57 @@ const LandingPage = () => {
             Loved by Small Business Owners
           </div>
           <div className="font-Inter text-[18px] mt-6 leading-[28px] text-gray-700">
-            Join thousands of entrepreneurs who are growing their businesses with Storely
+            Join thousands of entrepreneurs who are growing their businesses
+            with Storely
           </div>
         </Reveal>
 
-        <StaggerContainer className="mt-10 flex flex-col gap-5 md:flex-row" stagger={0.15}>
+        <StaggerContainer
+          className="mt-10 flex flex-col gap-5 md:flex-row"
+          stagger={0.15}
+        >
           {[
-            { quote: '"Storely changed my business! I went from Instagram DMs to a professional store in minutes. My sales tripled in the first month."', name: "Sarah K.", role: "Fashion Designer" },
-            { quote: '"The payment integration is seamless. I get paid instantly and the order management keeps me organized. Best decision ever!"', name: "Maria S.", role: "Catering Services" },
+            {
+              quote:
+                '"Storely changed my business! I went from Instagram DMs to a professional store in minutes. My sales tripled in the first month."',
+              name: "Sarah K.",
+              role: "Fashion Designer",
+            },
+            {
+              quote:
+                '"The payment integration is seamless. I get paid instantly and the order management keeps me organized. Best decision ever!"',
+              name: "Maria S.",
+              role: "Catering Services",
+            },
           ].map((review, i) => (
             <StaggerItem key={i}>
               <HoverCard className="card rounded-lg flex flex-col gap-3 bg-white shadow-md p-4 h-full">
                 <motion.img
-                  src={FiveStars} alt="5 Stars" className="w-24 h-auto mb-2"
+                  src={FiveStars}
+                  alt="5 Stars"
+                  className="w-24 h-auto mb-2"
                   initial={{ opacity: 0, scale: 0.7 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 + 0.2, type: "spring" }}
+                  transition={{
+                    duration: 0.4,
+                    delay: i * 0.1 + 0.2,
+                    type: "spring",
+                  }}
                 />
                 <p className="text-gray-700 text-[14px]">{review.quote}</p>
                 <div className="flex gap-3 mt-3">
                   <motion.img
-                    src={ReviewUser} alt="Review User"
+                    src={ReviewUser}
+                    alt="Review User"
                     className="w-10 h-10 rounded-full inline-block mr-2"
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   />
                   <div className="flex flex-col">
-                    <span className="text-gray-900 font-bold text-[14px]">{review.name}</span>
+                    <span className="text-gray-900 font-bold text-[14px]">
+                      {review.name}
+                    </span>
                     <span>{review.role}</span>
                   </div>
                 </div>

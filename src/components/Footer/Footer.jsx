@@ -11,7 +11,7 @@ const Footer = () => {
           Join thousands of entrepreneurs who are growing their businesses with
           Storely
         </div>
-        <NavLink to={"/register-business"}>
+        <NavLink to={"/auth/register-business"}>
           <button className="mt-8  mx-auto bg-white text-[#8a2be2] font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors">
             <span>Create My Store</span>
             <svg

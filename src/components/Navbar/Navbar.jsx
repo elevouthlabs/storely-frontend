@@ -66,12 +66,12 @@ function Navbar() {
 
       {/* Desktop Buttons */}
       <div className="hidden md:flex items-center gap-3">
-        <NavLink to={"/login"}>
+        <NavLink to={"/auth/login"}>
           <button className="text-[#8a2be2] border border-[#8a2be2] px-5 py-2 rounded-[40px] text-sm font-medium hover:bg-purple-50 transition-colors">
             Login
           </button>
         </NavLink>
-        <NavLink to={"/register"}>
+        <NavLink to={"/auth/register"}>
           <button className="bg-[#8a2be2] text-white px-5 py-2 rounded-[40px] text-sm font-medium hover:bg-purple-700 transition-colors">
             Create Account
           </button>
@@ -131,12 +131,16 @@ function Navbar() {
               </NavLink>
             </ul>
             <div className="bg-white w-[80%] p-4 flex items-center gap-3">
-              <button className="text-[#8a2be2] border border-[#8a2be2] px-5 py-2 rounded-[40px] text-sm font-medium">
-                Login
-              </button>
-              <button className="bg-[#8a2be2] text-white px-4 py-2 rounded-[40px] text-sm font-medium">
-                Create Account
-              </button>
+              <NavLink to={"/auth/login"} onClick={toggleMenu}>
+                <button className="text-[#8a2be2] border border-[#8a2be2] px-5 py-2 rounded-[40px] text-sm font-medium">
+                  Login
+                </button>
+              </NavLink>
+              <NavLink to={"/auth/register"} onClick={toggleMenu}>
+                <button className="bg-[#8a2be2] text-white px-4 py-2 rounded-[40px] text-sm font-medium">
+                  Create Account
+                </button>
+              </NavLink>
             </div>
           </div>
         </motion.div>
