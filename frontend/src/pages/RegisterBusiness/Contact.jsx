@@ -49,9 +49,6 @@ const Contact = ({ form, setForm, back }) => {
     setError("");
   };
 
-  console.log(form.logo);
-  console.log(error);
-
   return (
     <div className="flex h-auto bg-[#F5F5F5]">
       <Sidebar />
