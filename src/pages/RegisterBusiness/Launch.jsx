@@ -20,10 +20,10 @@ const Launch = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex justify-center bg-[#F5F5F5]">
       <Sidebar />
       {/* Beginning of the RHS */}
-      <div className="w-1/2 my-[32px] ml-[28px] font-Inter">
+      <div className=" my-[32px] mx-[28px] font-Inter">
         {/* Step Loader */}
         <StepLoader currentStep={4} totalSteps={4} />
         {/* Step Loader end */}

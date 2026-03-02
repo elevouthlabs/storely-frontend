@@ -63,10 +63,10 @@ const AddItems = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex justify-center bg-[#F5F5F5]">
       <Sidebar />
       {/* Beginning of the RHS */}
-      <div className="w-1/2 my-[32px] ml-[28px]">
+      <div className=" my-[32px] mx-[28px]">
         {/* Step Loader */}
         <StepLoader currentStep={3} totalSteps={4} />
         {/* Step Loader end */}

@@ -9,7 +9,7 @@ const RegisterSuccess = () => {
   return (
     <div className="flex h-auto bg-[#F5F5F5]">
       <Sidebar />
-      <div className="w-1/2 flex flex-col justify-center items-center gap-[27px] my-[32px] ml-[28px] font-Inter">
+      <div className=" flex flex-col justify-center items-center gap-[27px] my-[32px] mx-[28px] font-Inter">
         <div className="flex flex-col items-center">
           <img src={success} alt="success" className="w-[60px] h-[60px]" />
           <p className="font-semibold text-[24px] text-[#2E2E2E] m">
