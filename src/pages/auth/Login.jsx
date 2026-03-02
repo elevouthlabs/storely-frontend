@@ -66,7 +66,7 @@ const Login = () => {
       setUser(userResponse.data);
       navigate("/auth/register-business");
     } catch (err) {
-      if (err?.response.status >= 500) {
+      if (err?.response?.status >= 500) {
         toast.error("Server error. Please try again later.", { id: toastId });
         return;
       }
