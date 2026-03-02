@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://storely-production.up.railway.app/api/v1";
-axios.defaults.baseURL = "http://localhost:5000/api/v1";
+axios.defaults.baseURL = "https://storely-production.up.railway.app/api/v1";
+// axios.defaults.baseURL = "http://localhost:5000/api/v1";
 
 axios.interceptors.request.use(async (config) => {
   const token = localStorage.getItem("storelyToken");
@@ -54,4 +54,6 @@ export const BusinessRequests = {
   deleteBusiness: (id) => requests.delete(`business/${id}`),
 };
 
-export const ProductsRequests = {};
+export const ProductsRequests = {
+  createItem: (data) => requests.postForm("items", data),
+};
