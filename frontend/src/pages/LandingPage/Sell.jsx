@@ -1,46 +1,45 @@
-import chat1 from "../../assets/chat1.png";
-import chat2 from "../../assets/chat2.png";
-import chat3 from "../../assets/chat3.png";
-import check1 from "../../assets/check1.png";
-import icon from "../../assets/icon.png";
+import image1 from "../../assets/image1.png";
+import image2 from "../../assets/image2.png";
+import image3 from "../../assets/image3.png";
 
 const Sell = () => {
     return (
-        <div className="h-[600px] bg-[#fff]">
-            <div className="flex  gap-[90px]  mt-[60px]">
-                <div>
-                    <div className="pl-[60px]">
-                        <img src={chat1} alt="chat-box" />
-                    </div>
-                    <div className="pl-[80px]">
-                        <img src={chat2} alt="chat-box" />
-                    </div>
-                    <div className="pl-[60px]">
-                        <img src={chat3} alt="chat-box" />
-                    </div>
+        <div className="h-auto pb-[70px] bg-[#F5F5F5]">
+            <div className="flex flex-col gap-4 items-center justify-center">
+                <div className="w-[147px] flex items-center gap-2 mt-[20px] h-[38px] bg-white/80 border-t border-[#0000001A] rounded-full px-[12px] py-[15px]">
+                    <div className="w-[8px] h-[8px] bg-[#F59E0B] rounded-full"></div>
+                    <p className="font-Arimo font-normal text-[14px] text-[#0A0A0A] leading-[20px]">THE PROBLEM</p>
                 </div>
-                <div>
-                    <h3 className="font-Inter font-bold text-[31px] leading-[40px] text-[#111827] tracking-normal">Sell Where Your Customers Already Are</h3>
-                    <p className="font-OpenSans mt-[10px] font-normal text-[20px] leading-[24px] text-[#505256] tracking-normal w-[567px]">Storely turns WhatsApp conversations into real sales without long chats or manual transfers. Send a link, get paid, and manage orders automatically.</p>
-                    <ul className="mt-[40px] flex flex-col gap-[26px]">
-                        <li className="flex gap-[12px] font-Inter font-medium text-[14px] leading-[24px] text-[#505256] tracking-normal"><img src={check1} alt="" />No more "DM for price"</li>
-                        <li className="flex gap-[12px] font-Inter font-medium text-[14px] leading-[24px] text-[#505256] tracking-normal"><img src={check1} alt="" />Automatic order tracking</li>
-                        <li className="flex gap-[12px] font-Inter font-medium text-[14px] leading-[24px] text-[#505256] tracking-normal"><img src={check1} alt="" />Instant payment confirmation</li>
-                        <li className="flex gap-[12px] font-Inter font-medium text-[14px] leading-[24px] text-[#505256] tracking-normal"><img src={check1} alt="" />Professional look for your business</li>
-                    </ul>
-                    <div className="mt-[60px]">
-                        <a
-                            href="#"
-                            target="_blank"
-                            className="w-[316px] flex gap-[20px] h-[60px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] rounded-lg border border-[#D9D9D9] text-[16px] font-Inter font-bold leading-[24px] tracking-normal text-[#FFFFFF] bg-[#fff]  flex items-center justify-center"
-                        >
-                            <img src={icon} alt="chat-icon" /> Start Selling on WhatsApp
-                        </a>
+                <div className="flex flex-col gap-3">
+                    <h2 className="font-Inter font-semibold text-[64px] text-[#47444B] leading-[70px] w-[1060px] text-center align-middle">Running a business is complicated.It doesn't have to be.</h2>
+                    <p className="font-OpenSans w-[757px] mx-auto font-normal text-[20px] text-[#28272A] leading-[32.5px] text-center">Most SMEs struggle with fragmented tools, messy data, and zero visibility into what's actually happening in their business.</p>
+                </div>
+                <div className="flex gap-[12px] mt-[30px]">
+                    <div className="w-[414px] h-[212px] bg-white flex flex-col gap-3 rounded-[12px] p-[20px]">
+                        <div>
+                            <img src={image1} alt="" />
+                        </div>
+                        <h4 className="font-Inter font-bold text-[20px] text-[#47444B] leading-[28px] align-middle">Messy inventory management</h4>
+                        <p className="font-Inter font-normal text-[14px] text-[#28272A] leading-[22px] align-middle">Tracking stock in spreadsheets leads to overselling, stockouts, and lost revenue. Manual updates are error-prone and time-consuming.</p>
+                    </div>
+                    <div className="w-[414px] h-[212px] bg-white flex flex-col gap-3 rounded-[12px] p-[20px]">
+                        <div>
+                            <img src={image2} alt="" />
+                        </div>
+                        <h4 className="font-Inter font-bold text-[20px] text-[#47444B] leading-[28px] align-middle">Orders from multiple channels</h4>
+                        <p className="font-Inter font-normal text-[14px] text-[#28272A] leading-[22px] align-middle">Managing WhatsApp, Instagram, and website orders separately creates chaos. Orders get missed, customers get frustrated.</p>
+                    </div>
+                    <div className="w-[414px] h-[212px] bg-white flex flex-col gap-3 rounded-[12px] p-[20px]">
+                        <div>
+                            <img src={image3} alt="" />
+                        </div>
+                        <h4 className="font-Inter font-bold text-[20px] text-[#47444B] leading-[28px] align-middle">No visibility into performance</h4>
+                        <p className="font-Inter font-normal text-[14px] text-[#28272A] leading-[22px] align-middle">Without real-time data, you're making decisions blind. You don't know your top products, best customers, or growth opportunities.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        </div> 
+    ) 
 }
 
 export default Sell;

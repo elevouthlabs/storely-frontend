@@ -1,58 +1,44 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import Check from "../../assets/check.png";
+import demo from "../../assets/demo.png";
 import hero1 from "../../assets/hero1.png";
-import hero2 from "../../assets/hero2.png";
 
 
 const Hero = () => {
     return (
-        <div className="h-auto">
-            <div className="flex items-center relative">
-                <div className="ml-[60px] mt-[210px]">
-                    <div className="flex items-center justify-center gap-[5px] w-[240px] h-[38px] rounded-full border border-t border-t-[#0000001A] bg-[#FFFFFFCC] opacity-100">
-                        <div className="w-2 h-2  bg-[#00C950] opacity-[0.85] rounded-full"></div>
-                        <p className="font-Arimo font-normal text-[14px] leading-[20px] tracking-normal text-[#0A0A0A]">Join 10,000+ businesses online</p>
-                    </div>
-                    <div className="flex flex-col gap-[20px] mt-[15px]">
-                        <h2 className="font-Arimo w-[624px] font-bold text-[60px] leading-[75px] tracking-normal text-[#101828]">Start Selling Online in Minutes </h2>
-                        <p className="font-OpenSans font-normal text-[20px] leading-[32.5px] tracking-normal text-[#6B7280] w-[540px]">Create a professional business page, list your products or services, share one link, and receive payments instantly — no technical skills required.</p>
-                        <div className="flex gap-[16px] items-center">
-                            <Link
-                                to="/register"
-                                className="w-[249px] h-[56px] rounded-[8px] pt-[14px] pr-[60px] pb-[14px] pl-[60px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-Inter font-semibold text-[16px] leading-[28px] tracking-normal text-center text-white"
+        <div className="h-auto pb-[60px] bg-[#f3f4f6]">
+            <div className="flex flex-col justify-center gap-8 items-center pt-[120px]">
+                <div className="flex items-center justify-center gap-2 w-[294px] h-[38px] bg-white/80 rounded-full border-t border-[#0000001A]">
+                    <div className="w-[8px] h-[8px] bg-[#00C950] rounded-full"></div>
+                    <p className="font-Arimo font-normal text-[14px] text-[#0A0A0A] leading-[20px]">Intelligent Operating System for SMEs</p>
+                </div>
+                <div className="flex flex-col gap-4">
+                    <h2 className="font-Inter w-[920px] font-bold text-[60px] text-[#47444B] leading-[70px] text-center">Run your entire business from one intelligent platform.</h2>
+                    <p className="font-openSans font-normal text-[20px] text-[#6B7280] leading-[32.5px] text-center w-[877px]">Inventory, orders, payments, customers, and AI insights — all in one commerce operating system built for modern businesses</p>
+                    <div className="flex gap-3 mx-auto mt-[20px]">
+                        <Link
+                            to="/register"
+                            className="w-[300px] h-[52px] bg-[#2D1B4E] text-white rounded-[8px] px-[20px] py-[12px] font-Inter font-semibold text-[16px] leading-[24px] text-center flex items-center justify-center"
+                        >
+                            Create Store for Free
+                        </Link>
+                        <div className="w-[300px] h-[51px] p-[1px] rounded-[8px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082]">
+                            <a
+                                href=""
+                                className="w-full h-full flex items-center justify-center gap-[10px] bg-white rounded-[7px] px-[20px] py-[12px] font-Inter font-bold text-[16px] text-[#47444B] leading-[28px] text-center"
                             >
-                                Create Store
-                            </Link>
-                            <Link
-                                to="/howitworks"
-                                className="w-[249px] h-[56px] rounded-[8px] pt-[14px] pr-[10px] pb-[14px] pl-[10px] border-2 border-t-2 border-t-[#E5E7EB] bg-white font-Inter font-semibold text-[16px] leading-[28px] tracking-normal text-center text-[#0A0A0A]"
-                            >
-                                See How It Works
-                            </Link>
-                        </div>
-                        <div className="flex items-center gap-[25px]">
-                            <div className="flex items-center gap-[8px]">
-                                <img src={Check} alt="" />
-                                <p className="font-Arimo font-normal text-[16px] leading-[24px] tracking-normal text-[#4A5565]">Secure payments</p>
-                            </div>
-                            <div className="flex items-center gap-[8px]">
-                                <img src={Check} alt="" />
-                                <p className="font-Arimo font-normal text-[16px] leading-[24px] tracking-normal text-[#4A5565]">Built for WhatsApp selling</p>
-                            </div>
+                                Book Demo
+                                <img src={demo} alt="video-icon" className="w-[16px] h-[16px]" />
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div className="absolute right-7 top-24 bottom-10 z-[9999]">
-                        <img src={hero1} alt="" />
-                    </div>
-                    <div className="absolute top-15 bottom-0 left-90 right-78">
-                        <img src={hero2} alt="" />
-                    </div>
+                <div className="mt-[20px]">
+                    <img src={hero1} alt="storely-dashboard" className="w-[825px] h-[587px]" />
                 </div>
             </div>
         </div>
-        
+
     )
 }
 

@@ -41,18 +41,18 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-[20px]">
-                    <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Explore</h4>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Home</Link>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">About Us</Link>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Solutions</Link>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Blog</Link>
+                    <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Product</h4>
+                    <a href="#features" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Features</a>
+                    <a href="#pricing" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Pricing</a>
+                    <a href="#AI-insight" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">AI Insights</a>
+                    <a href="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Integrations</a>
                 </div>
                 <div className="flex flex-col gap-[20px]">
-                    <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Solutions</h4>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Freight Management</Link>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Order Tracking</Link>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Carrier Integration</Link>
-                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Analytics Dashboard</Link>
+                    <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Company</h4>
+                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">About</Link>
+                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Careers</Link>
+                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Blog</Link>
+                    <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280] leading-[100%] tracking-normal">Contact</Link>
                 </div>
                 <div className="flex flex-col gap-[20px]">
                     <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Resources</h4>

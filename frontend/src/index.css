@@ -14,3 +14,7 @@
   background: url('./assets/vector-bg.png') top / 100% no-repeat,
     linear-gradient(#8a2be2, #4b0083);
 }
+
+html {
+  scroll-behavior: smooth;
+}
