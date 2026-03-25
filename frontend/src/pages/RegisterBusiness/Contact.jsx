@@ -5,12 +5,17 @@ import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
 import upload from "../../assets/Container.svg";
 import { BusinessRequests } from "../../api/axios";
+import toast, { Toaster } from "react-hot-toast";
+
 const Contact = ({ form, setForm, back }) => {
   const Navigate = useNavigate();
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const toastId = toast.loading("Reegistering your business...");
+
     const body = new FormData();
     body.append("name", form.name);
     body.append("category", form.category);
@@ -20,10 +25,20 @@ const Contact = ({ form, setForm, back }) => {
     body.append("logo", form.logo);
     try {
       const response = await BusinessRequests.createBusiness(body);
+      toast.success("Business Registered Successfully!", { id: toastId });
+
       console.log(response);
       Navigate("/addItem");
     } catch (err) {
       console.log(err);
+      if (err?.response?.status >= 500) {
+        toast.error("Server error. Please try again later.", { id: toastId });
+        return;
+      }
+      console.log(err);
+      const message =
+        err?.response?.data?.message || "Invalid inputs, try again.";
+      toast.error(message, { id: toastId });
     }
   };
 
@@ -49,14 +64,13 @@ const Contact = ({ form, setForm, back }) => {
     setError("");
   };
 
-  console.log(form.logo);
-  console.log(error);
-
   return (
-    <div className="flex h-auto bg-[#F5F5F5]">
+    <div className="flex justify-center h-auto bg-[#F5F5F5]">
       <Sidebar />
-      <div className="w-1/2 my-[32px] ml-[28px]">
-        <StepLoader />
+      <div className=" my-[32px] mx-[28px]">
+        {/* Step Loader */}
+        <StepLoader currentStep={2} totalSteps={4} />
+        {/* Step Loader end */}
         <div>
           <div className="mt-[20px] font-Inter">
             <h2 className="font-bold font-Inter text-[25.5px] text-[#0F172A]">

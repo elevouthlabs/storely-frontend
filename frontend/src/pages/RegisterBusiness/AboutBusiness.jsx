@@ -3,15 +3,19 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/Buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const AboutBusiness = ({ form, setForm, next }) => {
   const Navigate = useNavigate();
 
   return (
-    <div className="flex h-auto bg-[#F5F5F5]">
+    // <div className="flex justify-center items-center h-screen max-w-7xl m-auto">
+    <div className="flex justify-center h-auto bg-[#F5F5F5]">
       <Sidebar />
-      <div className="w-1/2 my-[32px] ml-[28px]">
-        <StepLoader />
+      <div className=" my-[32px] mx-[28px]">
+        {/* Step Loader */}
+        <StepLoader currentStep={1} totalSteps={4} />
+        {/* Step Loader end */}
         <div>
           <div className="mt-[20px] font-Inter">
             <h2 className="font-bold font-Inter text-[25.5px] text-[#0F172A]">
@@ -90,6 +94,7 @@ const AboutBusiness = ({ form, setForm, next }) => {
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 

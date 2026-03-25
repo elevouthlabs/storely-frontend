@@ -31,9 +31,7 @@ const faqData = [
     },
 ];
 
-
 const FAQ = () => {
-
     const [active, setActive] = useState(null);
 
     const toggle = (index) => {
@@ -42,22 +40,34 @@ const FAQ = () => {
 
     return (
         <div className="h-auto bg-[#F5F5F5]">
-            <div className="mx-[60px] py-[60px] flex gap-[80px]">
-                <div className="flex flex-col gap-5">
+            <div className="mx-4 md:mx-[30px] lg:mx-[60px] py-12 md:py-[60px] flex flex-col lg:flex-row gap-8 lg:gap-[80px]">
+
+                {/* LEFT */}
+                <div className="flex flex-col gap-5 w-full lg:w-auto">
                     <div className="w-[87px] flex items-center gap-2 h-[38px] bg-white/80 rounded-full px-[17px] py-[15px] border border-t border-t-black/10">
                         <div className="w-[8px] h-[8px] bg-[#F59E0B] rounded-full"></div>
                         <p className="font-Arimo font-normal text-[14px] text-[#0A0A0A] leading-[20px] tracking-normal">FAQs</p>
                     </div>
+
                     <div className="flex flex-col gap-3">
-                        <h3 className="font-Inter w-[560px] font-semibold text-[64px] text-[#47444B] leading-[70px] tracking-normal">Frequently Asked Questions</h3>
-                        <p className="font-OpenSans font-normal w-[560px] text-[20px] text-[#28272A] leading-[32.5px] tracking-normal">Find quick answers to the most common questions about our services, process, and support</p>
-                        <a href="" className="w-[160px] h-[54px] mt-[20px] flex items-center justify-center gap-[10px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] rounded-[80px] px-[32px] py-[16px] font-OpenSans font-medium text-[16px] text-white leading-[100%] tracking-normal">Let’s Talk <img src={arrw} alt="" /></a>
+                        <h3 className="font-Inter w-full md:w-[560px] font-semibold text-[32px] sm:text-[48px] lg:text-[64px] text-[#47444B] leading-[40px] sm:leading-[60px] lg:leading-[70px] tracking-normal">
+                            Frequently Asked Questions
+                        </h3>
+                        <p className="font-OpenSans font-normal w-full md:w-[560px] text-[16px] sm:text-[18px] lg:text-[20px] text-[#28272A] leading-[28px] sm:leading-[30px] lg:leading-[32.5px] tracking-normal">
+                            Find quick answers to the most common questions about our services, process, and support
+                        </p>
+                        <a href="" className="w-full sm:w-[160px] h-[54px] mt-5 flex items-center justify-center gap-[10px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] rounded-[80px] px-[32px] py-[16px] font-OpenSans font-medium text-[16px] text-white leading-[100%] tracking-normal">
+                            Let’s Talk <img src={arrw} alt="" />
+                        </a>
                     </div>
-                    <div className="mt-[60px]">
-                        <img src={faq} alt="" />
+
+                    <div className="mt-6 md:mt-[60px] w-full">
+                        <img src={faq} alt="" className="w-full max-w-[500px] lg:max-w-none" />
                     </div>
                 </div>
-                <div className="flex flex-col gap-4">
+
+                {/* RIGHT - FAQ Items */}
+                <div className="flex flex-col gap-4 w-full lg:w-auto">
                     {faqData.map((faq, index) => (
                         <div
                             key={index}
@@ -67,7 +77,7 @@ const FAQ = () => {
                                 className="flex items-center justify-between py-4"
                                 onClick={() => toggle(index)}
                             >
-                                <h3 className="font-Inter font-semibold text-[24px] text-[#47444B] leading-[100%] tracking-normal">
+                                <h3 className="font-Inter font-semibold text-[20px] sm:text-[22px] md:text-[24px] text-[#47444B] leading-[100%] tracking-normal">
                                     {faq.question}
                                 </h3>
 
@@ -75,20 +85,18 @@ const FAQ = () => {
                                     {active === index ? <Minus size={18} /> : <Plus size={18} />}
                                 </div>
                             </div>
-                            <div
-                                className={`overflow-hidden transition-all duration-300 ${active === index ? "max-h-[1000px] mt-4" : "max-h-0"
-                                    }`}
-                            >
-                                <p className="font-OpenSans font-normal text-[18px] text-[#28272A] leading-relaxed">
+                            <div className={`overflow-hidden transition-all duration-300 ${active === index ? "max-h-[1000px] mt-4" : "max-h-0"}`}>
+                                <p className="font-OpenSans font-normal text-[16px] sm:text-[17px] md:text-[18px] text-[#28272A] leading-relaxed">
                                     {faq.answer}
                                 </p>
                             </div>
                         </div>
                     ))}
                 </div>
+
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default FAQ;

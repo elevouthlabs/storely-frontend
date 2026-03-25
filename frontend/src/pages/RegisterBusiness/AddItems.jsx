@@ -5,21 +5,35 @@ import StepLoader from "../../components/ui/StepLoader";
 import upload from "../../assets/Container.svg";
 import AI from "../../assets/suggest.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ProductsRequests } from "../../api/axios";
 
 const AddItems = () => {
   const Navigate = useNavigate();
   const [form, setForm] = useState({
-    itemName: "",
+    name: "",
     description: "",
     price: "",
+    type: "",
     productImage: "",
     productImageName: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    Navigate("/launch");
-    console.log("works perfectly");
+    const body = new FormData();
+    body.append("name", form.name);
+    body.append("description", form.description);
+    body.append("price", Number(form.price));
+    body.append("type", form.type);
+    body.append("productImage", form.productImage);
+    try {
+      const response = await ProductsRequests.createItem(body);
+      console.log(response);
+      Navigate("/launch");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleImageUpload = (e) => {
@@ -49,12 +63,12 @@ const AddItems = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex justify-center bg-[#F5F5F5]">
       <Sidebar />
       {/* Beginning of the RHS */}
-      <div className="w-1/2 my-[32px] ml-[28px]">
+      <div className=" my-[32px] mx-[28px]">
         {/* Step Loader */}
-        <StepLoader />
+        <StepLoader currentStep={3} totalSteps={4} />
         {/* Step Loader end */}
         <div>
           <div className="mt-[22.5px] font-Inter">
@@ -72,11 +86,11 @@ const AddItems = () => {
               <p className="font-Inter font-medium text-[#2E2E2E]">Item Name</p>
               <input
                 type="text"
-                value={form.itemName}
+                value={form.name}
                 placeholder="e.g. Classic White T-Shirt"
                 required
                 className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) => setForm({ ...form, itemName: e.target.value })}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
             </div>
             <div>

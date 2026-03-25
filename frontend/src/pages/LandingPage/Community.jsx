@@ -4,39 +4,43 @@ import blarrow from "../../assets/blarrow.png";
 
 const Community = () => {
     return (
-        <div id="community" className="h-[936px]  px-[60px] py-[80px] bg-[#F5F5F5]">
+        <div id="community" className="relative bg-[#F5F5F5] px-6 md:px-[60px] py-10 md:py-[80px]">
             <div className="flex flex-col justify-center items-center">
-                <div className="w-[133px] flex items-center gap-2 h-[38px] bg-white/80 rounded-full px-[13px] py-[15px] border border-t border-t-black/10">
+                <div className="flex items-center gap-2 h-[38px] w-[134px] sm:w-[133px] bg-white/80 rounded-full px-3 py-3 border border-t border-t-black/10">
                     <div className="w-[8px] h-[8px] bg-[#F59E0B] rounded-full"></div>
-                    <p className="font-Arimo font-normal text-[14px] text-[#0A0A0A] leading-[20px] tracking-normal">COMMUNITY</p>
+                    <p className="font-Arimo text-[14px] text-[#0A0A0A] leading-[20px]">COMMUNITY</p>
                 </div>
             </div>
-            <div className="mt-[40px] relative">
-                <img src={comm} alt="" />
-                <div className=" absolute top-[327px] left-[220px] flex flex-col gap-2 w-[815px] h-[317px] bg-[#EFE6FD] rounded-[200px] pt-[36px] pr-[24px] pb-[96px] pl-[24px]">
-                    <h2 className="font-Inter font-semibold text-[48px] text-[#47444B] leading-[60px] tracking-normal text-center">Join a community of modern entrepreneurs.</h2>
-                    <p className="font-Inter w-[672px] mx-auto font-normal text-[20px] text-[#28272A] leading-[26px] tracking-normal text-center">Connect with thousands of business owners who are growing with Storely. Share wins, learn strategies, and build together.</p>
-                    <div className="relative mx-auto mt-[15px] w-[300px] md:w-[400px]">
+            <div className="mt-10 md:mt-[40px] relative">
+                <img src={comm} alt="Community" className="w-full max-w-full h-auto" />
+                <div className="absolute top-[77px] md:top-[327px] left-1/2 -translate-x-1/2 md:left-[220px] md:translate-x-0 flex flex-col gap-1 md:gap-4 w-[80%] md:w-[90%] max-w-[815px] md:max-w-[815px] h-[125px] md:h-[317px] bg-[#EFE6FD] rounded-[200px] pt-3 pr-6 pb-5 pl-6 md:pt-[36px] md:pr-[24px] md:pb-[96px] md:pl-[24px]">
+                    <h2 className="font-Inter font-semibold text-[15px] sm:text-[40px] md:text-[48px] text-[#47444B] leading-[19px] sm:leading-[50px] md:leading-[60px] text-center">
+                        Join a community of modern entrepreneurs.
+                    </h2>
+                    <p className="font-Inter font-normal text-[6px] sm:text-[18px] md:text-[20px] text-[#28272A] leading-[8px] sm:leading-[24px] md:leading-[26px] text-center mx-auto max-w-[90%] md:max-w-[672px]">
+                        Connect with thousands of business owners who are growing with Storely. Share wins, learn strategies, and build together.
+                    </p>
+                    <div className="relative mx-auto mt-1 w-full md:w-[90%] max-w-[157px] sm:max-w-[300px] md:max-w-[400px]">
                         <input
                             type="text"
                             placeholder="Enter Email"
-                            className="w-[487px] h-[53px] rounded-[40px] border border-[#fff] px-4 focus:outline-none placeholder:font-Urbanist placeholder:font-medium placeholder:text-[18px] placeholder:text-[#6B7280] placeholder:leading-[130%] placeholder:tracking-[-0.02em] px-4 h-[66px] w-[340px] rounded-[40px] border border-[#0000001A]"
+                            className="w-full h-[40px] sm:h-[45px] md:h-[53px] rounded-[40px] border border-[#0000001A] px-4 py-5 focus:outline-none placeholder:font-Urbanist placeholder:font-medium placeholder:text-[7px] sm:placeholder:text-[14px] md:placeholder:text-[18px] placeholder:text-[#6B7280] placeholder:leading-[100%] placeholder:tracking-[-0.02em]"
                         />
                         <button
-                            className="absolute top-1/2 -right-20 -translate-y-1/2 w-[110px] h-[45px] bg-[#4B0082] rounded-[24px] px-[20px] py-[10px] flex items-center justify-center font-outfit font-medium text-[16px] text-white leading-[100%] tracking-normal"
+                            className="absolute top-1/2 right-2 sm:-right-5 -translate-y-1/2 w-[36px] h-[16px] sm:w-[110px] sm:h-[45px] bg-[#4B0082] rounded-[24px] px-2 sm:px-[20px] flex items-center justify-center font-outfit font-medium text-[6px] sm:text-[16px] text-white"
                         >
                             Subscribe
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="w-[379px] h-[67px] mt-[190px] flex justify-center items-center mx-auto bg-[#F59E0B] rounded-[12px] px-[40px] py-[20px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
-                <Link to="#" className="flex items-center gap-3  font-Inter font-bold text-[16px] text-[#28272A] leading-[28px] tracking-normal text-center">
-                    Learn More <img src={blarrow} alt="" />
+            <div className="mt-[117px] md:mt-[190px] w-[90%] max-w-[379px] h-auto md:h-[67px] flex justify-center items-center mx-auto bg-[#F59E0B] rounded-[12px] px-6 py-4 md:px-[40px] md:py-[20px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
+                <Link to="#" className="flex items-center gap-2 md:gap-3 font-Inter font-bold text-[14px] sm:text-[16px] text-[#28272A] leading-[22px] sm:leading-[28px]">
+                    Learn More <img src={blarrow} alt="arrow" className="w-4 h-4 md:w-auto md:h-auto" />
                 </Link>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Community;
