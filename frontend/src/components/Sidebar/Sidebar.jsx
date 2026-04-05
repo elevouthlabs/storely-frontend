@@ -7,7 +7,7 @@ import avatar from "../../assets/avatar.png";
 
 const Sidebar = () => {
   return (
-    <div className="w-full lg:flex w-1/2 h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex-col justify-center px-6 xl:px-8 2xl:max-w-[550px] 2xl:max-h-[770px]">
+    <div className="lg:w-1/2 lg:flex md:w-full h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex-col justify-center px-6 xl:px-8 2xl:max-w-[550px] 2xl:max-h-[770px]">
 
       <div className="flex flex-col h-full py-8 xl:py-10">
         <div className="flex flex-col gap-6 xl:gap-[30px]">
