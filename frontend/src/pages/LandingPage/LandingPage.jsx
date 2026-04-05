@@ -9,10 +9,14 @@ import Features from "./Features.jsx";
 import Powered from "./Powered.jsx";
 import Pricing from "./Pricing.jsx";
 import Community from "./Community.jsx";
+import WaitlistModal from "../../components/Waitlist/WaitlistModal.jsx";
 
 const LandingPage = () => {
     return (
         <div>
+            {/* ✅ Modal should be here */}
+            <WaitlistModal />
+
             <Hero />
             <Everything />
             <Sell />

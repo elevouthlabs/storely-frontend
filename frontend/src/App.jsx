@@ -29,7 +29,7 @@ function AppWrapper() {
 
   const noNavbarRoutes = [
     "/auth",
-    "/auth/register",
+    "/register",
     "/auth/login",
     "/auth/forgot-password",
     "/auth/reset-password",
@@ -40,6 +40,7 @@ function AppWrapper() {
     "/addItem",
     "/launch",
     "/dashboard",
+    "/login"
   ];
 
   const hideNavbar =
