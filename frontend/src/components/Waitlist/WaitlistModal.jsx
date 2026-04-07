@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
+import { useForm, ValidationError } from '@formspree/react';
 
 const WaitlistModal = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [state, handleSubmit] = useForm("meepvqwn");
+
 
     useEffect(() => {
-        // Open modal on page load
         setIsOpen(true);
     }, []);
 
@@ -28,69 +30,90 @@ const WaitlistModal = () => {
                     </div>
                 </div>
 
-                {/* Title */}
-                <h2 className="text-2xl font-bold text-[#252C46] mb-2">
-                    Join the Waitlist
-                </h2>
+                {state.succeeded ? (
+                    <p className="text-center text-green-600 font-semibold">
+                        Thanks for joining!
+                    </p>
+                ) : (
+                    <>
+                        <h2 className="text-2xl font-bold text-[#252C46] mb-2">
+                            Join the Waitlist
+                        </h2>
 
-                <p className="text-gray-500 mb-6 text-sm">
-                    Join thousands of people already on the waitlist and be the first to
-                    send gifts on time, every time.
-                </p>
+                        <p className="text-gray-500 mb-6 text-sm">
+                            Join thousands already on the waitlist and be among the first to launch, manage, and grow your store with ease.
+                        </p>
 
-                <form className="flex flex-col gap-4">
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Your Name
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Enter your name"
-                            className="w-full mt-1 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2"
-                        />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Your Email Address
-                        </label>
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="w-full mt-1 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2"
-                        />
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Your Phone Number
-                        </label>
-
-                        <div className="flex items-center mt-1 border border-gray-200 rounded-full overflow-hidden">
-                            {/* Country */}
-                            <div className="flex items-center gap-2 px-3 bg-gray-100">
-                                <span className="text-sm">🇳🇬</span>
-                                <span className="text-xs">+234</span>
+                        <form
+                            onSubmit={handleSubmit}
+                            className="flex flex-col gap-4">
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">
+                                    Your Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Enter your name"
+                                    className="w-full mt-1 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2"
+                                />
+                                <ValidationError
+                                    prefix="Name"
+                                    field="name"
+                                    errors={state.errors}
+                                />
                             </div>
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">
+                                    Your Email Address
+                                </label>
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    className="w-full mt-1 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2"
+                                />
+                                <ValidationError
+                                    prefix="Email"
+                                    name="email"
+                                    field="email"
+                                    errors={state.errors}
+                                />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">
+                                    Your Phone Number
+                                </label>
 
-                            <input
-                                type="tel"
-                                placeholder="Enter your phone number"
-                                className="flex-1 px-4 py-3 focus:outline-none"
-                            />
-                        </div>
-                    </div>
+                                <div className="flex items-center mt-1 border border-gray-200 rounded-full overflow-hidden">
+                                    {/* Country */}
+                                    <div className="flex items-center gap-2 px-3 bg-gray-100">
+                                        <span className="text-sm">🇳🇬</span>
+                                        <span className="text-xs">+234</span>
+                                    </div>
 
-                    {/* Button */}
-                    <button
-                        type="submit"
-                        className="mt-4  bg-[#2D1B4E] text-white py-3 rounded-full font-semibold transition"
-                    >
-                        Join Waitlist
-                    </button>
-                </form>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="Enter your phone number"
+                                        className="flex-1 px-4 py-3 focus:outline-none"
+                                    />
+                                    <ValidationError
+                                        prefix="Phone Number"
+                                        field="phone"
+                                        errors={state.errors}
+                                    />
+                                </div>
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={state.submitting}
+                                className="mt-4  bg-[#2D1B4E] text-white py-3 rounded-full font-semibold transition"
+                            >
+                                Join Waitlist
+                            </button>
+                        </form>
+                    </>
+                )}
             </div>
         </div>
     );
