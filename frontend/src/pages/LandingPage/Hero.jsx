@@ -6,7 +6,7 @@ import hero1 from "../../assets/hero1.png";
 const Hero = () => {
     return (
         <div className="h-auto pb-[60px] bg-[#f3f4f6] px-4 sm:px-6 lg:px-0">
-            <div className="flex flex-col justify-center gap-8 items-center pt-[100px] sm:pt-[120px]">
+            <div className="flex flex-col justify-center gap-8 items-center pt-[130px] sm:pt-[120px]">
                 <div className="flex items-center justify-center gap-2 w-full max-w-[294px] h-[38px] bg-white/80 rounded-full border-t border-[#0000001A] px-3">
                     <div className="w-[8px] h-[8px] bg-[#00C950] rounded-full"></div>
                     <p className="font-Arimo font-normal text-[12px] sm:text-[14px] text-[#0A0A0A] leading-[20px] text-center">
