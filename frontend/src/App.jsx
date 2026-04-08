@@ -14,15 +14,8 @@ import Launch from "./pages/RegisterBusiness/Launch.jsx";
 import RegisterBusiness from "./pages/RegisterBusiness/RegisterBusiness.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
-import DashboardOrders from "./pages/Dashboard/Orders.js";
-import DashboardProducts from "./pages/Dashboard/DashboardProducts.jsx";
-import DashboardServices from "./pages/Dashboard/DashboardServices.jsx";
-import DashboardInventory from "./pages/Dashboard/DashboardInventory.jsx";
-import DashboardCustomers from "./pages/Dashboard/DashboardCustomers.jsx";
-import DashboardPayments from "./pages/Dashboard/DashboardPayments.jsx";
-import DashboardAnalytics from "./pages/Dashboard/DashboardAnalytics.jsx";
-import DashboardSettings from "./pages/Dashboard/DashboardSettings.jsx";
 import Register from "./pages/Register/Register.jsx";
+import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -49,24 +42,8 @@ function AppWrapper() {
 
   return (
     <div>
-      {/* react-hot-toast container */}
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            borderRadius: "8px",
-            fontFamily: "Inter, sans-serif",
-            fontSize: "14px",
-          },
-          error: {
-            iconTheme: {
-              primary: "#4B0082",
-              secondary: "#fff",
-            },
-          },
-        }}
-      />
+      {!hideNavbar && <WaitlistSlider />}
+
       {!hideNavbar && <Navbar />}
 
       <Routes>
@@ -81,19 +58,6 @@ function AppWrapper() {
         <Route path="/addItem" element={<AddItems />} />
         <Route path="/launch" element={<Launch />} />
         <Route path="/" element={<LandingPage />} />
-
-        {/* Dashboard nested routes 
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="orders" element={<DashboardOrders />} />
-          <Route path="products" element={<DashboardProducts />} />
-          <Route path="services" element={<DashboardServices />} />
-          <Route path="inventory" element={<DashboardInventory />} />
-          <Route path="customers" element={<DashboardCustomers />} />
-          <Route path="payments" element={<DashboardPayments />} />
-          <Route path="analytics" element={<DashboardAnalytics />} />
-          <Route path="settings" element={<DashboardSettings />} />
-        </Route> */}
       </Routes>
       {!hideNavbar && <Footer />}
     </div>

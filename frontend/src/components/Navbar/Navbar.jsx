@@ -38,7 +38,7 @@ function Navbar() {
     }, []);
 
     return (
-        <nav className="fixed top-0 left-0 w-full z-[999999] h-[88px] bg-[#f3f4f6] px-[20px] md:px-[60px] py-[20px] md:py-[30px] flex justify-between items-center">
+        <nav className="fixed mt-[40px] top-0 left-0 w-full z-[999999] h-[88px] bg-[#f3f4f6] px-[20px] md:px-[60px] py-[20px] md:py-[30px] flex justify-between items-center">
 
             <div>
                 <img src={logo} alt="" className="w-[120px] md:w-auto" />
