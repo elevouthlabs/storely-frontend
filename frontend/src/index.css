@@ -32,7 +32,7 @@ html {
 .animate-marquee {
   display: inline-block;
   min-width: 200%;
-  animation: marquee 15s linear infinite;
+  animation: marquee 25s linear infinite;
 }
 
 
