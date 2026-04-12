@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://storely-production.up.railway.app/api/v1";
-axios.defaults.baseURL = "http://localhost:5000/api/v1";
+
+axios.defaults.baseURL = "https://storely-backend-production-154f.up.railway.app/api/v1";
 
 axios.interceptors.request.use(async (config) => {
   const token = localStorage.getItem("storelyToken");
@@ -40,7 +40,7 @@ const requests = {
 };
 
 export const AuthRequests = {
-  register: (body) => requests.post("auth/register", body),
+  register: (body) => requests.post("auth/signup", body),
   verifyOtp: (body) => requests.post("auth/verify-otp", body),
   resendOtp: (body) => requests.post("auth/resend-otp", body),
   login: (body) => requests.post("auth/login", body),

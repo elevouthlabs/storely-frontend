@@ -30,7 +30,7 @@ const WaitlistModal = ({ open }) => {
 
                 {state.succeeded ? (
                     <p className="text-center text-green-600 font-semibold">
-                        Thanks for joining!
+                        You’re officially on the list. <br />We’re building something exciting, and you’ll be the first to know when Storely goes live. <br />Stay tuned.
                     </p>
                 ) : (
                     <>

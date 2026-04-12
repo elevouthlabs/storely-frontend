@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Hero from "./Hero.jsx"
 import Everything from "./Everything.jsx";
 import Sell from "./Sell.jsx";
@@ -12,11 +13,17 @@ import Community from "./Community.jsx";
 import WaitlistModal from "../../components/Waitlist/WaitlistModal.jsx";
 
 const LandingPage = () => {
+
+    const [openModal, setOpenModal] = useState(false);
+
+
+    useEffect(() => {
+        setOpenModal(true);
+    }, []);
+
     return (
         <div>
-            {/* ✅ Modal should be here */}
-            <WaitlistModal />
-
+            <WaitlistModal open={openModal} />
             <Hero />
             <Everything />
             <Sell />

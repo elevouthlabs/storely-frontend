@@ -17,16 +17,16 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const res = await AuthRequests.login(form);
-      saveToken(res.data.token);
 
-      const userResponse = await AuthRequests.currentUser();
-      setUser(userResponse.data);
+      saveToken(res.token || res.data?.token);
+
       navigate("/register-business");
     } catch (err) {
-      console.log(err);
-      alert("Login failed");
+      console.log(err.response?.data);
+      alert(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -80,9 +80,8 @@ const Login = () => {
               </Link>
             </div>
 
-            {/* Button */}
             <div>
-              <button className="w-full lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
+              <button disabled={!form.email || !form.password} className="w-full lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
                 Sign in
               </button>
             </div>

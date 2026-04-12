@@ -65,55 +65,53 @@ const Contact = ({ form, setForm, back }) => {
   };
 
   return (
-    <div className="flex justify-center h-auto bg-[#F5F5F5]">
+    <div className="flex flex-col md:flex-row justify-center h-auto bg-[#F5F5F5]">
       <Sidebar />
-      <div className=" my-[32px] mx-[28px]">
-        {/* Step Loader */}
+      <div className=" w-full lg:w-1/2 px-4 sm:px-6 md:px-0 my-[20px] md:my-[32px] md:mx-[28px]">
+
         <StepLoader currentStep={2} totalSteps={4} />
-        {/* Step Loader end */}
+
         <div>
-          <div className="mt-[20px] font-Inter">
-            <h2 className="font-bold font-Inter text-[25.5px] text-[#0F172A]">
+          <div className="mt-[20px] font-Inter text-center md:text-left">
+            <h2 className="font-bold text-[22px] sm:text-[25.5px] text-[#0F172A]">
               Content & Branding
             </h2>
-            <p className="text-[13.6px] text-[#475569]">
+            <p className="text-[13px] sm:text-[13.6px] text-[#475569]">
               How can customers reach you?
             </p>
           </div>
-          <form className="mt-[28px] font-Inter flex flex-col gap-5">
-            <div>
-              <p className="font-Inter font-medium text-[#2E2E2E]">
-                Phone Number
-              </p>
+
+          <form className="mt-[28px] font-Inter flex flex-col gap-5 items-center md:items-start">
+
+            <div className="w-full max-w-[560px]">
+              <p className="font-medium text-[#2E2E2E]">Phone Number</p>
               <input
                 type="number"
                 value={form.phone}
                 placeholder="+234678950506969"
                 required
-                className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
               />
             </div>
-            <div>
-              <p className="font-Inter font-medium text-[#2E2E2E]">
-                Whatsapp Number
-              </p>
+
+            <div className="w-full max-w-[560px]">
+              <p className="font-medium text-[#2E2E2E]">Whatsapp Number</p>
               <input
                 type="number"
                 value={form.whatsappNumber}
                 placeholder="+234678950506969"
                 required
-                className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
+                className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) =>
                   setForm({ ...form, whatsappNumber: e.target.value })
                 }
               />
             </div>
-            <div>
-              <p className="font-Inter font-medium text-[#2E2E2E]">
-                Brand Color
-              </p>
-              <div className="mt-[10px] flex gap-3">
+
+            <div className="w-full max-w-[560px]">
+              <p className="font-medium text-[#2E2E2E]">Brand Color</p>
+              <div className="mt-[10px] flex flex-wrap gap-3">
                 <div className="w-[40px] h-[40px] rounded-full bg-[#4B0082] border-2"></div>
                 <div className="w-[40px] h-[40px] rounded-full bg-[#3CE2C2] border-2"></div>
                 <div className="w-[40px] h-[40px] rounded-full bg-[#EF4444] border-2"></div>
@@ -122,12 +120,11 @@ const Contact = ({ form, setForm, back }) => {
                 <div className="w-[40px] h-[40px] rounded-full bg-[#3B82F6] border-2"></div>
               </div>
             </div>
-            <div>
-              <p className="font-Inter font-medium text-[#2E2E2E]">
-                Logo (Optional)
-              </p>
-              <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center relative transition">
-                <div className="flex flex-col gap-[10px] items-center relative cursor-pointer">
+
+            <div className="w-full max-w-[560px]">
+              <p className="font-medium text-[#2E2E2E]">Logo (Optional)</p>
+              <div className="w-full h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center relative transition">
+                <div className="flex flex-col gap-[10px] items-center relative cursor-pointer w-full">
                   <input
                     type="file"
                     accept="image/png, image/jpeg"
@@ -137,16 +134,18 @@ const Contact = ({ form, setForm, back }) => {
                   {form.logo ? (
                     <div className="flex flex-col items-center gap-1.5">
                       <img className="w-10 h-10" src={form.logo} alt="" />
-                      <p>{form.logoName}</p>
+                      <p className="text-xs text-center break-all">
+                        {form.logoName}
+                      </p>
                     </div>
                   ) : (
-                    <div className="flex flex-col gap-[10px] items-center cursor-pointer">
+                    <div className="flex flex-col gap-[10px] items-center cursor-pointer text-center px-2">
                       <img
                         className="w-10 cursor-pointer"
                         src={upload}
                         alt="upload logo"
                       />
-                      <p className="text-[11.9px] text-[#2E2E2E] font-Inter">
+                      <p className="text-[11.9px] text-[#2E2E2E]">
                         Upload your logo
                       </p>
                       <p className="text-[10.2px] text-[#9CA3AF]">
@@ -157,20 +156,25 @@ const Contact = ({ form, setForm, back }) => {
                 </div>
               </div>
             </div>
-            <div>
-              <p className="font-Inter font-medium text-[#2E2E2E]">
+
+            <div className="w-full max-w-[560px]">
+              <p className="font-medium text-[#2E2E2E]">
                 Location (Optional)
               </p>
               <input
                 type="text"
                 value={form.location}
                 placeholder="City, State or Country"
-                className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) => setForm({ ...form, location: e.target.value })}
+                className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) =>
+                  setForm({ ...form, location: e.target.value })
+                }
               />
             </div>
 
-            <Buttons onSubmit={handleSubmit} label={`Continue`} />
+            <div className="w-full max-w-[560px]">
+              <Buttons onSubmit={handleSubmit} label={`Continue`} />
+            </div>
           </form>
         </div>
       </div>

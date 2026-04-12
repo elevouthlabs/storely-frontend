@@ -16,6 +16,9 @@ import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import Register from "./pages/Register/Register.jsx";
 import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
+import AddProduct from "./pages/AddProduct/AddProduct.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import DashboardLayout from "./layout/DashboardLayout/DashboardLayout.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -24,6 +27,7 @@ function AppWrapper() {
     "/auth",
     "/register",
     "/auth/login",
+    "/verify-otp",
     "/auth/forgot-password",
     "/auth/reset-password",
     "/auth/verify-otp",
@@ -33,7 +37,8 @@ function AppWrapper() {
     "/addItem",
     "/launch",
     "/dashboard",
-    "/login"
+    "/login",
+    "/dashboard/add-product"
   ];
 
   const hideNavbar =
@@ -48,16 +53,19 @@ function AppWrapper() {
 
       <Routes>
         <Route>
-          <Route inedx element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="verify-otp" element={<VerifyOtp />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
         </Route>
         <Route path="/register-business" element={<RegisterBusiness />} />
         {/* <Route path="/contact-business" element={<Contact />} /> */}
         <Route path="/addItem" element={<AddItems />} />
         <Route path="/launch" element={<Launch />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="add-product" element={<AddProduct />} />
+        </Route>
       </Routes>
       {!hideNavbar && <Footer />}
     </div>

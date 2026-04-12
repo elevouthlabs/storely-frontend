@@ -23,7 +23,7 @@ const Sidebar = () => {
           {/* Heading */}
           <div>
             <h2 className="font-Inter mt-[10px] xl:mt-[20px] font-bold text-[28px] xl:text-[36px] leading-[36px] xl:leading-[45px] text-white">
-              Launch Your Online Store <br /> in Minutes
+              Launch Your Online Store in Minutes
             </h2>
 
             <p className="font-OpenSans w-full xl:w-[465px] mt-[12px] xl:mt-[20px] text-[16px] xl:text-[18px] leading-[24px] xl:leading-[28px] text-white/80">

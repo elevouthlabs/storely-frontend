@@ -4,20 +4,44 @@ import { AuthRequests } from "../../api/axios.js";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
+import view from "../../assets/view.png";
+import read from "../../assets/read.png";
 
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [form, setForm] = useState({
     email: "",
     password: "",
     fullName: "",
+    phone: "",
   });
 
   const navigate = useNavigate();
 
+  const passwordChecks = {
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    special: /[^A-Za-z0-9]/.test(password),
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (form.password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
     try {
-      await AuthRequests.register(form);
+      await AuthRequests.register({
+        email: form.email,
+        password: form.password,
+        phone: form.phone,
+        fullName: form.fullName,
+      });
 
       localStorage.setItem("otpEmail", form.email);
 
@@ -37,8 +61,6 @@ const Register = () => {
         <div className="w-full max-w-md lg:max-w-none">
 
           <form onSubmit={handleSubmit} className="w-full lg:w-96 space-y-4">
-
-            {/* Header */}
             <div className="text-center lg:text-left">
               <h2 className="font-Inter font-bold text-[22px] sm:text-[25.5px] leading-[32px] lg:leading-[36px] text-[#0F172A]">
                 Create your account
@@ -47,8 +69,6 @@ const Register = () => {
                 Enter your details to access your store.
               </p>
             </div>
-
-            {/* Full Name */}
             <div className="flex flex-col gap-[10px]">
               <label className="mt-[20px] font-Inter font-medium text-sm sm:text-base text-[#1A1A1A]">
                 Full Name
@@ -60,8 +80,6 @@ const Register = () => {
                 onChange={(e) => setForm({ ...form, fullName: e.target.value })}
               />
             </div>
-
-            {/* Email */}
             <div className="flex flex-col gap-[10px]">
               <label className="mt-[20px] font-Inter font-medium text-sm sm:text-base text-[#1A1A1A]">
                 Email
@@ -73,35 +91,87 @@ const Register = () => {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
             </div>
-
-            {/* Password */}
+            <div className="flex flex-col gap-[10px]">
+              <label className="mt-[20px] font-Inter font-medium text-sm sm:text-base text-[#1A1A1A]">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                placeholder="08012345678"
+                className="w-full lg:w-[560px] h-[50px] rounded-lg p-2.5 bg-white placeholder:text-[#CCCCCC]"
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              />
+            </div>
             <div className="flex flex-col gap-[10px]">
               <label className="mt-[20px] font-Inter font-medium text-sm sm:text-base text-[#1A1A1A]">
                 Password
               </label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="w-full lg:w-[560px] h-[50px] rounded-lg p-2.5 bg-white placeholder:text-[#CCCCCC]"
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
-              />
 
-              <Link to="/forgot-password">
-                <p className="text-[11px] sm:text-[11.9px] text-[#4B0082]">
-                  Forgot password?
-                </p>
-              </Link>
+              <div className="relative w-full lg:w-[560px]">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="e.g. Password@123"
+                  className="w-full  h-[50px] rounded-lg p-2.5 pr-10 bg-white placeholder:text-[#CCCCCC]"
+                  onChange={(e) => {
+                    setForm({ ...form, password: e.target.value });
+                    setPassword(e.target.value);
+                  }}
+                />
+                <div className="text-[12px] space-y-1">
+                  <p className={passwordChecks.uppercase ? "text-green-600" : "text-red-500"}>
+                    • At least one uppercase letter
+                  </p>
+                  <p className={passwordChecks.lowercase ? "text-green-600" : "text-red-500"}>
+                    • At least one lowercase letter
+                  </p>
+                  <p className={passwordChecks.special ? "text-green-600" : "text-red-500"}>
+                    • At least one special character
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-6 -translate-y-1/2"
+                >
+                  <img
+                    src={showPassword ? read : view}
+                    alt="toggle password"
+                    className="w-5 h-5"
+                  />
+                </button>
+              </div>
             </div>
-
-            {/* Button */}
+            <div className="flex flex-col gap-[10px]">
+              <label className="mt-[20px] font-Inter font-medium text-sm sm:text-base text-[#1A1A1A]">
+                Confirm Password
+              </label>
+              <div className="relative w-full lg:w-[560px]">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm password"
+                  className="w-full  h-[50px] rounded-lg p-2.5 pr-10 bg-white placeholder:text-[#CCCCCC]"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                >
+                  <img
+                    src={showConfirmPassword ? read : view}
+                    alt="toggle password"
+                    className="w-5 h-5"
+                  />
+                </button>
+              </div>
+            </div>
             <div>
-              <button className="w-full lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
+              <button className="w-full mt-5 lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
                 Sign Up
               </button>
             </div>
           </form>
-
-          {/* Divider */}
           <div className="w-full lg:w-[560px] h-[1px] bg-[#CCCCCC] mt-[30px] flex items-center justify-center">
             <div className="w-[125px] h-[20px] mt-[-10px] bg-[#F8FAFC]">
               <p className="text-center text-[11px] sm:text-[11.9px] text-slate-500">
