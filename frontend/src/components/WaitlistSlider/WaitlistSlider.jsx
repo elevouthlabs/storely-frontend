@@ -6,7 +6,7 @@ const WaitlistSlider = () => {
 
   return (
     <>
-      <div className="w-full fixed top-0 left-0 bg-[#2D1B4E] text-white overflow-hidden">
+      <div className="w-full z-[9999] fixed top-0 left-0 bg-[#2D1B4E] text-white overflow-hidden">
         <div className="flex justify-between items-center px-4 py-2 text-sm relative">
 
           {/* Sliding text */}

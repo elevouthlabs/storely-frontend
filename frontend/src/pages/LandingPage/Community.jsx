@@ -4,7 +4,7 @@ import blarrow from "../../assets/blarrow.png";
 
 const Community = () => {
     return (
-        <div id="community" className="relative bg-[#F5F5F5] px-6 md:px-[60px] py-10 md:py-[80px]">
+        <div id="community" className="relative z-0 bg-[#F5F5F5] px-6 md:px-[60px] py-10 md:py-[80px]">
             <div className="flex flex-col justify-center items-center">
                 <div className="flex items-center gap-2 h-[38px] w-[134px] sm:w-[133px] bg-white/80 rounded-full px-3 py-3 border border-t border-t-black/10">
                     <div className="w-[8px] h-[8px] bg-[#F59E0B] rounded-full"></div>
