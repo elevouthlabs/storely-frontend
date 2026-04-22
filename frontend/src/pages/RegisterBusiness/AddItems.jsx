@@ -1,39 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/Buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import upload from "../../assets/Container.svg";
 import AI from "../../assets/suggest.png";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { ProductsRequests } from "../../api/axios";
 
-const AddItems = () => {
-  const Navigate = useNavigate();
-  const [form, setForm] = useState({
-    name: "",
-    description: "",
-    price: "",
-    type: "",
-    productImage: "",
-    productImageName: "",
-  });
+const AddItems = ({ form, setForm }) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const body = new FormData();
-    body.append("name", form.name);
-    body.append("description", form.description);
-    body.append("price", Number(form.price));
-    body.append("type", form.type);
-    body.append("productImage", form.productImage);
-    try {
-      const response = await ProductsRequests.createItem(body);
-      console.log(response);
-      Navigate("/launch");
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (!form.phone || !form.whatsappNumber || !form.brandColor) {
+      navigate("/contact-business");
     }
+  }, [form, navigate]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.itemName || !form.itemDescription || !form.itemPrice) {
+      setError("Item name, description, and price are required");
+      return;
+    }
+
+    navigate("/launch");
   };
 
   const handleImageUpload = (e) => {
@@ -55,7 +45,8 @@ const AddItems = () => {
     const previewUrl = URL.createObjectURL(file);
     setForm((prev) => ({
       ...prev,
-      productImage: previewUrl,
+      productImage: file,          
+      productImagePreview: previewUrl,
       productImageName: file.name,
     }));
 
@@ -63,38 +54,37 @@ const AddItems = () => {
   };
 
   return (
-    <div className="flex justify-center bg-[#F5F5F5]">
+    <div className="flex flex-col md:flex-row justify-center bg-[#F5F5F5]">
       <Sidebar />
-      {/* Beginning of the RHS */}
-      <div className=" my-[32px] mx-[28px]">
+      <div className="w-full lg:w-1/2 px-4 sm:px-6 md:px-0 my-[20px] md:my-[32px] md:mx-[28px]">
         {/* Step Loader */}
         <StepLoader currentStep={3} totalSteps={4} />
         {/* Step Loader end */}
         <div>
-          <div className="mt-[22.5px] font-Inter">
-            <h2 className="font-bold font-Inter text-[25.5px] text-[#0F172A]">
+          <div className="mt-[20px] font-Inter text-center md:text-left">
+            <h2 className="font-bold font-Inter text-[22px] sm:text-[25.5px] text-[#0F172A]">
               Add your first item
             </h2>
-            <p className="text-[13.6px] text-[#475569]">
+            <p className="text-[13px] sm:text-[13.6px] text-[#475569]">
               Create your first product or service listing
             </p>
           </div>
 
           {/* Form section */}
-          <form className="mt-[48px] font-Inter flex flex-col gap-5">
-            <div>
+          <form className="mt-[28px] font-Inter flex flex-col gap-5 items-center md:items-start">
+            <div className="w-full max-w-[560px]">
               <p className="font-Inter font-medium text-[#2E2E2E]">Item Name</p>
               <input
                 type="text"
-                value={form.name}
+                value={form.itemName}
                 placeholder="e.g. Classic White T-Shirt"
                 required
-                className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) => setForm({ ...form, itemName: e.target.value })}
               />
             </div>
-            <div>
-              <div className="flex items-center justify-between w-[560px] font-Inter">
+            <div className="w-full max-w-[560px]">
+              <div className="flex items-center justify-between w-full font-Inter">
                 <p className="font-Inter font-medium text-[#2E2E2E]">
                   Description
                 </p>
@@ -105,32 +95,32 @@ const AddItems = () => {
               </div>
               <textarea
                 type="text"
-                value={form.description}
+                value={form.itemDescription}
                 placeholder="Describe your product..."
                 required
-                className="w-[560px] h-[134px] rounded-lg p-[10px] mt-[10px]"
+                className="w-full h-[134px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) =>
-                  setForm({ ...form, description: e.target.value })
+                  setForm({ ...form, itemDescription: e.target.value })
                 }
               />
             </div>
-            <div>
+            <div className="w-full max-w-[560px]">
               <p className="font-Inter font-medium text-[#2E2E2E]">Price</p>
               <input
                 type="number"
-                value={form.price}
+                value={form.itemPrice}
                 placeholder="0.00"
                 required
-                className="w-[560px] h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) => setForm({ ...form, price: e.target.value })}
+                className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) => setForm({ ...form, itemPrice: e.target.value })}
               />
             </div>
-            <div>
+            <div className="w-full max-w-[560px]">
               <p className="font-Inter font-medium text-[#2E2E2E]">
                 Product Image
               </p>
-              <div className="w-[560px] h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center relative">
-                <div className="flex flex-col items-center gap-[10px] relative cursor-pointer">
+              <div className="w-full h-[156px] border border-[#D9D9D9] rounded-lg mt-[10px] flex items-center justify-center relative">
+                <div className="flex flex-col items-center gap-[10px] relative cursor-pointer w-full">
                   <input
                     type="file"
                     accept="image/png, image/jpeg"
@@ -141,13 +131,13 @@ const AddItems = () => {
                     <div className="flex flex-col items-center gap-1.5">
                       <img
                         className="w-10 h-10"
-                        src={form.productImage}
+                        src={form.productImagePreview}
                         alt=""
                       />
                       <p>{form.productImageName}</p>
                     </div>
                   ) : (
-                    <div className="flex flex-col gap-[10px] items-center cursor-pointer">
+                    <div className="flex flex-col gap-[10px] items-center cursor-pointer text-center px-2">
                       <img
                         className="w-10 cursor-pointer"
                         src={upload}
@@ -165,6 +155,7 @@ const AddItems = () => {
               </div>
             </div>
 
+            {error && <p className="text-red-500 text-sm">{error}</p>}
             <Buttons onSubmit={handleSubmit} label={`Continue`} />
           </form>
         </div>

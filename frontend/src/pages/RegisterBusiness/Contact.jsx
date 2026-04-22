@@ -1,45 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/Buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
 import upload from "../../assets/Container.svg";
-import { BusinessRequests } from "../../api/axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const Contact = ({ form, setForm, back }) => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
+  const brandColors = [
+    "#4B0082",
+    "#3CE2C2",
+    "#EF4444",
+    "#F59E0B",
+    "#10B981",
+    "#3B82F6",
+  ];
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    if (!form.name || !form.businessType || !form.category || !form.description) {
+      navigate("/register-business");
+    }
+  }, [form, navigate]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const toastId = toast.loading("Reegistering your business...");
-
-    const body = new FormData();
-    body.append("name", form.name);
-    body.append("category", form.category);
-    body.append("description", form.description);
-    body.append("phone", form.phone);
-    body.append("location", form.location);
-    body.append("logo", form.logo);
-    try {
-      const response = await BusinessRequests.createBusiness(body);
-      toast.success("Business Registered Successfully!", { id: toastId });
-
-      console.log(response);
-      Navigate("/addItem");
-    } catch (err) {
-      console.log(err);
-      if (err?.response?.status >= 500) {
-        toast.error("Server error. Please try again later.", { id: toastId });
-        return;
-      }
-      console.log(err);
-      const message =
-        err?.response?.data?.message || "Invalid inputs, try again.";
-      toast.error(message, { id: toastId });
+    if (!form.phone || !form.whatsappNumber || !form.brandColor) {
+      toast.error("Phone, WhatsApp, and brand color are required.");
+      return;
     }
+
+    navigate("/addItem");
   };
 
   const handleImageUpload = (e) => {
@@ -58,8 +51,15 @@ const Contact = ({ form, setForm, back }) => {
       setError("Image must be less than 2MB");
       return;
     }
+
     const previewUrl = URL.createObjectURL(file);
-    setForm((prev) => ({ ...prev, logo: previewUrl, logoName: file.name }));
+
+    setForm((prev) => ({
+      ...prev,
+      logo: file,            
+      logoPreview: previewUrl, 
+      logoName: file.name,
+    }));
 
     setError("");
   };
@@ -87,8 +87,8 @@ const Contact = ({ form, setForm, back }) => {
               <p className="font-medium text-[#2E2E2E]">Phone Number</p>
               <input
                 type="number"
-                value={form.phone}
-                placeholder="+234678950506969"
+                value={form?.phone || ""}
+                placeholder="+2348069248565"
                 required
                 className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -100,7 +100,7 @@ const Contact = ({ form, setForm, back }) => {
               <input
                 type="number"
                 value={form.whatsappNumber}
-                placeholder="+234678950506969"
+                placeholder="+234806948565"
                 required
                 className="w-full h-[50px] rounded-lg p-[10px] mt-[10px]"
                 onChange={(e) =>
@@ -112,12 +112,20 @@ const Contact = ({ form, setForm, back }) => {
             <div className="w-full max-w-[560px]">
               <p className="font-medium text-[#2E2E2E]">Brand Color</p>
               <div className="mt-[10px] flex flex-wrap gap-3">
-                <div className="w-[40px] h-[40px] rounded-full bg-[#4B0082] border-2"></div>
-                <div className="w-[40px] h-[40px] rounded-full bg-[#3CE2C2] border-2"></div>
-                <div className="w-[40px] h-[40px] rounded-full bg-[#EF4444] border-2"></div>
-                <div className="w-[40px] h-[40px] rounded-full bg-[#F59E0B] border-2"></div>
-                <div className="w-[40px] h-[40px] rounded-full bg-[#10B981] border-2"></div>
-                <div className="w-[40px] h-[40px] rounded-full bg-[#3B82F6] border-2"></div>
+                {brandColors.map((color) => (
+                  <button
+                    key={color}
+                    type="button"
+                    aria-label={`Select ${color} as brand color`}
+                    onClick={() => setForm({ ...form, brandColor: color })}
+                    className={`w-[40px] h-[40px] rounded-full border-2 ${
+                      form.brandColor === color
+                        ? "border-[#1E293B] scale-105"
+                        : "border-transparent"
+                    }`}
+                    style={{ backgroundColor: color }}
+                  />
+                ))}
               </div>
             </div>
 
@@ -133,7 +141,7 @@ const Contact = ({ form, setForm, back }) => {
                   />
                   {form.logo ? (
                     <div className="flex flex-col items-center gap-1.5">
-                      <img className="w-10 h-10" src={form.logo} alt="" />
+                      <img className="w-10 h-10" src={form.logoPreview} alt="" />
                       <p className="text-xs text-center break-all">
                         {form.logoName}
                       </p>
@@ -178,6 +186,7 @@ const Contact = ({ form, setForm, back }) => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

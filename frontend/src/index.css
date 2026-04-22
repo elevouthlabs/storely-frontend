@@ -19,6 +19,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0%);

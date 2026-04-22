@@ -1,30 +1,29 @@
-import { Menu, Bell } from "lucide-react";
+import sidebar from "../../assets/sidebar.png";
+import search from "../../assets/search.png";
+import bell from "../../assets/bell.png";
 
 const Header = ({ toggleSidebar }) => {
     return (
-        <div className="flex items-center justify-between bg-white px-6 py-3 border-b">
-
-            {/* LEFT */}
+        <div className="w-full h-[81px] flex justify-between bg-white border-b border-[#D9D9D9] py-[20px] px-[40px]">
             <div className="flex items-center gap-4">
-                {/* Sidebar toggle */}
                 <button onClick={toggleSidebar}>
-                    <Menu size={20} />
+                    <img src={sidebar} alt="" />
                 </button>
-
-                {/* Search */}
-                <input
-                    type="text"
-                    placeholder="Type to search"
-                    className="bg-gray-100 px-4 py-2 rounded-md w-[300px] text-sm outline-none"
-                />
+                <div className="relative">
+                    <input
+                        type="text"
+                        placeholder="Type to search"
+                        className=" w-[272px] h-[40px] border border-[#B3B3B3] px-4  rounded-md placeholder:px-4 pb-1 placeholder:font-Inter placeholder:font-medium placeholder:text-xs placeholder:text-[#A1A1AA] placeholder:leading-5  outline-none"
+                    />
+                    <img src={search} alt="" className="absolute top-3 left-2" />
+                </div>
             </div>
-
-            {/* RIGHT */}
             <div className="flex items-center gap-4">
-                {/* Notification */}
                 <div className="relative cursor-pointer">
-                    <Bell size={20} />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    <div className="w-[42px] h-[42px] bg-[#E9EBF8] rounded-full p-[10px]">
+                        <img src={bell} alt="notification-icon" />
+                    </div>
+                    <span className="absolute top-2 right-3 w-2 h-2 bg-red-500 rounded-full"></span>
                 </div>
 
                 {/* Profile */}

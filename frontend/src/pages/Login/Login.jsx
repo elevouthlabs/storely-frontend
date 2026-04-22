@@ -5,8 +5,11 @@ import { AuthContext } from "../../context/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
 import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
+import view from "../../assets/view.png";
+import read from "../../assets/read.png";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -61,17 +64,25 @@ const Login = () => {
               />
             </div>
 
-            {/* Password */}
             <div className="flex flex-col gap-[10px]">
               <label className="mt-[20px] font-Inter font-medium text-sm sm:text-base text-[#1A1A1A]">
                 Password
               </label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="w-full lg:w-[560px] h-[50px] rounded-lg p-2.5 bg-white placeholder:text-[#CCCCCC]"
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
-              />
+
+              <div className="relative w-full lg:w-[560px]">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  className="w-full h-[50px] rounded-lg p-2.5 pr-12 bg-white placeholder:text-[#CCCCCC]"
+                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                />
+                <img
+                  src={showPassword ? read : view}
+                  alt="toggle password"
+                  className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              </div>
 
               <Link to="/forgot-password">
                 <p className="text-[11px] sm:text-[11.9px] text-[#4B0082]">
@@ -86,8 +97,6 @@ const Login = () => {
               </button>
             </div>
           </form>
-
-          {/* Divider */}
           <div className="w-full lg:w-[560px] h-[1px] bg-[#CCCCCC] mt-[30px] flex items-center justify-center">
             <div className="w-[125px] h-[20px] mt-[-10px] bg-[#F8FAFC]">
               <p className="text-center text-[11px] sm:text-[11.9px] text-slate-500">

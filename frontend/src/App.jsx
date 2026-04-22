@@ -5,6 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Login from "./pages/Login/Login.jsx";
 import VerifyOtp from "./pages/VerifyOtp/VerifyOtp.jsx";
@@ -19,9 +20,33 @@ import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import DashboardLayout from "./layout/DashboardLayout/DashboardLayout.jsx";
+import Contact from "./pages/RegisterBusiness/Contact.jsx";
+import RegisterSuccess from "./pages/RegisterBusiness/RegisterSuccess.jsx";
 
 function AppWrapper() {
   const location = useLocation();
+  const [form, setForm] = useState({
+    name: "",
+    businessType: "",
+    category: "",
+    description: "",
+    email: "",
+    storeUrl: "",
+    phone: "",
+    whatsappNumber: "",
+    brandColor: "",
+    location: "",
+    logo: null,
+    logoPreview: "",
+    logoName: "",
+    itemName: "",
+    itemDescription: "",
+    itemPrice: "",
+    itemType: "",
+    productImage: null,
+    productImagePreview: "",
+    productImageName: "",
+  });
 
   const noNavbarRoutes = [
     "/auth",
@@ -36,6 +61,7 @@ function AppWrapper() {
     "/contact-business",
     "/addItem",
     "/launch",
+    "/register-success",
     "/dashboard",
     "/login",
     "/dashboard/add-product"
@@ -57,10 +83,14 @@ function AppWrapper() {
           <Route path="login" element={<Login />} />
           <Route path="/verify-otp" element={<VerifyOtp />} />
         </Route>
-        <Route path="/register-business" element={<RegisterBusiness />} />
-        {/* <Route path="/contact-business" element={<Contact />} /> */}
-        <Route path="/addItem" element={<AddItems />} />
-        <Route path="/launch" element={<Launch />} />
+        <Route
+          path="/register-business"
+          element={<RegisterBusiness form={form} setForm={setForm} />}
+        />
+        <Route path="/contact-business" element={<Contact form={form} setForm={setForm} />} />
+        <Route path="/addItem" element={<AddItems form={form} setForm={setForm} />} />
+        <Route path="/launch" element={<Launch form={form} />} />
+        <Route path="/register-success" element={<RegisterSuccess form={form} />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />

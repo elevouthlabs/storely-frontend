@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex h-auto bg-[#F5F5F5]">
 
       {/* Sidebar */}
       {open && <Dashsidebar />}

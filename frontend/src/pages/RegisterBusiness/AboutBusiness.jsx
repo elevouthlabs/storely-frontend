@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/Buttons";
 import StepLoader from "../../components/ui/StepLoader";
@@ -6,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const AboutBusiness = ({ form, setForm, next }) => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col md:flex-row justify-center w-full h-auto bg-[#F5F5F5]">
@@ -40,7 +39,11 @@ const AboutBusiness = ({ form, setForm, next }) => {
                 return;
               }
 
-              next();
+              if (next) {
+                next();
+                return;
+              }
+              navigate("/contact-business");
             }}
           >
             <div className="w-full max-w-[560px]">
@@ -89,6 +92,17 @@ const AboutBusiness = ({ form, setForm, next }) => {
                 <option>Education</option>
                 <option>Commerce</option>
               </select>
+            </div>
+
+            <div className="w-full max-w-[560px]">
+              <p>Store URL (Optional)</p>
+              <input
+                type="text"
+                value={form.storeUrl || ""}
+                placeholder="storely.com/your-store"
+                className="w-full cursor-pointer h-[50px] rounded-lg p-[10px] mt-[10px]"
+                onChange={(e) => setForm({ ...form, storeUrl: e.target.value })}
+              />
             </div>
 
             <div className="w-full max-w-[560px]">
