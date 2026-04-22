@@ -3,6 +3,8 @@ import { AuthRequests } from "../../api/axios.js";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
 import view from "../../assets/view.png";
@@ -10,6 +12,7 @@ import read from "../../assets/read.png";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -21,20 +24,32 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    setLoading(true); 
+
     try {
       const res = await AuthRequests.login(form);
 
       saveToken(res.token || res.data?.token);
 
-      navigate("/register-business");
+      toast.success("Login successful");
+
+      setTimeout(() => {
+        navigate("/register-business");
+      }, 1500);
+
     } catch (err) {
       console.log(err.response?.data);
-      alert(err.response?.data?.message || "Login failed");
+
+      toast.error(err.response?.data?.message || "Login failed ❌");
+
+    } finally {
+      setLoading(false); 
     }
   };
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-[#F5F5F5]">
+      <ToastContainer position="top-right" autoClose={2000} />
       <Sidebar />
       <div className="w-full lg:w-1/2 flex justify-center lg:block px-4 sm:px-6 lg:px-0 mt-[30px] lg:mt-[125px] lg:ml-[28px]">
         <div className="w-full max-w-md lg:max-w-none">
@@ -93,7 +108,7 @@ const Login = () => {
 
             <div>
               <button disabled={!form.email || !form.password} className="w-full lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
-                Sign in
+                {loading ? "Signing in..." : "Sign in"}
               </button>
             </div>
           </form>

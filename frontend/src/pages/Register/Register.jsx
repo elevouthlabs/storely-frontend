@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthRequests } from "../../api/axios.js";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
@@ -12,6 +14,7 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -31,9 +34,11 @@ const Register = () => {
     e.preventDefault();
 
     if (form.password !== confirmPassword) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match ❌");
       return;
     }
+
+    setLoading(true);
 
     try {
       await AuthRequests.register({
@@ -45,15 +50,25 @@ const Register = () => {
 
       localStorage.setItem("otpEmail", form.email);
 
-      navigate("/verify-otp");
+      toast.success("Registration successful");
+
+      setTimeout(() => {
+        navigate("/verify-otp");
+      }, 1500);
+
     } catch (err) {
       console.log(err.response?.data);
-      alert(err.response?.data?.message || "Registration failed");
+
+      toast.error(err.response?.data?.message || "Registration failed ❌");
+
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#F5F5F5]">
+      <ToastContainer position="top-right" autoClose={2000} />
       <Sidebar />
 
       <div className="w-full lg:w-1/2 flex justify-center lg:block px-4 sm:px-6 lg:px-0 mt-[40px] lg:mt-[55px] lg:ml-[28px]">
@@ -167,8 +182,8 @@ const Register = () => {
               </div>
             </div>
             <div>
-              <button className="w-full mt-5 lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
-                Sign Up
+              <button disabled={loading} className="w-full mt-5 lg:w-[560px] h-[50px] rounded-lg bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-semibold text-white">
+                {loading ? "Creating account..." : "Sign Up"}
               </button>
             </div>
           </form>
