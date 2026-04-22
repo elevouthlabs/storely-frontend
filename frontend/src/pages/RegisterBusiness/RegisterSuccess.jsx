@@ -23,7 +23,7 @@ const RegisterSuccess = ({ form }) => {
     <div className="flex flex-col md:flex-row h-auto bg-[#F5F5F5]">
       <Sidebar />
       <div className="w-full lg:w-1/2 px-4 sm:px-6 md:px-0 my-[20px] md:my-[32px] md:mx-[28px] font-Inter flex flex-col items-center md:items-start gap-[20px] md:gap-[27px]">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mx-auto">
           <img src={success} alt="success" className="w-[60px] h-[60px]" />
           <p className="font-semibold text-[24px] text-[#2E2E2E] m">
             Your store is ready

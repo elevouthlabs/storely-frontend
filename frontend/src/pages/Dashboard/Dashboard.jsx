@@ -1,82 +1,124 @@
-import { useState } from "react";
-import StatsCards from "../../components/StatsCards/StatsCards.jsx";
-import EmptyState from "../../components/EmptyState/EmptyState.jsx";
-import filter from "../../assets/filter.png";
-import bulk from "../../assets/bulk.png";
-import search from "../../assets/search.png";
-import menu from "../../assets/menu.png";
-import block from "../../assets/block.png";
-import { useNavigate } from "react-router-dom";
+import { ShoppingCart, Users, Package, DollarSign, TrendingUp, Plus } from "lucide-react";
 
 const Dashboard = () => {
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState("All");
-
-    const tabs = ["All", "Active", "Low Stock", "Out"];
-
     return (
-        <>
-            <div className="flex justify-between items-center mt-">
+        <div className="min-h-screen bg-gray-100 p-6">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-purple-700 to-purple-500 text-white p-6 rounded-2xl flex justify-between items-center">
                 <div>
-                    <h1 className="font-Inter font-medium text-[24px] leading-[32px] tracking-[0.07px] text-[#1A1A1A]">Products Management</h1>
-                    <p className="font-Inter font-normal text-base text-[#B3B3B3] leading-6 tracking-[-0.31px]">
-                        Manage your product catalog
+                    <h1 className="text-xl font-semibold">Welcome to Storely, Alex! 👋</h1>
+                    <p className="text-sm opacity-90 mt-1 max-w-xl">
+                        Your storefront is officially live. Now it’s time to add your first products, set up your services, and start making sales. We’re here to help you grow.
                     </p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <button className="w-[129px] flex items-center gap-4 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2">
-                        <img src={filter} alt="filter-icon" />
-                        <p className="font-Inter font-medium text-base text-[#44403C] leading-5 text-center align-middle">Filters</p>
-                    </button>
-                    <button className="w-[129px] flex items-center gap-2 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2">
-                        <img src={bulk} alt="filter-icon" />
-                        <p className="font-Inter font-medium text-base text-[#44403C] leading-5 text-center align-middle">Bulk Edit</p>
-                    </button>
-                    <button
-                        onClick={() => navigate("/dashboard/add-product")}
-                        className="w-[190px] h-10 flex items-center gap-2 bg-[var(--Color-primary,#4B0082)] rounded-lg px-4 py-2 font-Inter font-medium text-base text-white leading-6 tracking-[-0.31px] text-center"
-                    >
-                        + Add New Product
-                    </button>
+                <button className="bg-white text-purple-700 hover:bg-gray-200 px-4 py-2 rounded-lg">
+                    Share Link
+                </button>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+                <StatCard icon={<DollarSign />} title="Total Revenue" value="₦0.00" desc="No sales yet — share your store link to get started" />
+                <StatCard icon={<ShoppingCart />} title="Total Orders" value="0" desc="Your orders will count up here in real time" />
+                <StatCard icon={<Package />} title="Products Listed" value="0" desc="No sales yet — share your store link to get started" />
+                <StatCard icon={<Users />} title="Active Customers" value="0" desc="Grows automatically as buyers place orders" />
+            </div>
+
+            {/* Main Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                {/* Revenue Overview */}
+                <div className="bg-white rounded-2xl shadow-sm lg:col-span-2">
+                    <div className="p-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="font-semibold">Revenue Overview</h2>
+                            <span className="text-sm bg-gray-100 px-3 py-1 rounded">Last 30 Days</span>
+                        </div>
+                        <div className="flex flex-col items-center justify-center h-64 text-center text-gray-500">
+                            <TrendingUp className="w-8 h-8 mb-2" />
+                            <p className="font-medium">No revenue data yet</p>
+                            <p className="text-sm mt-1 max-w-sm">
+                                Add products and share your store to start making sales. Your revenue chart will appear here once you make your first sale.
+                            </p>
+                            <button className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                                <Plus className="w-4 h-4" /> Add Your First Product
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="bg-white rounded-2xl shadow-sm">
+                    <div className="p-6 space-y-3">
+                        <h2 className="font-semibold mb-2">Quick Actions</h2>
+                        {[
+                            "Add Product",
+                            "Create Order",
+                            "Add Customer",
+                            "Update Stock",
+                            "Create Discount",
+                        ].map((action) => (
+                            <div
+                                key={action}
+                                className="bg-purple-50 hover:bg-purple-100 p-3 rounded-lg cursor-pointer text-sm font-medium"
+                            >
+                                {action}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Recent Orders */}
+                <div className="bg-white rounded-2xl shadow-sm lg:col-span-2">
+                    <div className="p-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="font-semibold">Recent Orders</h2>
+                            <span className="text-sm text-purple-600 cursor-pointer">View All</span>
+                        </div>
+                        <div className="flex flex-col items-center justify-center h-48 text-gray-500 text-center">
+                            <Package className="w-8 h-8 mb-2" />
+                            <p className="font-medium">No orders yet</p>
+                            <p className="text-sm">
+                                When customers place orders, they’ll appear here. Share your store to get your first sale!
+                            </p>
+                            <button className="mt-3 bg-purple-100 text-purple-700 px-4 py-2 rounded-lg">
+                                Share Store Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Sales by Category */}
+                <div className="bg-white rounded-2xl shadow-sm">
+                    <div className="p-6">
+                        <h2 className="font-semibold mb-4">Sales by Category</h2>
+                        <div className="flex flex-col items-center justify-center h-48 text-gray-500">
+                            <div className="w-24 h-24 border-4 border-gray-200 rounded-full flex items-center justify-center">
+                                <span className="text-xs">0%</span>
+                            </div>
+                            <p className="text-sm mt-3 text-center">
+                                No category data yet. Sales will be broken down by category as orders come in.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <StatsCards />
-            <div className="flex items-center justify-between gap-3 my-6">
-                <div className="relative">
-                    <input
-                        placeholder="Search products..."
-                        className="w-[343px]  h-[48px] bg-white border border-[#B3B3B3] rounded-[4px] px-10 py-2 text-[16px] text-black placeholder:text-[#B3B3B3] font-Inter font-normal tracking-[-0.31px] focus:outline-none"
-                    />
-                    <img src={search} alt="" className="absolute top-1/3 left-2" />
-                </div>
-                <div className="flex items-center w-[367px] h-[48px] bg-white rounded-[8px] p-1 relative">
-                    <div
-                        className="absolute top-1 bottom-1 w-[calc(100%/4-2px)] bg-[#4B0082] rounded-[6px] transition-all duration-300"
-                        style={{
-                            transform: `translateX(${tabs.indexOf(activeTab) * 100}%)`,
-                        }}
-                    />
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`flex-1 h-full text-sm z-10 flex items-center justify-center font-Inter font-normal text-[16px] leading-[20px] tracking-[-0.31px] transition-colors duration-200 ${activeTab === tab
-                                    ? "text-white"
-                                    : "text-[#292D32]"
-                                }`}
-                        >
-                            {tab}
-                        </button>
-                    ))}
-                </div>
-                <div className="flex items-center gap-2">
-                    <img src={menu} alt="" />
-                    <img src={block} alt="" />
-                </div>
-            </div>
-            <EmptyState />
-        </>
+        </div>
     );
 };
+
+function StatCard({ icon, title, value, desc }) {
+    return (
+        <div className="bg-white rounded-2xl shadow-sm">
+            <div className="p-4">
+                <div className="flex items-center gap-2 text-gray-600 mb-2">
+                    {icon}
+                    <span className="text-sm">{title}</span>
+                </div>
+                <h3 className="text-xl font-semibold">{value}</h3>
+                <p className="text-xs text-gray-500 mt-1">{desc}</p>
+            </div>
+        </div>
+    );
+}
 
 export default Dashboard;

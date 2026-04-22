@@ -18,8 +18,9 @@ import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import Register from "./pages/Register/Register.jsx";
 import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Product from "./pages/Product/Product.jsx";
 import DashboardLayout from "./layout/DashboardLayout/DashboardLayout.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Contact from "./pages/RegisterBusiness/Contact.jsx";
 import RegisterSuccess from "./pages/RegisterBusiness/RegisterSuccess.jsx";
 
@@ -62,8 +63,9 @@ function AppWrapper() {
     "/addItem",
     "/launch",
     "/register-success",
-    "/dashboard",
+    "/dashboard/product",
     "/login",
+    "/dashboard",
     "/dashboard/add-product"
   ];
 
@@ -94,6 +96,7 @@ function AppWrapper() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
+          <Route path="product" element={<Product />} />
           <Route path="add-product" element={<AddProduct />} />
         </Route>
       </Routes>
