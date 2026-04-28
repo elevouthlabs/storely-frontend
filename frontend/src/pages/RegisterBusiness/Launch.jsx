@@ -74,6 +74,12 @@ const Launch = ({ form }) => {
       body.append("logo", form.logo);
     }
 
+    // Debug FormData contents
+    console.log('FormData contents:');
+    for (let [key, value] of body.entries()) {
+      console.log(`${key}:`, value);
+    }
+    
     try {
       await BusinessRequests.createBusiness(body);
       toast.success("Business created successfully!", { id: toastId });
