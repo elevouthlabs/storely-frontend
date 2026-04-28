@@ -22,6 +22,9 @@ const getAccessTokenFromRefreshResponse = (response) => {
 
 axios.interceptors.request.use(async (config) => {
   const token = getStoredToken();
+  console.log('Request to:', config.url);
+  console.log('Token exists:', !!token);
+  console.log('Token:', token?.substring(0, 20) + '...');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -29,7 +32,11 @@ axios.interceptors.request.use(async (config) => {
 });
 
 axios.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log('Response from:', response.config.url);
+    console.log('Response status:', response.status);
+    return response;
+  },
   async (error) => {
     const originalRequest = error?.config;
     const status = error?.response?.status;

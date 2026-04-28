@@ -28,8 +28,12 @@ const Login = () => {
 
     try {
       const res = await AuthRequests.login(form);
-
-      saveToken(res.token || res.data?.token);
+      
+      console.log('Login response:', res);
+      const token = res.token || res.data?.token;
+      console.log('Token to save:', token?.substring(0, 20) + '...');
+      
+      saveToken(token);
 
       toast.success("Login successful");
 
