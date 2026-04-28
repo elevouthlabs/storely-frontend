@@ -54,7 +54,7 @@ const Launch = ({ form }) => {
     
     const body = new FormData();
     body.append("name", form.name || "");
-    body.append("businessType", form.businessType || "");
+    body.append("type", form.businessType || "");
     body.append("category", form.category || "");
     body.append("description", form.description || "");
     body.append("phone", form.phone || "");
