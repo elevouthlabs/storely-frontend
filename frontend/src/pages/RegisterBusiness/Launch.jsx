@@ -56,6 +56,8 @@ const Launch = ({ form }) => {
       toast.success("Business created successfully!", { id: toastId });
       navigate("/register-success");
     } catch (err) {
+      console.log('Business creation error:', err.response?.data);
+      console.log('Form data being sent:', body);
       const message =
         err?.response?.data?.message || "Could not launch store. Try again.";
       toast.error(message, { id: toastId });
