@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Buttons from "../../components/ui/Buttons";
 import StepLoader from "../../components/ui/StepLoader";
 import { useNavigate } from "react-router-dom";
 import { BusinessRequests } from "../../api/axios";
+import { AuthContext } from "../../context/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 
 const Launch = ({ form }) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (!form.itemName || !form.itemDescription || !form.itemPrice) {
@@ -17,6 +19,12 @@ const Launch = ({ form }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      toast.error("Please login to launch your store.");
+      navigate("/login");
+      return;
+    }
 
     if (!form.name || !form.businessType || !form.category || !form.description) {
       toast.error("Complete your business details before launch.");
