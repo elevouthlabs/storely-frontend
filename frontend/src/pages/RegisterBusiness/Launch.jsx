@@ -39,9 +39,23 @@ const Launch = ({ form }) => {
     }
 
     const toastId = toast.loading("Launching your store...");
+    
+    console.log('Form values:', {
+      name: form.name,
+      businessType: form.businessType,
+      category: form.category,
+      description: form.description,
+      phone: form.phone,
+      email: form.email,
+      storeUrl: form.storeUrl,
+      location: form.location,
+      logo: form.logo
+    });
+    
     const body = new FormData();
     body.append("name", form.name || "");
     body.append("type", form.businessType || "");
+    body.append("category", form.category || "");
     body.append("description", form.description || "");
     body.append("phone", form.phone || "");
     body.append("email", form.email || "");
