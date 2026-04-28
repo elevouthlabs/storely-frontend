@@ -11,13 +11,7 @@ const clearStoredToken = () => localStorage.removeItem("storelyToken");
 
 const getAccessTokenFromRefreshResponse = (response) => {
   const payload = response?.data?.data || response?.data || {};
-  return (
-    payload?.accessToken ||
-    payload?.token ||
-    payload?.jwt ||
-    payload?.access_token ||
-    null
-  );
+  return payload?.accessToken || null;
 };
 
 axios.interceptors.request.use(async (config) => {

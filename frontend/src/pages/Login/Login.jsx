@@ -30,7 +30,7 @@ const Login = () => {
       const res = await AuthRequests.login(form);
       
       console.log('Login response:', res);
-      const token = res.token || res.data?.token;
+      const token = res.accessToken || res.data?.accessToken || res.token || res.data?.token;
       console.log('Token to save:', token?.substring(0, 20) + '...');
       
       saveToken(token);
