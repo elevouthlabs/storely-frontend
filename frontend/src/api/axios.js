@@ -48,8 +48,7 @@ axios.interceptors.response.use(
     try {
       const refreshResponse = await axios.post(
         REFRESH_PATH,
-        {},
-        { withCredentials: true }
+        {}
       );
       const newToken = getAccessTokenFromRefreshResponse(refreshResponse);
 
