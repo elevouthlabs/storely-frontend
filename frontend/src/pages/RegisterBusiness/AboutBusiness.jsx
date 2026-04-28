@@ -73,7 +73,9 @@ const AboutBusiness = ({ form, setForm, next }) => {
                 }
               >
                 <option value="">Select a type of business</option>
-                <option>Agriculture</option>
+                <option value="Product">Product</option>
+                <option value="Service">Service</option>
+                <option value="Hybrid">Hybrid (Product & Service)</option>
               </select>
             </div>
 
@@ -88,21 +90,45 @@ const AboutBusiness = ({ form, setForm, next }) => {
                 }
               >
                 <option value="">Select a category</option>
-                <option>Finance</option>
-                <option>Education</option>
-                <option>Commerce</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Bags">Bags</option>
+                <option value="Food Vendor">Food Vendor</option>
+                <option value="Cakes & Pastries">Cakes & Pastries</option>
+                <option value="Catering">Catering</option>
+                <option value="Hair Salon">Hair Salon</option>
+                <option value="Makeup">Makeup</option>
+                <option value="Nails">Nails</option>
+                <option value="Wig Sales">Wig Sales</option>
+                <option value="Hair Installation">Hair Installation</option>
+                <option value="Barbing">Barbing</option>
+                <option value="Phones">Phones</option>
+                <option value="Phone Accessories">Phone Accessories</option>
+                <option value="Repairs">Repairs</option>
+                <option value="Gadgets">Gadgets</option>
+                <option value="Home Appliances">Home Appliances</option>
+                <option value="Kitchen Items">Kitchen Items</option>
+                <option value="Home Decor">Home Decor</option>
+                <option value="Baby Clothes">Baby Clothes</option>
+                <option value="Baby Products">Baby Products</option>
+                <option value="Foodstuff">Foodstuff</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Pharmacy">Pharmacy</option>
+                <option value="Supplements">Supplements</option>
+                <option value="Personal Training">Personal Training</option>
+                <option value="Cleaning Services">Cleaning Services</option>
+                <option value="Laundry">Laundry</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="AC Repairs">AC Repairs</option>
+                <option value="Car Sales">Car Sales</option>
+                <option value="Car Rentals">Car Rentals</option>
+                <option value="Photography & Video">Photography & Video</option>
+                <option value="Graphics & Branding">Graphics & Branding</option>
+                <option value="Decoration">Decoration</option>
+                <option value="Planning">Planning</option>
+                <option value="Tutoring & Lessons">Tutoring & Lessons</option>
               </select>
-            </div>
-
-            <div className="w-full max-w-[560px]">
-              <p>Store URL (Optional)</p>
-              <input
-                type="text"
-                value={form.storeUrl || ""}
-                placeholder="storely.com/your-store"
-                className="w-full cursor-pointer h-[50px] rounded-lg p-[10px] mt-[10px]"
-                onChange={(e) => setForm({ ...form, storeUrl: e.target.value })}
-              />
             </div>
 
             <div className="w-full max-w-[560px]">
