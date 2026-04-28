@@ -54,12 +54,21 @@ const Launch = ({ form }) => {
     
     const body = new FormData();
     body.append("name", form.name || "");
-    body.append("type", form.businessType || "");
+    body.append("businessType", form.businessType || "");
     body.append("category", form.category || "");
     body.append("description", form.description || "");
     body.append("phone", form.phone || "");
-    body.append("email", form.email || "");
-    body.append("website", form.storeUrl || "");
+    
+    // Only append email if it's provided and valid
+    if (form.email && form.email.trim()) {
+      body.append("email", form.email);
+    }
+    
+    // Only append website if it's provided and valid
+    if (form.storeUrl && form.storeUrl.trim()) {
+      body.append("website", form.storeUrl);
+    }
+    
     body.append("location", form.location || "");
     if (form.logo) {
       body.append("logo", form.logo);
