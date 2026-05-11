@@ -28,6 +28,8 @@ import DashboardLayout from "./layout/DashboardLayout/DashboardLayout.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Contact from "./pages/RegisterBusiness/Contact.jsx";
 import RegisterSuccess from "./pages/RegisterBusiness/RegisterSuccess.jsx";
+import Auth from "./marketplace/pages/Auth.jsx";
+import SearchPage from "./marketplace/pages/Search.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -74,7 +76,9 @@ function AppWrapper() {
     "/dashboard/add-product",
     "/store",
     "/store/categories",
-    "/store/cart"
+    "/store/cart",
+    "/store/account",
+    "/store/search"
   ];
 
   const hideNavbar =
@@ -105,7 +109,9 @@ function AppWrapper() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/store" element={<MobileStorefront />} />
         <Route path="/store/categories" element={<Categories />} />
-         <Route path="/store/cart" element={<Cart />} />
+        <Route path="/store/cart" element={<Cart />} />
+        <Route path="/store/account" element={<Auth />} />
+        <Route path="/store/search" element={<SearchPage />} />
         <Route
           path="/store/category/:categoryName"
           element={<CategoryPage />}

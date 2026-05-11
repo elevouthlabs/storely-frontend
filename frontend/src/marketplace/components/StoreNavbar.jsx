@@ -25,7 +25,7 @@ const StoreNavbar = () => {
                 </button>
 
                 <button
-                    onClick={() => navigate("/search")}
+                    onClick={() => navigate("/store/search")}
                     className="flex flex-col items-center gap-1 p-2"
                 >
                     <img className="w-5 h-5" src={sea} alt="" />
@@ -52,7 +52,7 @@ const StoreNavbar = () => {
                 </button>
 
                 <button
-                    onClick={() => navigate("/store/profile")}
+                    onClick={() => navigate("/store/account")}
                     className="flex flex-col items-center gap-1 p-2"
                 >
                     <img className="w-5 h-5" src={account} alt="" />
