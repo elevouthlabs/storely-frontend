@@ -1,16 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StatsCards from "../../components/StatsCards/StatsCards.jsx";
 import EmptyState from "../../components/EmptyState/EmptyState.jsx";
+import ProductTable from "../../components/ProductTable/ProductTable.jsx";
+import ProductGrid from "../../components/ProductGrid/ProductGrid.jsx";
 import filter from "../../assets/filter.png";
 import bulk from "../../assets/bulk.png";
 import search from "../../assets/search.png";
 import menu from "../../assets/menu.png";
 import block from "../../assets/block.png";
 import { useNavigate } from "react-router-dom";
+import { ProductsRequests } from "../../api/axios";
 
 const Product = () => {
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("All");
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [viewMode, setViewMode] = useState("table"); // "table" or "grid"
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = () => {
+        try {
+            setLoading(true);
+            const storedProducts = JSON.parse(localStorage.getItem('products') || '[]');
+            setProducts(storedProducts);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            setProducts([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getFilteredProducts = () => {
+        switch (activeTab) {
+            case "Active":
+                return products.filter(p => p.status === 'active');
+            case "Low Stock":
+                return products.filter(p => p.stock <= 10 && p.stock > 0);
+            case "Out":
+                return products.filter(p => p.stock === 0);
+            default:
+                return products;
+        }
+    };
+
+    const filteredProducts = getFilteredProducts();
 
     const tabs = ["All", "Active", "Low Stock", "Out"];
 
@@ -40,7 +78,7 @@ const Product = () => {
                     </button>
                 </div>
             </div>
-            <StatsCards />
+            <StatsCards products={products} />
             <div className="flex items-center justify-between gap-3 my-6">
                 <div className="relative">
                     <input
@@ -70,11 +108,33 @@ const Product = () => {
                     ))}
                 </div>
                 <div className="flex items-center gap-2">
-                    <img src={menu} alt="" />
-                    <img src={block} alt="" />
+                    <button 
+                        onClick={() => setViewMode("table")}
+                        className={`p-2 rounded ${viewMode === "table" ? "bg-[#4B0082]" : "hover:bg-gray-100"}`}
+                    >
+                        <img src={menu} alt="table view" className={` ${viewMode === "table" ? "filter brightness-0 invert" : ""}`} />
+                    </button>
+                    <button 
+                        onClick={() => setViewMode("grid")}
+                        className={`p-2 rounded ${viewMode === "grid" ? "bg-[#4B0082]" : "hover:bg-gray-100"}`}
+                    >
+                        <img src={block} alt="grid view" className={` ${viewMode === "grid" ? "filter brightness-0 invert" : ""}`} />
+                    </button>
                 </div>
             </div>
-            <EmptyState />
+            {loading ? (
+                <div className="flex items-center justify-center py-8">
+                    <div className="text-center">
+                        <p className="text-gray-500 text-lg">Loading products...</p>
+                    </div>
+                </div>
+            ) : products.length === 0 ? (
+                <EmptyState />
+            ) : viewMode === "table" ? (
+                <ProductTable products={filteredProducts} />
+            ) : (
+                <ProductGrid products={filteredProducts} />
+            )}
         </>
     );
 };

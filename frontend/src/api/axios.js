@@ -112,4 +112,6 @@ export const BusinessRequests = {
 
 export const ProductsRequests = {
   createItem: (data) => requests.postForm("items", data),
+  addProduct: (data) => requests.postForm("catalog/products", data),
+  getProducts: () => requests.get("catalog/products"),
 };

@@ -19,6 +19,11 @@ import Register from "./pages/Register/Register.jsx";
 import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx";
 import Product from "./pages/Product/Product.jsx";
+import EditProduct from "./pages/EditProduct/EditProduct.jsx";
+import MobileStorefront from "./marketplace/pages/MobileStoreFront.jsx";
+import Categories from "./marketplace/pages/Categories.jsx";
+import CategoryPage from "./marketplace/pages/CategoryPage.jsx";
+import Cart from "./marketplace/pages/cart.jsx";
 import DashboardLayout from "./layout/DashboardLayout/DashboardLayout.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Contact from "./pages/RegisterBusiness/Contact.jsx";
@@ -66,12 +71,16 @@ function AppWrapper() {
     "/dashboard/product",
     "/login",
     "/dashboard",
-    "/dashboard/add-product"
+    "/dashboard/add-product",
+    "/store",
+    "/store/categories",
+    "/store/cart"
   ];
 
   const hideNavbar =
     noNavbarRoutes.includes(location.pathname) ||
-    location.pathname.includes("dashboard");
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/store/category");
 
   return (
     <div>
@@ -81,8 +90,8 @@ function AppWrapper() {
 
       <Routes>
         <Route>
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/verify-otp" element={<VerifyOtp />} />
         </Route>
         <Route
@@ -94,10 +103,18 @@ function AppWrapper() {
         <Route path="/launch" element={<Launch form={form} />} />
         <Route path="/register-success" element={<RegisterSuccess form={form} />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/store" element={<MobileStorefront />} />
+        <Route path="/store/categories" element={<Categories />} />
+         <Route path="/store/cart" element={<Cart />} />
+        <Route
+          path="/store/category/:categoryName"
+          element={<CategoryPage />}
+        />
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="product" element={<Product />} />
           <Route path="add-product" element={<AddProduct />} />
+          <Route path="edit-product/:id" element={<EditProduct />} />
         </Route>
       </Routes>
       {!hideNavbar && <Footer />}

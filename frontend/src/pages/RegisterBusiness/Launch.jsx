@@ -54,7 +54,14 @@ const Launch = ({ form }) => {
     
     const body = new FormData();
     body.append("name", form.name || "");
-    body.append("type", form.businessType || "");
+    // Map frontend values to backend expected values
+    const businessTypeMapping = {
+      "Product": "product",
+      "Service": "service", 
+      "Hybrid": "hybrid"
+    };
+    const backendType = businessTypeMapping[form.businessType] || form.businessType?.toLowerCase();
+    body.append("type", backendType || "");
     body.append("category", form.category || "");
     body.append("description", form.description || "");
     body.append("phone", form.phone || "");

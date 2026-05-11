@@ -1,13 +1,13 @@
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
 import improve from "../../assets/improve.png";
-import { useState } from "react";
 import plus from "../../assets/plus.png";
 import up from "../../assets/up.png";
-import { ProductsRequests } from "../../api/axios";
-import { toast, ToastContainer } from 'react-toastify';
 
-
-
-const AddProduct = () => {
+const EditProduct = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
     const [isOn, setIsOn] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -30,6 +30,35 @@ const AddProduct = () => {
         reviews: 0
     });
 
+    useEffect(() => {
+        // Load product data from localStorage
+        const storedProducts = JSON.parse(localStorage.getItem('products') || '[]');
+        const product = storedProducts.find(p => p.id === parseInt(id));
+        
+        if (product) {
+            setFormData({
+                name: product.name || '',
+                description: product.description || '',
+                price: product.price?.toString() || '',
+                sku: product.sku || '',
+                barcode: product.barcode || '',
+                images: [],
+                stockQuantity: product.stock?.toString() || '',
+                lowStockAlert: '',
+                weight: '',
+                chargeTax: false,
+                requiresShipping: false,
+                status: product.status || 'draft',
+                category: product.category || '',
+                collection: '',
+                metaTitle: '',
+                metaDescription: '',
+                rating: product.rating || 0,
+                reviews: product.reviews || 0
+            });
+        }
+    }, [id]);
+
     const handleImageUpload = (e) => {
         const files = Array.from(e.target.files);
         const newImages = [...formData.images, ...files];
@@ -46,87 +75,63 @@ const AddProduct = () => {
     };
 
     const handleDiscard = () => {
-        setFormData({
-            name: '',
-            description: '',
-            price: '',
-            sku: '',
-            barcode: '',
-            images: [],
-            stockQuantity: '',
-            lowStockAlert: '',
-            weight: '',
-            chargeTax: false,
-            requiresShipping: false,
-            status: 'draft',
-            category: '',
-            collection: '',
-            metaTitle: '',
-            metaDescription: '',
-            rating: 0,
-            reviews: 0
-        });
-        toast.success('Form discarded');
+        navigate('/dashboard/product');
     };
 
-    const handleSaveDraft = () => {
-        // Save current form data as draft
-        toast.success('Draft saved');
-    };
-
-    const handlePublish = () => {
+    const handleUpdate = () => {
         if (!formData.name || !formData.price) {
             toast.error('Product name and price are required');
             return;
         }
 
-        // Get existing products from localStorage or initialize empty array
+        // Get existing products from localStorage
         const existingProducts = JSON.parse(localStorage.getItem('products') || '[]');
         
-        // Create new product object with form data
-        const newProduct = {
-            id: Date.now(), // Simple unique ID
-            name: formData.name,
-            description: formData.description,
-            price: parseFloat(formData.price),
-            sku: formData.sku || `SKU-${Date.now()}`,
-            barcode: formData.barcode,
-            stock: parseInt(formData.stockQuantity) || 0,
-            status: 'active',
-            dateAdded: new Date().toISOString().split('T')[0], // Format as YYYY-MM-DD
-            image: formData.images.length > 0 ? URL.createObjectURL(formData.images[0]) : null,
-            rating: formData.rating || 0,
-            reviews: formData.reviews || 0
-        };
-
-        // Add new product to existing products
-        const updatedProducts = [...existingProducts, newProduct];
+        // Update the product
+        const updatedProducts = existingProducts.map(product => {
+            if (product.id === parseInt(id)) {
+                return {
+                    ...product,
+                    name: formData.name,
+                    description: formData.description,
+                    price: parseFloat(formData.price),
+                    sku: formData.sku || `SKU-${Date.now()}`,
+                    barcode: formData.barcode,
+                    stock: parseInt(formData.stockQuantity) || 0,
+                    status: 'active',
+                    category: formData.category,
+                    rating: formData.rating,
+                    reviews: formData.reviews,
+                    image: formData.images.length > 0 ? URL.createObjectURL(formData.images[0]) : product.image
+                };
+            }
+            return product;
+        });
         
         // Save to localStorage
         localStorage.setItem('products', JSON.stringify(updatedProducts));
         
-        toast.success('Product published successfully!');
+        toast.success('Product updated successfully!');
         
-        // Reset form after successful publish
-        handleDiscard();
+        // Navigate back to products page
+        setTimeout(() => {
+            navigate('/dashboard/product');
+        }, 1500);
     };
 
     return (
         <>
             <div className="flex justify-between items-center mb-4">
                 <div className="flex flex-col gap-2">
-                    <h1 className="font-Inter font-medium text-[24px] leading-[32px] tracking-[0.07px] text-[#1A1A1A]">Add New Product</h1>
-                    <p className="font-Inter font-normal text-[16px] leading-[24px] tracking-[-0.31px] text-[#B3B3B3]">Fill in the details below to create a new product listing.</p>
+                    <h1 className="font-Inter font-medium text-[24px] leading-[32px] tracking-[0.07px] text-[#1A1A1A]">Edit Product</h1>
+                    <p className="font-Inter font-normal text-[16px] leading-[24px] tracking-[-0.31px] text-[#B3B3B3]">Update the product details below.</p>
                 </div>
                 <div className="flex gap-2 text-sm">
-                    <button onClick={handleDiscard} className=" -[34px] px-4 py-2 border border-[#8A2BE2] rounded-[8px] font-Inter font-medium text-[14px] text-[#44403C] leading-[20px]">
-                        Discard
+                    <button onClick={handleDiscard} className="h-[34px] px-4 py-2 border border-[#8A2BE2] rounded-[8px] font-Inter font-medium text-[14px] text-[#44403C] leading-[20px]">
+                        Cancel
                     </button>
-                    <button onClick={handleSaveDraft} className="h-[34px] px-4 py-2 border border-[#8A2BE2] rounded-[8px] font-Inter font-medium text-[14px] text-[#44403C] leading-[20px]">
-                        Save as Draft
-                    </button>
-                    <button onClick={handlePublish} className="w-[164px] h-[34px] bg-[#4B0082] rounded-[8px] px-4 py-[6px] font-Inter font-medium text-[14px] leading-[20px] text-white text-center" >
-                        Publish Products
+                    <button onClick={handleUpdate} className="w-[164px] h-[34px] bg-[#4B0082] rounded-[8px] px-4 py-[6px] font-Inter font-medium text-[14px] leading-[20px] text-white text-center">
+                        Update Product
                     </button>
                 </div>
             </div>
@@ -139,14 +144,14 @@ const AddProduct = () => {
                             <input
                                 value={formData.name}
                                 onChange={(e) => handleInputChange('name', e.target.value)}
-                                className="w-full h-[50px]  bg-[#F5F5F5] rounded-[8px] p-[10px] px-4 text-[16px] font-Inter font-normal text-[#1A1A1A] placeholder:text-[#B3B3B3] focus:outline-none focus:border-[#4B0082]"
+                                className="w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-[10px] px-4 text-[16px] font-Inter font-normal text-[#1A1A1A] placeholder:text-[#B3B3B3] focus:outline-none focus:border-[#4B0082]"
                                 placeholder="e.g. Classic White T-Shirt"
                             />
                         </div>
                         <div className="flex flex-col gap-2 mt-[10px]">
                             <div className="flex items-center justify-between">
                                 <label htmlFor="Description" className="font-Inter font-medium text-[16px] leading-[18px] text-black">Description</label>
-                                <button className="w-[122px] h-[28px] flex items-center  rounded-full bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-Inter font-medium text-[10.2px] leading-[16px] text-[#F5F5F5] text-center align-middle">
+                                <button className="w-[122px] h-[28px] flex items-center rounded-full bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] font-Inter font-medium text-[10.2px] leading-[16px] text-[#F5F5F5] text-center align-middle">
                                     <img src={improve} alt="" className="px-3" /> Improve with AI
                                 </button>
                             </div>
@@ -184,7 +189,6 @@ const AddProduct = () => {
                                     className="w-[320px] h-[50px] bg-[#F5F5F5] rounded-[8px] p-[10px] outline-none focus:border focus:border-[#4B0082]"
                                 />
                             </div>
-
                         </div>
                     </Card>
 
@@ -270,7 +274,6 @@ const AddProduct = () => {
                     </Card>
                     <Card title="Variants" className="w-full h-[185px] bg-white rounded-[12px] p-5">
                         <div>
-
                             <p className="font-Inter font-medium text-[14px] leading-[22px] tracking-[0px] text-[#4A5565]">Add variants if this product comes in different sizes, colours, or materials.</p>
                             <button className="flex item-center gap-2 font-Inter mt-10 font-medium text-[14px] leading-[24px] tracking-[-0.31px] text-[#28272A] text-center w-[153px] h-10 border border-[#50525633] rounded-[8px] py-2 px-4"><img src={plus} alt="plus icon" /> Add Options</button>
                         </div>
@@ -331,12 +334,16 @@ const AddProduct = () => {
                         </div>
                     </Card>
 
-                    <Card title="Product Status" className="w-full  h-[243px] rounded-[16px] p-5 bg-white">
+                    <Card title="Product Status" className="w-full h-[243px] rounded-[16px] p-5 bg-white">
                         <div className="flex flex-col gap-3">
                             <label htmlFor="Status" className="font-Inter font-medium text-[16px] leading-[18px] tracking-[0px] text-[#47444B]">Status</label>
-                            <select className="input w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-2.5 font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">
-                                <option>Active</option>
-                                <option>Draft</option>
+                            <select 
+                                value={formData.status}
+                                onChange={(e) => handleInputChange('status', e.target.value)}
+                                className="input w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-2.5 font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]"
+                            >
+                                <option value="active">Active</option>
+                                <option value="draft">Draft</option>
                             </select>
                         </div>
 
@@ -367,13 +374,19 @@ const AddProduct = () => {
                         </div>
                     </Card>
 
-                    <Card title="Organization" className="w-full  h-[283px] rounded-[16px] p-5 bg-white">
+                    <Card title="Organization" className="w-full h-[283px] rounded-[16px] p-5 bg-white">
                         <div className="flex flex-col gap-3 mt-4">
                             <div className="flex flex-col gap-3">
                                 <label htmlFor="Status" className="font-Inter font-medium text-[16px] leading-[18px] tracking-[0px] text-[#47444B]">Category</label>
-                                <select className="input w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-2.5 font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">
-                                    <option className="font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">Electronics</option>
-                                    <option className="font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">Draft</option>
+                                <select 
+                                    value={formData.category}
+                                    onChange={(e) => handleInputChange('category', e.target.value)}
+                                    className="input w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-2.5 font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]"
+                                >
+                                    <option value="electronics">Electronics</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="accessories">Accessories</option>
+                                    <option value="">Uncategorized</option>
                                 </select>
                             </div>
                             <div className="flex flex-col gap-3">
@@ -389,7 +402,7 @@ const AddProduct = () => {
                         </button>
                     </Card>
 
-                    <Card title="SEO & Metadata" className="w-full  h-[283px] rounded-[16px] p-5 bg-white">
+                    <Card title="SEO & Metadata" className="w-full h-[283px] rounded-[16px] p-5 bg-white">
                         <div className="flex flex-col gap-3 mt-7">
                             <div className="flex flex-col gap-3">
                                 <label htmlFor="Status" className="font-Inter font-medium text-[16px] leading-[18px] tracking-[0px] text-[#47444B]">Meta Title</label>
@@ -414,6 +427,7 @@ const AddProduct = () => {
         </>
     );
 };
+
 const Card = ({ title, children }) => {
     return (
         <div className="bg-white p-5 rounded-xl">
@@ -423,4 +437,4 @@ const Card = ({ title, children }) => {
     );
 }
 
-export default AddProduct;
+export default EditProduct;
