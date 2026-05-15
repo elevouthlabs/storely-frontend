@@ -25,7 +25,6 @@ const LandingPage = () => {
         <div>
             <WaitlistModal open={openModal} />
             <Hero />
-            <Everything />
             <Sell />
             <Solution />
             <Features />
