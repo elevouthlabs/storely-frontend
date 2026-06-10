@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AuthRequests } from "../../api/axios.js";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import arrow from "../../assets/arrow.png";
 
@@ -8,16 +10,29 @@ const VerifyOtp = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const hasRequestedOtp = useRef(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("otpEmail");
     if (!storedEmail) {
-      alert("No email found. Please register again.");
+      toast.error("No email found. Please register again.");
       navigate("/register");
-    } else {
-      setEmail(storedEmail);
+      return;
     }
+
+    setEmail(storedEmail);
+
+    if (hasRequestedOtp.current) return;
+    hasRequestedOtp.current = true;
+
+    AuthRequests.resendOtp({
+      email: storedEmail,
+      purpose: "SIGNUP",
+    }).catch((err) => {
+      console.log(err.response?.data);
+      toast.error(err.response?.data?.message || "Failed to send verification code");
+    });
   }, [navigate]);
 
   const handleVerify = async () => {
@@ -36,10 +51,11 @@ const VerifyOtp = () => {
       });
 
       localStorage.removeItem("otpEmail");
+      toast.success("Email verified successfully!");
       navigate("/login");
     } catch (err) {
       console.log(err.response?.data);
-      alert(err.response?.data?.message || "Invalid OTP");
+      toast.error(err.response?.data?.message || "Invalid OTP");
     }
   };
 
@@ -52,10 +68,10 @@ const VerifyOtp = () => {
         purpose: "SIGNUP",
       });
 
-      alert("OTP resent successfully");
+      toast.success("Verification code resent. Check your inbox and spam folder.");
     } catch (err) {
       console.log(err.response?.data);
-      alert(err.response?.data?.message || "Failed to resend OTP");
+      toast.error(err.response?.data?.message || "Failed to resend OTP");
     } finally {
       setLoading(false);
     }
@@ -63,6 +79,7 @@ const VerifyOtp = () => {
 
   return (
     <div className="flex flex-col lg:flex-row h-screen bg-[#F5F5F5]">
+      <ToastContainer position="top-right" autoClose={3000} />
       <Sidebar />
 
       <div className="w-full lg:w-1/2 mt-[60px] lg:mt-[200px] px-4 lg:px-0 lg:ml-[28px]">
@@ -82,8 +99,9 @@ const VerifyOtp = () => {
             </h2>
 
             <p className="font-Inter font-normal text-[13px] lg:text-[13.6px] leading-[24px] text-black">
-              We sent 6-digit code to{" "}
+              We sent a 6-digit code to{" "}
               <span className="font-medium">{email}</span>
+              . Check your spam folder if you do not see it.
             </p>
           </div>
 

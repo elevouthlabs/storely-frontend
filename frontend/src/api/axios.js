@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-axios.defaults.baseURL = "https://storely-backend-production-154f.up.railway.app/api/v1";
+axios.defaults.baseURL = "https://storely-backend-production-9615.up.railway.app/api/v1";
 
 const REFRESH_PATH = "auth/refresh";
 
@@ -95,12 +95,12 @@ const requests = {
 };
 
 export const AuthRequests = {
-  register: (body) => requests.post("auth/signup", body),
-  verifyOtp: (body) => requests.post("auth/verify-otp", body),
-  resendOtp: (body) => requests.post("auth/resend-otp", body),
-  login: (body) => requests.post("auth/login", body),
+  register: (body) => requests.post("/auth/signup", body),
+  verifyOtp: (body) => requests.post("/auth/verify-otp", body),
+  resendOtp: (body) => requests.post("/auth/resend-otp", body),
+  login: (body) => requests.post("/auth/login", body),
   refresh: () => requests.post(REFRESH_PATH, {}),
-  currentUser: () => requests.get("auth/me"),
+  currentUser: () => requests.get("/auth/me"),
 };
 
 export const BusinessRequests = {

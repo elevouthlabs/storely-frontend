@@ -7,12 +7,10 @@ import avatar from "../../assets/avatar.png";
 
 const Sidebar = () => {
   return (
-    <div className="lg:w-1/2 lg:flex md:w-full h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex-col justify-center px-6 xl:px-8 2xl:max-w-[550px] 2xl:max-h-[770px]">
+    <div className="hidden lg:w-1/2 lg:flex md:w-full h-auto bg-gradient-to-b from-[#4B0082] to-[#8A2BE2] flex-col justify-center px-6 xl:px-8 2xl:max-w-[550px] 2xl:max-h-[770px]">
 
-      <div className="flex flex-col h-full py-8 xl:py-10">
+      <div className="flex flex-col justify-between h-full py-8 xl:py-10">
         <div className="flex flex-col gap-6 xl:gap-[30px]">
-
-          {/* Logo */}
           <div className="flex gap-[6px] items-center">
             <img src={storely} alt="" className="w-[28px] xl:w-auto" />
             <h1 className="font-bold text-[24px] xl:text-[30px] leading-[36px] tracking-[-0.75px] text-white font-Inter">
@@ -20,7 +18,6 @@ const Sidebar = () => {
             </h1>
           </div>
 
-          {/* Heading */}
           <div>
             <h2 className="font-Inter mt-[10px] xl:mt-[20px] font-bold text-[28px] xl:text-[36px] leading-[36px] xl:leading-[45px] text-white">
               Launch Your Online Store in Minutes
@@ -78,7 +75,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Bottom */}
+
         <div className="flex items-center mt-[30px] xl:mt-[40px] gap-[10px]">
           <img src={avatar} alt="" className="w-[28px] xl:w-auto" />
           <p className="font-Inter text-[13px] xl:text-sm leading-5 text-white/60">

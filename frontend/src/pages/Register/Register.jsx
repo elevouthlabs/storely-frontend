@@ -50,7 +50,7 @@ const Register = () => {
 
       localStorage.setItem("otpEmail", form.email);
 
-      toast.success("Registration successful");
+      toast.success("Registration successful! Check your email for the verification code.");
 
       setTimeout(() => {
         navigate("/verify-otp");
@@ -59,7 +59,7 @@ const Register = () => {
     } catch (err) {
       console.log(err.response?.data);
 
-      toast.error(err.response?.data?.message || "Registration failed ❌");
+      toast.error(err.response?.data?.message || "Registration failed");
 
     } finally {
       setLoading(false);
