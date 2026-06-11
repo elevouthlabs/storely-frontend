@@ -80,11 +80,7 @@ const requests = {
   delete: (url) => axios.delete(url).then(responseBody),
 
   postForm: (url, data) =>
-    axios
-      .post(url, data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(responseBody),
+    axios.post(url, data).then(responseBody),
 
   patchForm: (url, data) =>
     axios

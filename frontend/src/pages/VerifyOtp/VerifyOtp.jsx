@@ -15,6 +15,7 @@ const VerifyOtp = () => {
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("otpEmail");
+
     if (!storedEmail) {
       toast.error("No email found. Please register again.");
       navigate("/register");
@@ -22,40 +23,45 @@ const VerifyOtp = () => {
     }
 
     setEmail(storedEmail);
-
-    if (hasRequestedOtp.current) return;
-    hasRequestedOtp.current = true;
-
-    AuthRequests.resendOtp({
-      email: storedEmail,
-      purpose: "SIGNUP",
-    }).catch((err) => {
-      console.log(err.response?.data);
-      toast.error(err.response?.data?.message || "Failed to send verification code");
-    });
   }, [navigate]);
 
   const handleVerify = async () => {
     const finalOtp = otp.join("");
+    const storedEmail = localStorage.getItem("otpEmail");
+
+    console.log({
+      email: storedEmail,
+      code: finalOtp,
+      purpose: "SIGNUP",
+    });
 
     if (finalOtp.length !== 6) {
-      alert("Please enter the full 6-digit OTP");
+      toast.error("Please enter the full 6-digit OTP");
       return;
     }
 
     try {
       await AuthRequests.verifyOtp({
-        email,
-        code: otp.join(""),
+        email: storedEmail,
+        code: finalOtp,
         purpose: "SIGNUP",
       });
 
       localStorage.removeItem("otpEmail");
+
       toast.success("Email verified successfully!");
-      navigate("/login");
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (err) {
-      console.log(err.response?.data);
-      toast.error(err.response?.data?.message || "Invalid OTP");
+      console.log("Error Data:", err.response?.data);
+      console.log("Validation Errors:", err.response?.data?.errors);
+
+      toast.error(
+        err.response?.data?.message ||
+        "Verification failed"
+      );
     }
   };
 
@@ -63,15 +69,21 @@ const VerifyOtp = () => {
     try {
       setLoading(true);
 
+      const storedEmail = localStorage.getItem("otpEmail");
+
       await AuthRequests.resendOtp({
-        email,
+        email: storedEmail,
         purpose: "SIGNUP",
       });
 
-      toast.success("Verification code resent. Check your inbox and spam folder.");
+      toast.success(
+        "Verification code resent. Check your inbox and spam folder."
+      );
     } catch (err) {
       console.log(err.response?.data);
-      toast.error(err.response?.data?.message || "Failed to resend OTP");
+      toast.error(
+        err.response?.data?.message || "Failed to resend OTP"
+      );
     } finally {
       setLoading(false);
     }
@@ -146,8 +158,8 @@ const VerifyOtp = () => {
             onClick={handleVerify}
             disabled={otp.join("").length !== 6}
             className={`w-full sm:w-[460px] h-[50px] mt-[30px] rounded-lg font-semibold text-white ${otp.join("").length === 6
-                ? "bg-gradient-to-b from-[#8A2BE2] to-[#4B0082]"
-                : "bg-gray-400 cursor-not-allowed"
+              ? "bg-gradient-to-b from-[#8A2BE2] to-[#4B0082]"
+              : "bg-gray-400 cursor-not-allowed"
               }`}
           >
             Verify & Continue

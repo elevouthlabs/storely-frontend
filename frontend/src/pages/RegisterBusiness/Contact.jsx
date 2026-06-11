@@ -167,7 +167,7 @@ const Contact = ({ form, setForm, back }) => {
 
             <div className="w-full max-w-[560px]">
               <p className="font-medium text-[#2E2E2E]">
-                Location (Optional)
+                Location
               </p>
               <input
                 type="text"

@@ -39,7 +39,7 @@ const Launch = ({ form }) => {
     }
 
     const toastId = toast.loading("Launching your store...");
-    
+
     console.log('Form values:', {
       name: form.name,
       businessType: form.businessType,
@@ -51,51 +51,66 @@ const Launch = ({ form }) => {
       location: form.location,
       logo: form.logo
     });
-    
+
     const body = new FormData();
     body.append("name", form.name || "");
-    // Map frontend values to backend expected values
+    
     const businessTypeMapping = {
-      "Product": "product",
-      "Service": "service", 
-      "Hybrid": "hybrid"
+      Product: "PRODUCT",
+      Service: "SERVICE",
+      Hybrid: "HYBRID",
     };
-    const backendType = businessTypeMapping[form.businessType] || form.businessType?.toLowerCase();
-    body.append("type", backendType || "");
+
+    const backendType =
+      businessTypeMapping[form.businessType] ??
+      form.businessType?.toUpperCase();
+
+    if (!backendType) {
+      toast.error("Business type is missing");
+      return;
+    }
+
+    body.append("type", backendType);
     body.append("category", form.category || "");
     body.append("description", form.description || "");
     body.append("phone", form.phone || "");
-    
-    // Only append email if it's provided and valid
+    body.append(
+      "location",
+      Array.isArray(form.location)
+        ? form.location.join(", ")
+        : String(form.location || "")
+    );
+
     if (form.email && form.email.trim()) {
       body.append("email", form.email);
     }
-    
-    // Only append website if it's provided and valid
+
     if (form.storeUrl && form.storeUrl.trim()) {
       body.append("website", form.storeUrl);
     }
-    
-    body.append("location", form.location || "");
+
     if (form.logo) {
       body.append("logo", form.logo);
     }
 
-    // Debug FormData contents
     console.log('FormData contents:');
     for (let [key, value] of body.entries()) {
       console.log(`${key}:`, value);
     }
-    
+
     try {
       await BusinessRequests.createBusiness(body);
       toast.success("Business created successfully!", { id: toastId });
       navigate("/register-success");
     } catch (err) {
-      console.log('Business creation error:', err.response?.data);
-      console.log('Form data being sent:', body);
+      console.log(
+        "FULL ERROR:",
+        JSON.stringify(err.response?.data, null, 2)
+      );
+
       const message =
         err?.response?.data?.message || "Could not launch store. Try again.";
+
       toast.error(message, { id: toastId });
     }
   };

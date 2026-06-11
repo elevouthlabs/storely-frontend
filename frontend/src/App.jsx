@@ -30,6 +30,7 @@ import Contact from "./pages/RegisterBusiness/Contact.jsx";
 import RegisterSuccess from "./pages/RegisterBusiness/RegisterSuccess.jsx";
 import Auth from "./marketplace/pages/Auth.jsx";
 import SearchPage from "./marketplace/pages/Search.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -91,6 +92,7 @@ function AppWrapper() {
       {!hideNavbar && <WaitlistSlider />}
 
       {!hideNavbar && <Navbar />}
+      <ScrollToTop />
 
       <Routes>
         <Route>
