@@ -6,7 +6,7 @@ import demo1 from "../../assets/demo1.png";
 
 const Business = () => {
     return (
-        <div className="relative h-auto py-16 sm:py-20 md:py-[90px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] flex items-center justify-center">
+        <div className="relative h-auto py-16 sm:py-20 md:py-[110px] bg-gradient-to-b from-[#8A2BE2] to-[#4B0082] flex items-center justify-center">
 
             <img src={vector} alt="" className="absolute left-0 top-0 w-24 sm:w-32 md:w-auto" />
 

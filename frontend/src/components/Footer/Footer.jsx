@@ -7,12 +7,12 @@ import linkedin from "../../assets/linkedin.png";
 
 const Footer = () => {
     return (
-        <div className="relative bg-[#F5F5F5] md:h-[642px] h-[1090px] overflow-hidden px-6 md:px-[60px] py-10 md:py-10">
-            <div className="flex flex-col md:flex-row gap-10 md:gap-[10px]">
-                <div className="flex flex-col gap-6 md:gap-[25px] md:flex-1">
-                    <div className="flex items-center gap-4 md:gap-[20px]">
-                        <img src={logo} alt="logo" className="w-[102px] md:w-auto" />
-                        <div className="flex gap-2 md:gap-[10px]">
+        <div className="relative bg-[#F5F5F5] lg:h-[642px] h-[1090px] overflow-hidden px-6 lg:px-[60px] py-10 lg:py-10">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-[10px]">
+                <div className="flex flex-col gap-6 lg:gap-[25px] lg:flex-1">
+                    <div className="flex items-center gap-4 lg:gap-[20px]">
+                        <img src={logo} alt="logo" className="w-[102px] lg:w-auto" />
+                        <div className="flex gap-2 lg:gap-[10px]">
                             <a href="#" target="_blank" className="w-[40px] h-[40px] p-[10px] rounded-full border-[0.71px] border-[#0000001A] flex items-center justify-center">
                                 <img src={twitter} alt="twitter" />
                             </a>
@@ -41,22 +41,22 @@ const Footer = () => {
                         </button>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row gap-10 md:gap-[150px] md:flex-1">
-                    <div className="flex flex-col gap-4 md:gap-[20px]">
+                <div className="flex flex-col lg:flex-row gap-10 lg:gap-[150px] lg:flex-1">
+                    <div className="flex flex-col gap-4 lg:gap-[20px]">
                         <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Product</h4>
                         <a href="#features" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Features</a>
                         <a href="#pricing" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Pricing</a>
                         <a href="#AI-insight" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">AI Insights</a>
                         <a href="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Integrations</a>
                     </div>
-                    <div className="flex flex-col gap-4 md:gap-[20px]">
+                    <div className="flex flex-col gap-4 lg:gap-[20px]">
                         <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Company</h4>
                         <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">About</Link>
                         <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Careers</Link>
                         <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Blog</Link>
                         <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Contact</Link>
                     </div>
-                    <div className="flex flex-col gap-4 md:gap-[20px]">
+                    <div className="flex flex-col gap-4 lg:gap-[20px]">
                         <h4 className="font-Urbanist font-semibold text-[18px] text-[#2E2E2E] leading-[100%] tracking-[-0.02em]">Resources</h4>
                         <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">Help Center</Link>
                         <Link to="/" className="font-Urbanist font-normal text-[18px] text-[#6B7280]">FAQs</Link>
@@ -65,7 +65,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-10 md:mt-[70px] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="mt-10 lg:mt-[70px] flex flex-col md:flex-row justify-between items-start lg:items-center gap-4">
                 <Link to="/" className="font-Urbanist font-normal text-[16px] text-[#13173599] underline">
                     Terms & Condition
                 </Link>
@@ -74,7 +74,7 @@ const Footer = () => {
                 </p>
             </div>
             <div>
-                <img src={bottom} alt="" className="absolute left-[10px] md:top-[352px] md:left-[40px]" />
+                <img src={bottom} alt="" className="absolute left-[10px] lg:top-[352px] lg:left-[40px]" />
             </div>
         </div>
     )

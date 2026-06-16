@@ -20,7 +20,7 @@ const Pricing = () => {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row gap-6 mt-8 md:mt-[60px] justify-center items-center">
-                <div className="w-full md:w-[411px] h-auto md:h-[509px] bg-[#F5F5F5] rounded-[16px] p-5 flex flex-col gap-5">
+                <div className="w-full md:w-[411px] h-auto  bg-[#F5F5F5] rounded-[16px] p-5 flex flex-col gap-5">
                     <div className="w-[47px] h-[17px] bg-[#E8EFE9] rounded-[30px] px-[10px]">
                         <p className="font-Inter font-normal text-[10px] text-[#1B5E20] leading-[16px] tracking-normal">FREE</p>
                     </div>
@@ -41,7 +41,7 @@ const Pricing = () => {
                         <a href="#" className="font-Inter font-medium text-[14px] text-[#1A1A1A] leading-[24px] tracking-normal text-center">Buy Now</a>
                     </div>
                 </div>
-                <div className="w-full md:w-[411px] h-auto md:h-[559.75px] bg-[#4B0082] rounded-[16px] p-5 flex flex-col gap-5">
+                <div className="w-full md:w-[411px] h-auto bg-[#4B0082] rounded-[16px] p-5 flex flex-col gap-5">
                     <div className="w-[149px] flex items-center gap-2 px-[10px] h-[28px] bg-[#F59E0B] rounded-full">
                         <img src={black} alt="" />
                         <p className="font-Inter font-medium text-[14px] text-[#28272A] leading-[20px] tracking-normal">Recommended</p>
@@ -65,7 +65,7 @@ const Pricing = () => {
                         <a href="#" className="font-Inter font-semibold text-[16px] text-[#4B0082] leading-[24px] tracking-normal text-center">Get Started</a>
                     </div>
                 </div>
-                <div className="w-full md:w-[411px] h-auto md:h-[509px] bg-[#F5F5F5] rounded-[16px] p-5 flex flex-col gap-5">
+                <div className="w-full md:w-[411px] h-auto bg-[#F5F5F5] rounded-[16px] p-5 flex flex-col gap-5">
                     <div className="w-[47px] h-[17px] bg-[#E8EFE9] rounded-[30px] px-[10px]">
                         <p className="font-Inter font-normal text-[10px] text-[#1B5E20] leading-[16px] tracking-normal">Pro</p>
                     </div>

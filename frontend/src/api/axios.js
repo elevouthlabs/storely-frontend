@@ -102,6 +102,7 @@ export const AuthRequests = {
 export const BusinessRequests = {
   createBusiness: (data) => requests.postForm("business", data),
   getBusiness: (id) => requests.get(`business/${id}`),
+  getMyBusiness: () => requests.get("business/me"),
   updateBusiness: (id, data) => requests.patchForm(`business/${id}`, data),
   deleteBusiness: (id) => requests.delete(`business/${id}`),
 };

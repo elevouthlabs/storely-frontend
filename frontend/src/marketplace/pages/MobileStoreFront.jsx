@@ -495,15 +495,12 @@ const MobileStorefront = () => {
                 </div>
             </div>
 
-            {/* TESTIMONIALS */}
             <div className="px-3 mt-8">
                 <div className="flex items-center justify-between mb-4">
                     <h3 className="text-[18px] font-semibold text-[#222]">
                         What Customers Say
                     </h3>
                 </div>
-
-                {/* CAROUSEL */}
                 <div className="overflow-hidden">
                     <div
                         className=" max-w-[280px] flex  gap-3 transition-transform duration-700 ease-in-out"
@@ -546,6 +543,7 @@ const MobileStorefront = () => {
                     </div>
                 </div>
             </div>
+            
             <StoreNavbar />
         </div>
     );

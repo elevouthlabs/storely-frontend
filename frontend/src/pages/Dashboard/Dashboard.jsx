@@ -1,12 +1,17 @@
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Users, Package, DollarSign, TrendingUp, Plus } from "lucide-react";
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+
+    const business = JSON.parse(localStorage.getItem("business") || "{}");
+
     return (
         <div className="min-h-screen bg-gray-100 p-6">
-            {/* Header */}
             <div className="bg-gradient-to-r from-purple-700 to-purple-500 text-white p-6 rounded-2xl flex justify-between items-center">
                 <div>
-                    <h1 className="text-xl font-semibold">Welcome to Storely, Alex! 👋</h1>
+                    <h1 className="text-xl font-semibold">Welcome to Storely, {business?.name || "Merchant"}!</h1>
                     <p className="text-sm opacity-90 mt-1 max-w-xl">
                         Your storefront is officially live. Now it’s time to add your first products, set up your services, and start making sales. We’re here to help you grow.
                     </p>
@@ -39,7 +44,7 @@ const Dashboard = () => {
                             <p className="text-sm mt-1 max-w-sm">
                                 Add products and share your store to start making sales. Your revenue chart will appear here once you make your first sale.
                             </p>
-                            <button className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                            <button onClick={() => navigate("/dashboard/add-product")} className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
                                 <Plus className="w-4 h-4" /> Add Your First Product
                             </button>
                         </div>

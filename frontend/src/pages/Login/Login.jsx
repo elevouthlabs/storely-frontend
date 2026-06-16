@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AuthRequests } from "../../api/axios.js";
+import { AuthRequests, BusinessRequests } from "../../api/axios.js";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
@@ -24,30 +24,50 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    setLoading(true); 
+    setLoading(true);
 
     try {
       const res = await AuthRequests.login(form);
-      
-      console.log('Login response:', res);
-      const token = res.accessToken || res.data?.accessToken || res.token || res.data?.token;
-      console.log('Token to save:', token?.substring(0, 20) + '...');
-      
-      saveToken(token);
+
+      console.log("Login Response:", res);
+
+      // Save token
+      saveToken(res.accessToken);
+
+      // Save user
+      setUser(res.user);
+
+      localStorage.setItem(
+        "storelyUser",
+        JSON.stringify(res.user)
+      );
+
+      // Check if business exists
+      const businessRes = await BusinessRequests.getMyBusiness();
+
+      console.log("Business Response:", businessRes);
+
+      localStorage.setItem(
+        "business",
+        JSON.stringify(businessRes.data)
+      );
+
+      toast.success("Login successful");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
+
+    } catch (businessError) {
+      console.log("No business found:", businessError);
 
       toast.success("Login successful");
 
       setTimeout(() => {
         navigate("/register-business");
       }, 1500);
-
-    } catch (err) {
-      console.log(err.response?.data);
-
-      toast.error(err.response?.data?.message || "Login failed ❌");
-
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 

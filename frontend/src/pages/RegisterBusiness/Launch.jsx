@@ -54,7 +54,7 @@ const Launch = ({ form }) => {
 
     const body = new FormData();
     body.append("name", form.name || "");
-    
+
     const businessTypeMapping = {
       Product: "PRODUCT",
       Service: "SERVICE",
@@ -99,7 +99,15 @@ const Launch = ({ form }) => {
     }
 
     try {
-      await BusinessRequests.createBusiness(body);
+      const response = await BusinessRequests.createBusiness(body);
+      localStorage.setItem(
+        "business",
+        JSON.stringify(response.data.data)
+      );
+      console.log(
+        "CREATE BUSINESS RESPONSE:",
+        JSON.stringify(response, null, 2)
+      );
       toast.success("Business created successfully!", { id: toastId });
       navigate("/register-success");
     } catch (err) {

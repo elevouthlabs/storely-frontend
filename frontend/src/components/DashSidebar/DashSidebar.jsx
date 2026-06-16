@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import dashlogo from "../../assets/dashlogo.png";
 import dashboardIcon from "../../assets/dashboardIcon.png";
@@ -37,6 +38,16 @@ const Dashsidebar = () => {
 
     const toggleMenu = (name) => {
         setOpenMenu(openMenu === name ? null : name);
+    };
+
+    const { user } = useContext(AuthContext);
+
+    const getInitials = (name = "") => {
+        return name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase();
     };
 
 
@@ -106,12 +117,14 @@ const Dashsidebar = () => {
             {/* User */}
             <div className="px-4 py-8 flex items-center gap-3">
                 <div className="w-8 h-8 bg-[#7C3AED] rounded-full flex items-center justify-center">
-                    <p className="font-Inter font-bold text-[12px] text-white">JD</p>
+                    <p className="font-Inter font-bold text-[12px] text-white">
+                        {getInitials(user?.fullName || "User")}
+                    </p>
                 </div>
 
                 <div>
                     <p className="font-Inter font-medium text-[16px] text-white">
-                        Jane Doe
+                        {user?.fullName || "User"}
                     </p>
                     <p className="font-Inter font-normal text-[10px] text-white">
                         Free Plan

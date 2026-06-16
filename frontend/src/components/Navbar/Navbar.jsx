@@ -38,14 +38,13 @@ function Navbar() {
     }, []);
 
     return (
-        <nav className="fixed mt-[40px] top-0 left-0 w-full z-[999999] h-[88px] bg-[#f3f4f6] px-[20px] md:px-[60px] py-[20px] md:py-[30px] flex justify-between items-center">
-
+        <nav className="fixed mt-[40px] top-0 left-0 w-full z-[999999] h-[88px] bg-[#f3f4f6] px-[20px] lg:px-[60px] py-[20px] lg:py-[30px] flex justify-between items-center">
             <div>
                 <img src={logo} alt="" className="w-[120px] md:w-auto" />
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-[49px]">
+            <div className="hidden lg:flex gap-[49px]">
                 <button
                     onClick={() => handleClick("home")}
                     className={`text-[14px] font-inter font-medium leading-[20px] tracking-normal ${active === "home" ? "text-[#5A00F0]" : "text-[#4A5565]"}`}
@@ -75,7 +74,7 @@ function Navbar() {
             </div>
 
             {/* Desktop Buttons */}
-            <div className="hidden md:flex gap-[16px] items-center">
+            <div className="hidden lg:flex gap-[16px] items-center">
                 <Link
                     to="/login"
                     className="w-[136px] h-[48px] bg-white border border-[#D9D9D9] rounded-[8px] px-[20px] py-[12px] font-Inter font-medium text-[16px] text-[#2E2E2E] leading-[24px] text-center"
@@ -91,7 +90,7 @@ function Navbar() {
             </div>
 
             {/* Hamburger */}
-            <div className="md:hidden flex flex-col gap-1 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
+            <div className="lg:hidden flex flex-col gap-1 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
                 <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "rotate-45 translate-y-[6px]" : ""}`}></span>
                 <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "opacity-0" : ""}`}></span>
                 <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}></span>
@@ -99,7 +98,7 @@ function Navbar() {
 
 
             {menuOpen && (
-                <div className="absolute top-[88px] left-20 w-full bg-[#f3f4f6] flex flex-col items-start px-5  gap-6 py-6 md:hidden">
+                <div className="absolute top-[88px] left-20 w-full bg-[#f3f4f6] flex flex-col items-start px-5  gap-6 py-6 lg:hidden">
                     <button onClick={() => handleClick("home")} className={active === "home" ? "text-[#5A00F0]" : ""}>Home</button>
                     <a href="#howitworks" onClick={() => handleClick("howitworks")}>How it works</a>
                     <a href="#features" onClick={() => handleClick("features")}>Features</a>
