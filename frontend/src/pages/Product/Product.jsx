@@ -71,7 +71,7 @@ const Product = () => {
                         <p className="font-Inter font-medium text-base text-[#44403C] leading-5 text-center align-middle">Bulk Edit</p>
                     </button>
                     <button
-                        onClick={() => navigate("/dashboard/add-product")}
+                        onClick={() => navigate("/dashboard/product/add-product")}
                         className="w-[190px] h-10 flex items-center gap-2 bg-[var(--Color-primary,#4B0082)] rounded-lg px-4 py-2 font-Inter font-medium text-base text-white leading-6 tracking-[-0.31px] text-center"
                     >
                         + Add New Product

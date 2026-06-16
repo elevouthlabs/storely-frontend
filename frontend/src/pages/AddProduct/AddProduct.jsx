@@ -9,6 +9,12 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const AddProduct = () => {
     const [isOn, setIsOn] = useState(false);
+    const [toggles, setToggles] = useState({
+        chargeTax: false,
+        requiresShipping: false,
+        visibleOnStorefront: false,
+        featuredProduct: false,
+    });
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -29,6 +35,13 @@ const AddProduct = () => {
         rating: 0,
         reviews: 0
     });
+
+    const handleToggle = (key) => {
+        setToggles((prev) => ({
+            ...prev,
+            [key]: !prev[key],
+        }));
+    };
 
     const handleImageUpload = (e) => {
         const files = Array.from(e.target.files);
@@ -82,7 +95,7 @@ const AddProduct = () => {
 
         // Get existing products from localStorage or initialize empty array
         const existingProducts = JSON.parse(localStorage.getItem('products') || '[]');
-        
+
         // Create new product object with form data
         const newProduct = {
             id: Date.now(), // Simple unique ID
@@ -101,12 +114,12 @@ const AddProduct = () => {
 
         // Add new product to existing products
         const updatedProducts = [...existingProducts, newProduct];
-        
+
         // Save to localStorage
         localStorage.setItem('products', JSON.stringify(updatedProducts));
-        
+
         toast.success('Product published successfully!');
-        
+
         // Reset form after successful publish
         handleDiscard();
     };
@@ -192,11 +205,11 @@ const AddProduct = () => {
                         <div className="grid grid-cols-3 gap-3">
                             <div className="flex flex-col gap-2">
                                 <label htmlFor="Price" className="font-Inter font-medium text-[16px] leading-[18px] text-black">Price</label>
-                                <input 
+                                <input
                                     value={formData.price}
                                     onChange={(e) => handleInputChange('price', e.target.value)}
-                                    className="w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-[10px]" 
-                                    placeholder="0.00" 
+                                    className="w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-[10px]"
+                                    placeholder="0.00"
                                 />
                             </div>
                             <div className="flex flex-col gap-2">
@@ -212,12 +225,12 @@ const AddProduct = () => {
                                     Charge Tax
                                 </p>
                                 <button
-                                    onClick={() => setIsOn(!isOn)}
-                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${isOn ? "bg-[#4B0082]" : "bg-gray-300"
+                                    onClick={() => handleToggle("chargeTax")}
+                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${toggles.chargeTax ? "bg-[#4B0082]" : "bg-gray-300"
                                         }`}
                                 >
                                     <div
-                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${isOn ? "translate-x-[24px]" : "translate-x-0"
+                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${toggles.chargeTax ? "translate-x-[24px]" : "translate-x-0"
                                             }`}
                                     />
                                 </button>
@@ -229,11 +242,11 @@ const AddProduct = () => {
                         <div className="grid grid-cols-3 gap-3">
                             <div className="flex flex-col gap-2">
                                 <label htmlFor="Stock Quantity" className="font-Inter font-medium text-[16px] leading-[18px] text-black">Stock Quantity</label>
-                                <input 
+                                <input
                                     value={formData.stockQuantity}
                                     onChange={(e) => handleInputChange('stockQuantity', e.target.value)}
-                                    className="w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-[10px]" 
-                                    placeholder="0.00" 
+                                    className="w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-[10px]"
+                                    placeholder="0.00"
                                 />
                             </div>
                             <div className="flex flex-col gap-2">
@@ -249,12 +262,12 @@ const AddProduct = () => {
                                     This product requires shipping
                                 </p>
                                 <button
-                                    onClick={() => setIsOn(!isOn)}
-                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${isOn ? "bg-[#4B0082]" : "bg-gray-300"
+                                    onClick={() => handleToggle("requiresShipping")}
+                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${toggles.requiresShipping ? "bg-[#4B0082]" : "bg-gray-300"
                                         }`}
                                 >
                                     <div
-                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${isOn ? "translate-x-[24px]" : "translate-x-0"
+                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${toggles.requiresShipping ? "translate-x-[24px]" : "translate-x-0"
                                             }`}
                                     />
                                 </button>
@@ -344,11 +357,13 @@ const AddProduct = () => {
                             <div className="flex items-center justify-between">
                                 <p className="font-Inter font-medium text-[16px] leading-[20px] tracking-[0px] text-[#47444B]">Visible on Storefront</p>
                                 <button
-                                    onClick={() => setIsOn(!isOn)}
-                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${isOn ? "bg-[#4B0082]" : "bg-gray-300"}`}
+                                    onClick={() => handleToggle("visibleOnStorefront")}
+                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${toggles.visibleOnStorefront ? "bg-[#4B0082]" : "bg-gray-300"
+                                        }`}
                                 >
                                     <div
-                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${isOn ? "translate-x-[24px]" : "translate-x-0"}`}
+                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${toggles.visibleOnStorefront ? "translate-x-[24px]" : "translate-x-0"
+                                            }`}
                                     />
                                 </button>
                             </div>
@@ -356,11 +371,13 @@ const AddProduct = () => {
                             <div className="flex items-center justify-between">
                                 <p className="font-Inter font-medium text-[16px] leading-[20px] tracking-[0px] text-[#47444B]">Featured Products</p>
                                 <button
-                                    onClick={() => setIsOn(!isOn)}
-                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${isOn ? "bg-[#4B0082]" : "bg-gray-300"}`}
+                                    onClick={() => handleToggle("featuredProduct")}
+                                    className={`w-[50px] h-[26px] rounded-full flex items-center p-[3px] transition-all duration-300 ${toggles.featuredProduct ? "bg-[#4B0082]" : "bg-gray-300"
+                                        }`}
                                 >
                                     <div
-                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${isOn ? "translate-x-[24px]" : "translate-x-0"}`}
+                                        className={`w-[20px] h-[20px] bg-white rounded-full shadow-md transition-all duration-300 ${toggles.featuredProduct ? "translate-x-[24px]" : "translate-x-0"
+                                            }`}
                                     />
                                 </button>
                             </div>

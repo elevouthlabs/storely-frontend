@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import dashlogo from "../../assets/dashlogo.png";
 import dashboardIcon from "../../assets/dashboardIcon.png";
 import catalogIcon from "../../assets/catalogIcon.png";
@@ -14,7 +14,8 @@ import openIcon from "../../assets/open.png";
 import closeIcon from "../../assets/close.png";
 
 const menu = [
-    { name: "Dashboard", icon: dashboardIcon },
+    { name: "Dashboard", icon: dashboardIcon, path: "/dashboard" },
+
     {
         name: "Catalog",
         icon: catalogIcon,
@@ -24,17 +25,56 @@ const menu = [
             { name: "Collections", path: "collections" },
         ],
     },
-    { name: "Sales", icon: salesIcon },
-    { name: "Customers", icon: customerIcon },
-    { name: "Finance", icon: financeIcon },
-    { name: "Intelligence", icon: IntelligenceIcon },
-    { name: "Settings", icon: setingsIcon },
-    { name: "Ask Storely AI", icon: askIcon, noDropdown: true },
+
+    { name: "Sales", icon: salesIcon, path: "/dashboard/sales" },
+    { name: "Customers", icon: customerIcon, path: "/dashboard/customers" },
+    { name: "Finance", icon: financeIcon, path: "/dashboard/finance" },
+    { name: "Intelligence", icon: IntelligenceIcon, path: "/dashboard/intelligence" },
+    { name: "Settings", icon: setingsIcon, path: "/dashboard/settings" },
+
+    { name: "Ask Storely AI", icon: askIcon, noDropdown: true, path: "/dashboard/ai" },
 ];
 
 const Dashsidebar = () => {
     const [openMenu, setOpenMenu] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname;
+
+
+
+    useEffect(() => {
+        menu.forEach((item) => {
+            if (item.children) {
+                const match = item.children.some(
+                    (child) => currentPath === `/dashboard/${child.path}`
+                );
+
+                if (match) {
+                    setOpenMenu(item.name);
+                }
+            }
+        });
+    }, [currentPath]);
+
+    const getChildPath = (childPath) => `/dashboard/${childPath}`;
+
+    const isChildActive = (childPath) => {
+        return currentPath.startsWith(getChildPath(childPath));
+    };
+
+    const isParentActive = (item) => {
+        if (!item.children) return false;
+
+        return item.children.some((child) =>
+            isChildActive(child.path)
+        );
+    };
+
+    const isMainActive = (item) => {
+        if (item.children) return isParentActive(item);
+        return currentPath === item.path;
+    };
 
     const toggleMenu = (name) => {
         setOpenMenu(openMenu === name ? null : name);
@@ -73,10 +113,18 @@ const Dashsidebar = () => {
                                     if (item.children && !item.noDropdown) {
                                         toggleMenu(item.name);
                                     } else {
-                                        navigate("/dashboard");
+                                        if (item.children && !item.noDropdown) {
+                                            toggleMenu(item.name);
+                                        } else if (item.path) {
+                                            navigate(item.path);
+                                        };
                                     }
                                 }}
-                                className="w-[207px] h-[48px] flex items-center justify-between gap-3 px-4 cursor-pointer hover:bg-[#9654F4] hover:rounded-[8px]"
+                                className={`w-[207px] h-[48px] flex items-center justify-between gap-3 px-4 cursor-pointer rounded-[8px]
+                                        ${isMainActive(item)
+                                        ? "bg-[#9654F4]"
+                                        : "hover:bg-[#9654F4]"
+                                    }`}
                             >
                                 <div className="flex items-center gap-3">
                                     <img src={item.icon} alt="" className="w-5 h-5" />
@@ -99,10 +147,12 @@ const Dashsidebar = () => {
                                     {item.children.map((child) => (
                                         <div
                                             key={child.name}
-                                            onClick={() => {
-                                                navigate(`/dashboard/${child.path}`);
-                                            }}
-                                            className="font-Inter font-normal text-[16px] leading-[24px] tracking-[0px] text-white py-2 px-3 cursor-pointer hover:bg-[#9654F4] rounded-md"
+                                            onClick={() => navigate(`/dashboard/${child.path}`)}
+                                            className={`font-Inter font-normal text-[16px] text-white py-2 px-3 cursor-pointer rounded-md
+                                                ${isChildActive(child.path)
+                                                    ? "bg-[#9654F4]"
+                                                    : "hover:bg-[#9654F4]"
+                                                }`}
                                         >
                                             {child.name}
                                         </div>

@@ -44,7 +44,7 @@ const Dashboard = () => {
                             <p className="text-sm mt-1 max-w-sm">
                                 Add products and share your store to start making sales. Your revenue chart will appear here once you make your first sale.
                             </p>
-                            <button onClick={() => navigate("/dashboard/add-product")} className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                            <button onClick={() => navigate("/dashboard/product/add-product")} className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
                                 <Plus className="w-4 h-4" /> Add Your First Product
                             </button>
                         </div>

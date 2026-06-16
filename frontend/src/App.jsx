@@ -74,7 +74,7 @@ function AppWrapper() {
     "/dashboard/product",
     "/login",
     "/dashboard",
-    "/dashboard/add-product",
+    "/dashboard/product/add-product",
     "/store",
     "/store/categories",
     "/store/cart",
@@ -121,8 +121,8 @@ function AppWrapper() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="product" element={<Product />} />
-          <Route path="add-product" element={<AddProduct />} />
-          <Route path="edit-product/:id" element={<EditProduct />} />
+          <Route path="product/add-product" element={<AddProduct />} />
+          <Route path="product/edit-product/:id" element={<EditProduct />} />
         </Route>
       </Routes>
       {!hideNavbar && <Footer />}

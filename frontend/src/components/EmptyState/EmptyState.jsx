@@ -17,7 +17,7 @@ const EmptyState = () => {
         <p className="font-Inter font-normal text-[11.9px] text-[#28272A] leading-[22px] text-center align-middle">
           Add your first product and start selling. It only takes a minute.
         </p>
-        <button onClick={() => navigate("/dashboard/add-product")} className="w-[210px]  bg-[var(--Color-primary,#4B0082)] rounded-lg p-[10px] shadow-[0px_1px_2px_0px_#0000000D] flex items-center justify-center gap-[10px] font-Inter font-medium text-base text-white leading-5 text-center align-middle">
+        <button onClick={() => navigate("/dashboard/product/add-product")} className="w-[210px]  bg-[var(--Color-primary,#4B0082)] rounded-lg p-[10px] shadow-[0px_1px_2px_0px_#0000000D] flex items-center justify-center gap-[10px] font-Inter font-medium text-base text-white leading-5 text-center align-middle">
           Add Your First Product
         </button>
       </div>
