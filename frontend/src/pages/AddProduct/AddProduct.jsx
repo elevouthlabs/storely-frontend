@@ -1,5 +1,5 @@
 import improve from "../../assets/improve.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import plus from "../../assets/plus.png";
 import up from "../../assets/up.png";
 import { ProductsRequests } from "../../api/axios";
@@ -9,12 +9,22 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const AddProduct = () => {
     const [isOn, setIsOn] = useState(false);
+    const [categories, setCategories] = useState([]);
     const [toggles, setToggles] = useState({
         chargeTax: false,
         requiresShipping: false,
         visibleOnStorefront: false,
         featuredProduct: false,
     });
+
+    useEffect(() => {
+        const storedCategories = JSON.parse(
+            localStorage.getItem("categories") || "[]"
+        );
+
+        setCategories(storedCategories);
+    }, []);
+
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -89,38 +99,69 @@ const AddProduct = () => {
 
     const handlePublish = () => {
         if (!formData.name || !formData.price) {
-            toast.error('Product name and price are required');
+            toast.error("Product name and price are required");
             return;
         }
 
-        // Get existing products from localStorage or initialize empty array
-        const existingProducts = JSON.parse(localStorage.getItem('products') || '[]');
+        const existingProducts = JSON.parse(
+            localStorage.getItem("products") || "[]"
+        );
 
-        // Create new product object with form data
+        const categoryId = Number(formData.category);
+
+        const selectedCategory = categories.find(
+            (cat) => cat.id === categoryId
+        );
+
         const newProduct = {
-            id: Date.now(), // Simple unique ID
+            id: Date.now(),
             name: formData.name,
             description: formData.description,
             price: parseFloat(formData.price),
             sku: formData.sku || `SKU-${Date.now()}`,
             barcode: formData.barcode,
             stock: parseInt(formData.stockQuantity) || 0,
-            status: 'active',
-            dateAdded: new Date().toISOString().split('T')[0], // Format as YYYY-MM-DD
-            image: formData.images.length > 0 ? URL.createObjectURL(formData.images[0]) : null,
-            rating: formData.rating || 0,
-            reviews: formData.reviews || 0
+            status: "active",
+            dateAdded: new Date().toISOString().split("T")[0],
+            image:
+                formData.images.length > 0
+                    ? URL.createObjectURL(formData.images[0])
+                    : null,
+            rating: 0,
+            reviews: 0,
+
+            categoryId,
+            categoryName: selectedCategory?.name || "",
         };
 
-        // Add new product to existing products
         const updatedProducts = [...existingProducts, newProduct];
 
-        // Save to localStorage
-        localStorage.setItem('products', JSON.stringify(updatedProducts));
+        localStorage.setItem(
+            "products",
+            JSON.stringify(updatedProducts)
+        );
 
-        toast.success('Product published successfully!');
+        // Update category product count
+        if (categoryId) {
+            const updatedCategories = categories.map((cat) =>
+                cat.id === categoryId
+                    ? {
+                        ...cat,
+                        products: (cat.products || 0) + 1,
+                    }
+                    : cat
+            );
 
-        // Reset form after successful publish
+            localStorage.setItem(
+                "categories",
+                JSON.stringify(updatedCategories)
+            );
+
+            setCategories(updatedCategories);
+        }
+
+        toast.success("Product published successfully!");
+
         handleDiscard();
     };
 
@@ -388,9 +429,23 @@ const AddProduct = () => {
                         <div className="flex flex-col gap-3 mt-4">
                             <div className="flex flex-col gap-3">
                                 <label htmlFor="Status" className="font-Inter font-medium text-[16px] leading-[18px] tracking-[0px] text-[#47444B]">Category</label>
-                                <select className="input w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-2.5 font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">
-                                    <option className="font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">Electronics</option>
-                                    <option className="font-Inter font-normal text-[16px] leading-[24px] text-[#6B7280]">Draft</option>
+                                <select
+                                    value={formData.category}
+                                    onChange={(e) =>
+                                        handleInputChange("category", e.target.value)
+                                    }
+                                    className="input w-full h-[50px] bg-[#F5F5F5] rounded-[8px] p-2.5"
+                                >
+                                    <option value="">Select Category</option>
+
+                                    {categories.map((category) => (
+                                        <option
+                                            key={category.id}
+                                            value={category.id}
+                                        >
+                                            {category.name}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                             <div className="flex flex-col gap-3">

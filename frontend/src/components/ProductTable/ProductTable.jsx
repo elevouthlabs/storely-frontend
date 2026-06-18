@@ -24,8 +24,52 @@ const ProductTable = ({ products }) => {
     };
 
     const handleDeleteProduct = (productId) => {
-        const updatedProducts = products.filter(product => product.id !== productId);
-        localStorage.setItem('products', JSON.stringify(updatedProducts));
+        // Get all products from localStorage
+        const allProducts = JSON.parse(
+            localStorage.getItem("products") || "[]"
+        );
+
+        // Find the product being deleted
+        const productToDelete = allProducts.find(
+            (product) => product.id === productId
+        );
+
+        // Remove the product
+        const updatedProducts = allProducts.filter(
+            (product) => product.id !== productId
+        );
+
+        localStorage.setItem(
+            "products",
+            JSON.stringify(updatedProducts)
+        );
+
+        // Update category count
+        if (productToDelete?.categoryId) {
+            const categories = JSON.parse(
+                localStorage.getItem("categories") || "[]"
+            );
+
+            const updatedCategories = categories.map((category) => {
+                if (category.id === productToDelete.categoryId) {
+                    return {
+                        ...category,
+                        products: Math.max(
+                            (category.products || 0) - 1,
+                            0
+                        ),
+                    };
+                }
+
+                return category;
+            });
+
+            localStorage.setItem(
+                "categories",
+                JSON.stringify(updatedCategories)
+            );
+        }
+
         window.location.reload();
     };
 
@@ -94,7 +138,7 @@ const ProductTable = ({ products }) => {
                                     </div>
                                 </td>
                                 <td className="p-4">
-                                    <p className="font-Inter text-xs text-gray-500 mt-1">{product.category || 'Uncategorized'}</p>
+                                    <p className="font-Inter text-xs text-gray-500 mt-1">{product.categoryName || 'Uncategorized'}</p>
                                 </td>
                                 <td className="p-4">
                                     <p className="font-Inter text-sm text-gray-900">${product.price || '0.00'}</p>
@@ -106,15 +150,14 @@ const ProductTable = ({ products }) => {
                                     <p className="font-Inter text-sm text-gray-900">{product.variants || '0'}</p>
                                 </td>
                                 <td className="p-4">
-                                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
-                                        product.stock === 0
+                                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${product.stock === 0
                                             ? 'bg-red-100 text-red-800'
                                             : product.stock >= 1 && product.stock <= 5
                                                 ? 'bg-yellow-100 text-yellow-800'
                                                 : 'bg-green-100 text-green-800'
-                                    }`}>
-                                        {product.stock === 0 
-                                            ? 'Out of Stock' 
+                                        }`}>
+                                        {product.stock === 0
+                                            ? 'Out of Stock'
                                             : product.stock >= 1 && product.stock <= 5
                                                 ? 'Low Stock'
                                                 : product.status || 'Active'
@@ -123,13 +166,13 @@ const ProductTable = ({ products }) => {
                                 </td>
                                 <td className="p-4">
                                     <div className="flex items-center gap-2">
-                                        <button 
+                                        <button
                                             onClick={() => handleEditProduct(product.id)}
                                             className="p-1 hover:bg-gray-100 rounded"
                                         >
                                             <img src={edit} alt="edit" className="w-4 h-4" />
                                         </button>
-                                        <button 
+                                        <button
                                             onClick={() => handleDeleteProduct(product.id)}
                                             className="p-1 hover:bg-red-50 rounded"
                                         >

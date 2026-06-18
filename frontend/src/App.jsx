@@ -18,6 +18,7 @@ import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import Register from "./pages/Register/Register.jsx";
 import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx";
+import Dashcategories from "./pages/Categories/Categories.jsx";
 import Product from "./pages/Product/Product.jsx";
 import EditProduct from "./pages/EditProduct/EditProduct.jsx";
 import MobileStorefront from "./marketplace/pages/MobileStoreFront.jsx";
@@ -30,7 +31,10 @@ import Contact from "./pages/RegisterBusiness/Contact.jsx";
 import RegisterSuccess from "./pages/RegisterBusiness/RegisterSuccess.jsx";
 import Auth from "./marketplace/pages/Auth.jsx";
 import SearchPage from "./marketplace/pages/Search.jsx";
+import AddCategory from "./pages/AddCategory/AddCategory.jsx";
+import EditCategory from "./pages/EditCategory/EditCategory.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import Collections from "./pages/Collections/Collections.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -72,9 +76,13 @@ function AppWrapper() {
     "/launch",
     "/register-success",
     "/dashboard/product",
+    "/dashboard/categories",
+    "/dashboard/collections",
     "/login",
     "/dashboard",
     "/dashboard/product/add-product",
+    "/dashboard/categories/add",
+    "/dashboard/categories/edit/:id",
     "/store",
     "/store/categories",
     "/store/cart",
@@ -123,6 +131,16 @@ function AppWrapper() {
           <Route path="product" element={<Product />} />
           <Route path="product/add-product" element={<AddProduct />} />
           <Route path="product/edit-product/:id" element={<EditProduct />} />
+          <Route path="categories" element={<Dashcategories />} />
+          <Route
+            path="/dashboard/categories/add"
+            element={<AddCategory />}
+          />
+          <Route
+            path="/dashboard/categories/edit/:id"
+            element={<EditCategory />}
+          />
+          <Route path="collections" element={<Collections />} />
         </Route>
       </Routes>
       {!hideNavbar && <Footer />}

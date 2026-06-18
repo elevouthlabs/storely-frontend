@@ -8,15 +8,15 @@ const Dashboard = () => {
     const business = JSON.parse(localStorage.getItem("business") || "{}");
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <div className="bg-gradient-to-r from-purple-700 to-purple-500 text-white p-6 rounded-2xl flex justify-between items-center">
-                <div>
-                    <h1 className="text-xl font-semibold">Welcome to Storely, {business?.name || "Merchant"}!</h1>
-                    <p className="text-sm opacity-90 mt-1 max-w-xl">
-                        Your storefront is officially live. Now it’s time to add your first products, set up your services, and start making sales. We’re here to help you grow.
+        <div className="min-h-screen bg-gray-100 p-4">
+            <div className="h-[145px] rounded-[12px] p-4 bg-[linear-gradient(107.85deg,#8A2BE2_-14.65%,#4B0082_129.8%)] text-white p-6 rounded-2xl flex justify-between items-center">
+                <div className="flex flex-col gap-3">
+                    <h1 class="font-Inter font-bold text-[25.5px] text-white leading-[36px]">Welcome to Storely, {business?.name || "Merchant"}!</h1>
+                    <p class="font-Inter w-[473px] font-normal text-[15.3px] text-[#D9D9D9] leading-[22px]">
+                        Your storefront is officially live. Now it's time to add your first products, set up your services, and start making sales. We're here to help you grow.
                     </p>
                 </div>
-                <button className="bg-white text-purple-700 hover:bg-gray-200 px-4 py-2 rounded-lg">
+                <button className="h-[46px] bg-white rounded-[8px] px-[17px] py-[13px] border border-[#E2E8F0] gap-[8px] font-Inter font-medium text-[13.6px] text-[#334155] leading-[24px] text-center align-middle">
                     Share Link
                 </button>
             </div>

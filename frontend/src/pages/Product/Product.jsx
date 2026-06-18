@@ -10,13 +10,15 @@ import menu from "../../assets/menu.png";
 import block from "../../assets/block.png";
 import { useNavigate } from "react-router-dom";
 import { ProductsRequests } from "../../api/axios";
+import FilterDrawer from "../../components/FilterDrawer/FilterDrawer.jsx";
 
 const Product = () => {
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("All");
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [viewMode, setViewMode] = useState("table"); // "table" or "grid"
+    const [viewMode, setViewMode] = useState("table");
+    const [showFilters, setShowFilters] = useState(false);
 
     useEffect(() => {
         fetchProducts();
@@ -54,17 +56,22 @@ const Product = () => {
 
     return (
         <>
-            <div className="flex justify-between items-center mt-">
+            <div className="flex justify-between items-center">
                 <div>
                     <h1 className="font-Inter font-medium text-[24px] leading-[32px] tracking-[0.07px] text-[#1A1A1A]">Products Management</h1>
                     <p className="font-Inter font-normal text-base text-[#B3B3B3] leading-6 tracking-[-0.31px]">
                         Manage your product catalog
-                    </p>
+                    </p> 
                 </div>
                 <div className="flex items-center gap-3">
-                    <button className="w-[129px] flex items-center gap-4 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2">
+                    <button
+                        onClick={() => setShowFilters(true)}
+                        className="w-[129px] flex items-center gap-4 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2"
+                    >
                         <img src={filter} alt="filter-icon" />
-                        <p className="font-Inter font-medium text-base text-[#44403C] leading-5 text-center align-middle">Filters</p>
+                        <p className="font-Inter font-medium text-base text-[#44403C]">
+                            Filters
+                        </p>
                     </button>
                     <button className="w-[129px] flex items-center gap-2 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2">
                         <img src={bulk} alt="filter-icon" />
@@ -99,8 +106,8 @@ const Product = () => {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`flex-1 h-full text-sm z-10 flex items-center justify-center font-Inter font-normal text-[16px] leading-[20px] tracking-[-0.31px] transition-colors duration-200 ${activeTab === tab
-                                    ? "text-white"
-                                    : "text-[#292D32]"
+                                ? "text-white"
+                                : "text-[#292D32]"
                                 }`}
                         >
                             {tab}
@@ -108,13 +115,13 @@ const Product = () => {
                     ))}
                 </div>
                 <div className="flex items-center gap-2">
-                    <button 
+                    <button
                         onClick={() => setViewMode("table")}
                         className={`p-2 rounded ${viewMode === "table" ? "bg-[#4B0082]" : "hover:bg-gray-100"}`}
                     >
                         <img src={menu} alt="table view" className={` ${viewMode === "table" ? "filter brightness-0 invert" : ""}`} />
                     </button>
-                    <button 
+                    <button
                         onClick={() => setViewMode("grid")}
                         className={`p-2 rounded ${viewMode === "grid" ? "bg-[#4B0082]" : "hover:bg-gray-100"}`}
                     >
@@ -135,8 +142,14 @@ const Product = () => {
             ) : (
                 <ProductGrid products={filteredProducts} />
             )}
+            <FilterDrawer
+                isOpen={showFilters}
+                onClose={() => setShowFilters(false)}
+            />
+
         </>
     );
+
 };
 
 export default Product;
