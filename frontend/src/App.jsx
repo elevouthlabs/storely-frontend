@@ -35,6 +35,8 @@ import AddCategory from "./pages/AddCategory/AddCategory.jsx";
 import EditCategory from "./pages/EditCategory/EditCategory.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Collections from "./pages/Collections/Collections.jsx";
+import Customers from "./pages/Customers/Customers.jsx";
+import Orders from "./pages/Orders/Orders.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -77,6 +79,8 @@ function AppWrapper() {
     "/register-success",
     "/dashboard/product",
     "/dashboard/categories",
+    "/dashboard/customers",
+    "/dashboard/sales",
     "/dashboard/collections",
     "/login",
     "/dashboard",
@@ -141,6 +145,8 @@ function AppWrapper() {
             element={<EditCategory />}
           />
           <Route path="collections" element={<Collections />} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="sales" element={<Orders />} />
         </Route>
       </Routes>
       {!hideNavbar && <Footer />}

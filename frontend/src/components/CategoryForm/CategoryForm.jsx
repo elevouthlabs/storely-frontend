@@ -144,18 +144,17 @@ const CategoryForm = ({ mode = "add" }) => {
 
     return (
         <div className="py-6">
-            {/* Header */}
-            <div className="flex justify-between items-start mb-8">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 md:p-4 md:p-5 mb-8">
                 <div>
                     <h1 className="text-[28px] font-semibold text-[#1A1A1A]">
                         {mode === "edit" ? "Edit Category" : "Add New Category"}
                     </h1>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap gap-3 w-full lg:w-auto">
                     <button
                         onClick={() => navigate("/dashboard/categories")}
-                        className="w-[100px] h-[40px] border border-[#E5E7EB] rounded-lg text-sm"
+                        className="w-full sm:w-auto sm:min-w-[100px] h-10 border border-[#E5E7EB] rounded-lg text-sm"
                     >
                         Cancel
                     </button>
@@ -171,19 +170,18 @@ const CategoryForm = ({ mode = "add" }) => {
 
                     <button
                         onClick={handleSave}
-                        className="bg-[#4B0082] text-white px-6 h-[40px] rounded-lg text-sm"
+                        className="w-full sm:w-auto bg-[#4B0082] text-white px-6 h-10 rounded-lg text-sm"
                     >
                         Save Category
                     </button>
                 </div>
             </div>
 
-            {/* Body */}
-            <div className="grid grid-cols-12 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-4  md:p-4 md:p-6">
                 {/* LEFT */}
-                <div className="col-span-8 space-y-6">
+                <div className="xl:col-span-8 space-y-6">
                     {/* Product Details */}
-                    <div className="bg-white rounded-2xl p-6 border border-[#F0F0F0]">
+                    <div className="bg-white rounded-2xl p-4 md:p-4 md:p-6 border border-[#F0F0F0]">
                         <h2 className="font-medium text-[#1A1A1A] mb-5">
                             Product Details
                         </h2>
@@ -262,7 +260,7 @@ const CategoryForm = ({ mode = "add" }) => {
                     </div>
 
                     {/* SEO */}
-                    <div className="bg-white rounded-2xl p-6 border border-[#F0F0F0]">
+                    <div className="bg-white rounded-2xl p-4  md:p-4 md:p-6 border border-[#F0F0F0]">
                         <h2 className="font-medium text-[#1A1A1A] mb-5">
                             SEO & Metadata
                         </h2>
@@ -299,9 +297,9 @@ const CategoryForm = ({ mode = "add" }) => {
                 </div>
 
                 {/* RIGHT */}
-                <div className="col-span-4 space-y-6">
+                <div className="xl:col-span-4 space-y-6">
                     {/* Image */}
-                    <div className="bg-white rounded-2xl p-5 border border-[#F0F0F0]">
+                    <div className="bg-white rounded-2xl p-4 md:p-4 md:p-5 border border-[#F0F0F0]">
                         <div className="flex justify-between items-center mb-5">
                             <h2 className="font-medium">
                                 Image Gallery
@@ -316,7 +314,7 @@ const CategoryForm = ({ mode = "add" }) => {
                             Primary Image
                         </h3>
 
-                        <div className="h-[180px] bg-[#ECECEC] rounded-lg overflow-hidden flex items-center justify-center">
+                        <div className="min-h-[180px] h-[220px] sm:h-[180px] bg-[#ECECEC] rounded-lg overflow-hidden flex items-center justify-center">
                             {imagePreview ? (
                                 <img
                                     src={imagePreview}
@@ -341,13 +339,13 @@ const CategoryForm = ({ mode = "add" }) => {
                         <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="mt-4 border border-[#E5E7EB] rounded-md px-4 py-2 text-sm text-[#4B0082]"
+                            className="mt-4 w-full sm:w-auto border border-[#E5E7EB] rounded-md px-4 py-2 text-sm text-[#4B0082]"
                         >
                             {imagePreview ? "Replace Image" : "Upload Image"}
                         </button>
                     </div>
                     {mode === "edit" && (
-                        <div className="bg-white rounded-2xl p-5 border border-[#F0F0F0]">
+                        <div className="bg-white rounded-2xl p-4 md:p-4 md:p-5 border border-[#F0F0F0]">
                             <h2 className="font-medium mb-3">
                                 Products in Category
                             </h2>

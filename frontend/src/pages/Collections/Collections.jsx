@@ -65,27 +65,27 @@ const Collections = () => {
 
     return (
         <div className="p-3">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-6">
                 <div>
-                    <h1 className="text-[24px] font-semibold text-[#1A1A1A]">
+                    <h1 className="text-2xl md:text-3xl font-semibold text-[#1A1A1A]">
                         Collections
                     </h1>
 
-                    <p className="text-[14px] text-[#666] mt-1">
+                    <p className="text-sm md:text-base text-[#666] mt-1">
                         {collections.length} collections · Smart and manual product groups
                     </p>
                 </div>
 
                 <button
                     onClick={() => navigate("/dashboard/collections/add")}
-                    className="h-[40px] px-4 bg-[#4B0082] rounded-lg text-white flex items-center gap-2 text-sm font-medium"
+                    className="w-full sm:w-auto h-11 px-5 bg-[#4B0082] rounded-lg text-white flex items-center justify-center gap-2 text-sm font-medium"
                 >
                     <Plus size={16} />
                     Add Collections
                 </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
                 {collections.map((collection) => (
                     <div
                         key={collection.id}

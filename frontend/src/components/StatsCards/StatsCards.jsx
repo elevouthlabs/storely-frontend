@@ -1,9 +1,13 @@
 const StatsCards = ({ products = [] }) => {
     const calculateStats = () => {
         const totalProducts = products.length;
-        const activeProducts = products.filter(p => p.status === 'active').length;
-        const lowStockProducts = products.filter(p => p.stock <= 10 && p.stock > 0).length;
-        const outOfStockProducts = products.filter(p => p.stock === 0).length;
+        const activeProducts = products.filter(p => p.status === "active").length;
+        const lowStockProducts = products.filter(
+            p => p.stock <= 10 && p.stock > 0
+        ).length;
+        const outOfStockProducts = products.filter(
+            p => p.stock === 0
+        ).length;
         const totalSKUs = products.filter(p => p.sku).length;
 
         return {
@@ -11,11 +15,12 @@ const StatsCards = ({ products = [] }) => {
             activeProducts,
             lowStockProducts,
             outOfStockProducts,
-            totalSKUs
+            totalSKUs,
         };
     };
 
     const stats = calculateStats();
+
     const statsData = [
         { label: "TOTAL PRODUCTS", value: stats.totalProducts },
         { label: "ACTIVE", value: stats.activeProducts },
@@ -25,16 +30,23 @@ const StatsCards = ({ products = [] }) => {
     ];
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 my-6">
             {statsData.map((item) => (
-                <div key={item.label} className=" flex flex-col gap-[21px] h-[105px] bg-white rounded-lg p-4">
-                    <h2 className="font-Inter font-normal text-2xl text-[#6B7280] leading-5 tracking-[-0.15px]">{item.value}</h2>
-                    <p className="font-Inter font-normal text-base text-[#4B0082] leading-8 tracking-[0.07px]">{item.label}</p>
+                <div
+                    key={item.label}
+                    className="bg-white rounded-lg p-4 min-h-[105px] flex flex-col justify-between shadow-sm"
+                >
+                    <h2 className="text-2xl md:text-3xl font-semibold text-[#6B7280]">
+                        {item.value}
+                    </h2>
+
+                    <p className="text-sm md:text-base font-medium text-[#4B0082] uppercase">
+                        {item.label}
+                    </p>
                 </div>
             ))}
         </div>
     );
-}
-
+};
 
 export default StatsCards;

@@ -35,7 +35,7 @@ const menu = [
     { name: "Ask Storely AI", icon: askIcon, noDropdown: true, path: "/dashboard/ai" },
 ];
 
-const Dashsidebar = () => {
+const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
     const [openMenu, setOpenMenu] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -93,95 +93,131 @@ const Dashsidebar = () => {
 
 
     return (
-        <aside className="w-[260px] min-h-screen bg-[#2D1B4E] flex flex-col justify-between">
-            <div>
-                {/* Logo */}
-                <div className="w-[260px] flex items-center gap-[10px] h-[72px] py-[18px] px-[32px] border-b border-[#B3B3B33D]">
-                    <img src={dashlogo} alt="" />
-                    <p className="font-Inter font-bold text-[20px] text-[#EDEDED]">
-                        Storely
-                    </p>
-                </div>
+        <>
+            {/* Mobile Overlay */}
+            {sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
 
-                {/* Menu */}
-                <div className="flex flex-col gap-[4px] px-3 py-10">
-                    {menu.map((item) => (
-                        <div key={item.name}>
-                            {/* Main Item */}
-                            <div
-                                onClick={() => {
-                                    if (item.children && !item.noDropdown) {
-                                        toggleMenu(item.name);
-                                    } else {
+
+            <aside
+                 className={`
+                    fixed lg:relative
+                    top-0 left-0
+                    z-50
+                    h-auto min-h-screen
+                    w-[260px]
+                    bg-[#2D1B4E]
+                    flex flex-col
+                    justify-between
+                    transition-all
+                    duration-300
+                    ease-in-out
+                    flex-shrink-0
+
+                    ${
+                        sidebarOpen
+                            ? "translate-x-0"
+                            : "-translate-x-full lg:-ml-[260px]"
+                    }
+                `}  
+            >
+                <div>
+                    {/* Logo */}
+                    <div className="flex items-center gap-3 h-[72px] px-6 border-b border-[#B3B3B33D]">
+                        <img src={dashlogo} alt="" />
+                        <p className="font-Inter font-bold text-[20px] text-[#EDEDED]">
+                            Storely
+                        </p>
+                    </div>
+
+                    {/* Menu */}
+                    <div className="flex flex-col gap-1 px-4 py-6 overflow-y-auto flex-1">
+                        {menu.map((item) => (
+                            <div key={item.name}>
+                                {/* Main Item */}
+                                <div
+                                    onClick={() => {
                                         if (item.children && !item.noDropdown) {
                                             toggleMenu(item.name);
-                                        } else if (item.path) {
-                                            navigate(item.path);
-                                        };
-                                    }
-                                }}
-                                className={`w-[207px] h-[48px] flex items-center justify-between gap-3 px-4 cursor-pointer rounded-[8px]
+                                        } else {
+                                            if (item.children && !item.noDropdown) {
+                                                toggleMenu(item.name);
+                                            } else if (item.path) {
+                                                navigate(item.path);
+                                                setSidebarOpen(false);
+                                            };
+                                        }
+                                    }}
+                                    className={`w-full h-[48px] flex items-center justify-between gap-3 px-4 cursor-pointer rounded-[8px]
                                         ${isMainActive(item)
-                                        ? "bg-[#9654F4]"
-                                        : "hover:bg-[#9654F4]"
-                                    }`}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <img src={item.icon} alt="" className="w-5 h-5" />
-                                    <span className="font-Inter text-[16px] text-white">
-                                        {item.name}
-                                    </span>
+                                            ? "bg-[#9654F4]"
+                                            : "hover:bg-[#9654F4]"
+                                        }`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <img src={item.icon} alt="" className="w-5 h-5" />
+                                        <span className="font-Inter text-[16px] text-white">
+                                            {item.name}
+                                        </span>
+                                    </div>
+
+                                    {item.children && !item.noDropdown && (
+                                        <img
+                                            src={openMenu === item.name ? closeIcon : openIcon}
+                                            alt="dropdown"
+                                            className="w-3 h-2"
+                                        />
+                                    )}
                                 </div>
 
-                                {item.children && !item.noDropdown && (
-                                    <img
-                                        src={openMenu === item.name ? closeIcon : openIcon}
-                                        alt="dropdown"
-                                        className="w-3 h-2"
-                                    />
+                                {item.children && openMenu === item.name && (
+                                    <div className="ml-8 mt-1 flex flex-col gap-1">
+                                        {item.children.map((child) => (
+                                            <div
+                                                key={child.name}
+                                                onClick={() => {
+                                                    navigate(`/dashboard/${child.path}`);
+                                                    setSidebarOpen(false);
+                                                }}
+                                                className={`font-Inter font-normal text-[16px] text-white py-2 px-3 cursor-pointer rounded-md
+                                                ${isChildActive(child.path)
+                                                        ? "bg-[#9654F4]"
+                                                        : "hover:bg-[#9654F4]"
+                                                    }`}
+                                            >
+                                                {child.name}
+                                            </div>
+                                        ))}
+                                    </div>
                                 )}
                             </div>
-
-                            {item.children && openMenu === item.name && (
-                                <div className="ml-8 mt-1 flex flex-col gap-1">
-                                    {item.children.map((child) => (
-                                        <div
-                                            key={child.name}
-                                            onClick={() => navigate(`/dashboard/${child.path}`)}
-                                            className={`font-Inter font-normal text-[16px] text-white py-2 px-3 cursor-pointer rounded-md
-                                                ${isChildActive(child.path)
-                                                    ? "bg-[#9654F4]"
-                                                    : "hover:bg-[#9654F4]"
-                                                }`}
-                                        >
-                                            {child.name}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* User */}
-            <div className="px-4 py-8 flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#7C3AED] rounded-full flex items-center justify-center">
-                    <p className="font-Inter font-bold text-[12px] text-white">
-                        {getInitials(user?.fullName || "User")}
-                    </p>
+                        ))}
+                    </div>
                 </div>
 
-                <div>
-                    <p className="font-Inter font-medium text-[16px] text-white">
-                        {user?.fullName || "User"}
-                    </p>
-                    <p className="font-Inter font-normal text-[10px] text-white">
-                        Free Plan
-                    </p>
+                {/* User */}
+                <div className="px-4 py-8 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-[#7C3AED] rounded-full flex items-center justify-center">
+                        <p className="font-Inter font-bold text-[12px] text-white">
+                            {getInitials(user?.fullName || "User")}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p className="font-Inter font-medium text-[16px] text-white">
+                            {user?.fullName || "User"}
+                        </p>
+                        <p className="font-Inter font-normal text-[10px] text-white">
+                            Free Plan
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </aside>
+            </aside>
+        </>
     );
 };
 

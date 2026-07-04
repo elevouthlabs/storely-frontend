@@ -1,21 +1,28 @@
 import { useState } from "react";
-import Dashsidebar from "../../components/DashSidebar/DashSidebar.jsx";
-import Header from "../../components/Header/Header.jsx";
+import Dashsidebar from "../../components/DashSidebar/DashSidebar";
+import Header from "../../components/Header/Header";
 import { Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
-  const [open, setOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-auto bg-[#F5F5F5]">
+    <div className="flex min-h-screen bg-[#F5F5F5]">
 
       {/* Sidebar */}
-      {open && <Dashsidebar />}
-      <div className="flex-1 flex flex-col">
+      <Dashsidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
 
-        <Header toggleSidebar={() => setOpen(!open)} />
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col lg:ml-0">
 
-        <main className="p-6 overflow-y-auto flex-1">
+        <Header
+          toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+        />
+
+        <main className="flex-1 p-4 sm:p-6 overflow-y-auto">
           <Outlet />
         </main>
 

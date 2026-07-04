@@ -56,45 +56,45 @@ const Product = () => {
 
     return (
         <>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
                 <div>
-                    <h1 className="font-Inter font-medium text-[24px] leading-[32px] tracking-[0.07px] text-[#1A1A1A]">Products Management</h1>
-                    <p className="font-Inter font-normal text-base text-[#B3B3B3] leading-6 tracking-[-0.31px]">
+                    <h1 className="font-Inter font-medium text-2xl md:text-3xl text-[#1A1A1A] leading-[32px] tracking-[0.07px] text-[#1A1A1A]">Products Management</h1>
+                    <p className="font-Inter text-sm md:text-base text-[#B3B3B3]">
                         Manage your product catalog
-                    </p> 
+                    </p>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap gap-3 w-full lg:w-auto">
                     <button
                         onClick={() => setShowFilters(true)}
-                        className="w-[129px] flex items-center gap-4 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2"
+                        className="flex-1 sm:flex-none sm:w-[129px] h-10 flex items-center justify-center gap-2 border border-[#F0EBEB] rounded-lg px-4"
                     >
                         <img src={filter} alt="filter-icon" />
                         <p className="font-Inter font-medium text-base text-[#44403C]">
                             Filters
                         </p>
                     </button>
-                    <button className="w-[129px] flex items-center gap-2 h-10 border border-[#F0EBEB] rounded-lg px-4 py-2">
+                    <button className="flex-1 sm:flex-none sm:w-[129px] h-10 flex items-center justify-center gap-2 border border-[#F0EBEB] rounded-lg px-4">
                         <img src={bulk} alt="filter-icon" />
                         <p className="font-Inter font-medium text-base text-[#44403C] leading-5 text-center align-middle">Bulk Edit</p>
                     </button>
                     <button
                         onClick={() => navigate("/dashboard/product/add-product")}
-                        className="w-[190px] h-10 flex items-center gap-2 bg-[var(--Color-primary,#4B0082)] rounded-lg px-4 py-2 font-Inter font-medium text-base text-white leading-6 tracking-[-0.31px] text-center"
+                        className="w-full sm:w-auto sm:min-w-[190px] h-10 flex items-center justify-center gap-2 bg-[#4B0082] rounded-lg px-4 text-white"
                     >
                         + Add New Product
                     </button>
                 </div>
             </div>
             <StatsCards products={products} />
-            <div className="flex items-center justify-between gap-3 my-6">
-                <div className="relative">
+            <div className="flex flex-col xl:flex-row gap-4 xl:items-center xl:justify-between my-6">
+                <div className="relative w-full xl:w-auto">
                     <input
                         placeholder="Search products..."
-                        className="w-[343px]  h-[48px] bg-white border border-[#B3B3B3] rounded-[4px] px-10 py-2 text-[16px] text-black placeholder:text-[#B3B3B3] font-Inter font-normal tracking-[-0.31px] focus:outline-none"
+                        className="w-full xl:w-[343px] h-12 bg-white border border-[#B3B3B3] rounded-[4px] px-10 py-2 text-[16px] text-black placeholder:text-[#B3B3B3] font-Inter font-normal tracking-[-0.31px] focus:outline-none"
                     />
                     <img src={search} alt="" className="absolute top-1/3 left-2" />
                 </div>
-                <div className="flex items-center w-[367px] h-[48px] bg-white rounded-[8px] p-1 relative">
+                <div className="flex items-center w-full xl:w-[367px] h-12 bg-white rounded-lg p-1 relative">
                     <div
                         className="absolute top-1 bottom-1 w-[calc(100%/4-2px)] bg-[#4B0082] rounded-[6px] transition-all duration-300"
                         style={{
@@ -114,7 +114,7 @@ const Product = () => {
                         </button>
                     ))}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex justify-end xl:justify-start gap-2">
                     <button
                         onClick={() => setViewMode("table")}
                         className={`p-2 rounded ${viewMode === "table" ? "bg-[#4B0082]" : "hover:bg-gray-100"}`}
