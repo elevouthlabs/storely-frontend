@@ -104,12 +104,11 @@ const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
 
             <aside
-                 className={`
+                className={`
                     fixed lg:relative
                     top-0 left-0
                     z-50
                     h-auto min-h-screen
-                    w-[260px]
                     bg-[#2D1B4E]
                     flex flex-col
                     justify-between
@@ -118,20 +117,26 @@ const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     ease-in-out
                     flex-shrink-0
 
-                    ${
-                        sidebarOpen
-                            ? "translate-x-0"
-                            : "-translate-x-full lg:-ml-[260px]"
+                    ${sidebarOpen
+                        ? "translate-x-0 w-[260px]"
+                        : "lg:w-[80px] -translate-x-full lg:translate-x-0"
                     }
-                `}  
+                `}
             >
                 <div>
                     {/* Logo */}
-                    <div className="flex items-center gap-3 h-[72px] px-6 border-b border-[#B3B3B33D]">
+                    <div
+                        className={`flex items-center h-[72px] border-b border-[#B3B3B33D]
+    ${sidebarOpen ? "px-6 gap-3" : "justify-center"}
+`}
+                    >
                         <img src={dashlogo} alt="" />
-                        <p className="font-Inter font-bold text-[20px] text-[#EDEDED]">
-                            Storely
-                        </p>
+
+                        {sidebarOpen && (
+                            <p className="font-bold text-[20px] text-[#EDEDED]">
+                                Storely
+                            </p>
+                        )}
                     </div>
 
                     {/* Menu */}
@@ -152,24 +157,39 @@ const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                             };
                                         }
                                     }}
-                                    className={`w-full h-[48px] flex items-center justify-between gap-3 px-4 cursor-pointer rounded-[8px]
+                                    className={`w-full h-[48px] flex items-center rounded-[8px] cursor-pointer transition-all
+                                        ${sidebarOpen
+                                            ? "justify-between px-4"
+                                            : "justify-center px-0"
+                                        }
                                         ${isMainActive(item)
                                             ? "bg-[#9654F4]"
                                             : "hover:bg-[#9654F4]"
                                         }`}
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <img src={item.icon} alt="" className="w-5 h-5" />
-                                        <span className="font-Inter text-[16px] text-white">
-                                            {item.name}
-                                        </span>
+                                    <div
+                                        className={`flex items-center ${sidebarOpen
+                                            ? "gap-3"
+                                            : "justify-center w-full"
+                                            }`}
+                                    >
+                                        <img
+                                            src={item.icon}
+                                            alt=""
+                                            className="w-5 h-5 flex-shrink-0"
+                                        />
+
+                                        {sidebarOpen && (
+                                            <span className="text-white">
+                                                {item.name}
+                                            </span>
+                                        )}
                                     </div>
 
-                                    {item.children && !item.noDropdown && (
+                                    {sidebarOpen && item.children && !item.noDropdown && (
                                         <img
                                             src={openMenu === item.name ? closeIcon : openIcon}
-                                            alt="dropdown"
-                                            className="w-3 h-2"
+                                            alt=""
                                         />
                                     )}
                                 </div>
@@ -200,21 +220,29 @@ const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </div>
 
                 {/* User */}
-                <div className="px-4 py-8 flex items-center gap-3">
+                <div
+                    className={`py-8 ${sidebarOpen
+                        ? "px-4 flex items-center gap-3"
+                        : "flex justify-center"
+                        }`}
+                >
                     <div className="w-8 h-8 bg-[#7C3AED] rounded-full flex items-center justify-center">
                         <p className="font-Inter font-bold text-[12px] text-white">
                             {getInitials(user?.fullName || "User")}
                         </p>
                     </div>
 
-                    <div>
-                        <p className="font-Inter font-medium text-[16px] text-white">
-                            {user?.fullName || "User"}
-                        </p>
-                        <p className="font-Inter font-normal text-[10px] text-white">
-                            Free Plan
-                        </p>
-                    </div>
+                    {sidebarOpen && (
+                        <div>
+                            <p className="font-medium text-[16px] text-white">
+                                {user?.fullName || "User"}
+                            </p>
+
+                            <p className="text-[10px] text-white">
+                                Free Plan
+                            </p>
+                        </div>
+                    )}
                 </div>
             </aside>
         </>

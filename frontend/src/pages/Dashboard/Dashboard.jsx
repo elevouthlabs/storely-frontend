@@ -8,7 +8,7 @@ const Dashboard = () => {
     const business = JSON.parse(localStorage.getItem("business") || "{}");
 
     return (
-        <div className="min-h-screen bg-gray-100 p-4 md:p-6 lg:p-8">
+        <div className="min-h-screen bg-gray-100 p-4 md:p-3 lg:p-3">
             <div className="bg-[linear-gradient(107.85deg,#8A2BE2_-14.65%,#4B0082_129.8%)] rounded-2xl p-5 md:p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 text-white">
                 <div className="flex flex-col gap-3">
                     <h1 className="font-Inter font-bold text-2xl md:text-3xl text-white leading-tight">Welcome to Storely, {business?.name || "Merchant"}!</h1>
