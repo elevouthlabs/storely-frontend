@@ -4,7 +4,7 @@ import black from "../../assets/black.png";
 
 const Pricing = () => {
     return (
-        <div id="pricing" className="h-auto px-4 sm:px-8 md:px-[60px] py-8 sm:py-12 md:py-[60px] bg-[#FFFFFF]">
+        <div id="pricing" className="scroll-mt-[90px] h-auto px-4 sm:px-8 md:px-[60px] py-8 sm:py-12 md:py-[60px] bg-[#FFFFFF]">
             <div className="flex flex-col gap-4 justify-center items-center">
                 <div className="w-[104px] flex items-center gap-2 h-[38px] bg-white/80 rounded-full px-[13px] py-[15px] border border-t border-t-black/10">
                     <div className="w-[8px] h-[8px] bg-[#F59E0B] rounded-full"></div>

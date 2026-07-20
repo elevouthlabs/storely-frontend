@@ -2,7 +2,7 @@ import storely1 from "../../assets/storely1.png";
 
 const Started = () => {
     return (
-        <div id="howitworks" className="h-auto py-[60px] lg:h-auto bg-[#fff]">
+        <div id="howitworks" className="scroll-mt-[70px] h-auto py-[60px] lg:h-auto bg-[#fff]">
             <div className="mx-[20px] md:mx-[40px] lg:mx-[60px] my-[20px] flex flex-col lg:flex-row justify-between gap-10">
                 <div className="mt-[40px] lg:mt-[60px] flex flex-col gap-[20px]">
                     <div className="w-[155px] flex items-center gap-2 h-[38px] bg-white/80 rounded-full pt-[15px] pr-[17px] pb-[15px] pl-[17px] border border-t border-t-black/10">

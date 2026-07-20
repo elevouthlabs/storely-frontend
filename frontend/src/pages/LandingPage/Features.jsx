@@ -6,7 +6,7 @@ import feature4 from "../../assets/feature4.png";
 
 const Features = () => {
     return (
-        <div id="features" className="h-auto pb-[60px] bg-[#F4F4F8]">
+        <div id="features" className="scroll-mt-[100px] h-auto pb-[60px] bg-[#F4F4F8]">
             <div className="flex flex-col items-center justify-center gap-2 px-4">
                 <div className="w-[127px] flex items-center gap-2 mt-[45px] h-[38px] bg-white/80 border-t border-[#0000001A] rounded-full px-[16px] py-[15px]">
                     <div className="w-[8px] h-[8px] bg-[#00C950] rounded-full"></div>
