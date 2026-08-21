@@ -8,6 +8,7 @@ import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
 import view from "../../assets/view.png";
 import read from "../../assets/read.png";
+import logo from "../../assets/logo.png";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -71,10 +72,17 @@ const Register = () => {
       <ToastContainer position="top-right" autoClose={2000} />
       <Sidebar />
 
-      <div className="w-full lg:w-1/2 flex justify-center lg:block px-4 sm:px-6 lg:px-0 mt-[40px] lg:mt-[55px] lg:ml-[28px]">
-
+      <div className="w-full lg:w-1/2 flex justify-center lg:block px-4  sm:px-6 lg:px-0 mt-[40px] lg:mt-[55px] lg:ml-[28px]">
         <div className="w-full max-w-md lg:max-w-none">
-
+          <div className="flex  mb-8 lg:hidden">
+            <Link to="/" className="flex items-center gap-2">
+              <img
+                src={logo}
+                alt="Storely Logo"
+                className="w-30 object-contain"
+              />
+            </Link>
+          </div>
           <form onSubmit={handleSubmit} className="w-full lg:w-96 space-y-4">
             <div className="text-center lg:text-left">
               <h2 className="font-Inter font-bold text-[22px] sm:text-[25.5px] leading-[32px] lg:leading-[36px] text-[#0F172A]">
@@ -220,7 +228,7 @@ const Register = () => {
           </div>
 
           {/* Footer */}
-          <div className="flex sm:flex-row items-center justify-center lg:justify-start gap-[5px] mt-[20px] lg:ml-[140px] text-center lg:text-left">
+          <div className="flex sm:flex-row items-center justify-center lg:justify-start gap-[5px] my-[20px] lg:ml-[140px] text-center lg:text-left">
             <p className="text-[14px] sm:text-[18px] text-black/60">
               Already have an account?
             </p>

@@ -12,6 +12,7 @@ import setingsIcon from "../../assets/settingsIcon.png";
 import askIcon from "../../assets/askIcon.png";
 import openIcon from "../../assets/open.png";
 import closeIcon from "../../assets/close.png";
+import { Link } from "react-router-dom";
 
 const menu = [
     { name: "Dashboard", icon: dashboardIcon, path: "/dashboard" },
@@ -25,10 +26,16 @@ const menu = [
             { name: "Collections", path: "collections" },
         ],
     },
-
     { name: "Sales", icon: salesIcon, path: "/dashboard/sales" },
     { name: "Customers", icon: customerIcon, path: "/dashboard/customers" },
-    { name: "Finance", icon: financeIcon, path: "/dashboard/finance" },
+    {
+        name: "Finance",
+        icon: financeIcon,
+        children: [
+            { name: "Inventory", path: "inventory" },
+            { name: "Discounts", path: "discounts" },
+        ],
+    },
     { name: "Intelligence", icon: IntelligenceIcon, path: "/dashboard/intelligence" },
     { name: "Settings", icon: setingsIcon, path: "/dashboard/settings" },
 
@@ -125,10 +132,10 @@ const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
             >
                 <div>
                     {/* Logo */}
-                    <div
+                    <Link to="/"
                         className={`flex items-center h-[72px] border-b border-[#B3B3B33D]
-    ${sidebarOpen ? "px-6 gap-3" : "justify-center"}
-`}
+                        ${sidebarOpen ? "px-6 gap-3" : "justify-center"}
+                    `}
                     >
                         <img src={dashlogo} alt="" />
 
@@ -137,7 +144,7 @@ const Dashsidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 Storely
                             </p>
                         )}
-                    </div>
+                    </Link>
 
                     {/* Menu */}
                     <div className="flex flex-col gap-1 px-4 py-6 overflow-y-auto flex-1">

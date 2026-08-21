@@ -20,8 +20,20 @@ const Header = ({ toggleSidebar }) => {
         navigate("/");
     };
 
-    const business = JSON.parse(localStorage.getItem("business") || "{}");
-    const logoUrl = business?.logoUrl;
+    let business = {};
+
+    try {
+        const storedBusiness = localStorage.getItem("business");
+
+        if (storedBusiness && storedBusiness !== "undefined") {
+            business = JSON.parse(storedBusiness);
+        }
+    } catch (error) {
+        console.error("Invalid business data in localStorage:", error);
+        localStorage.removeItem("business");
+    }
+
+    const logoUrl = business.logoUrl;
 
     return (
         <header className="w-full bg-white border-b border-[#D9D9D9] px-4 sm:px-6 lg:px-10 py-4">

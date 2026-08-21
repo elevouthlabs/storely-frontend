@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-axios.defaults.baseURL = "https://storely-backend-production-9615.up.railway.app/api/v1";
+axios.defaults.baseURL = "https://storely-backend-production-07d7.up.railway.app/api/v1";
 
 const REFRESH_PATH = "auth/refresh";
 

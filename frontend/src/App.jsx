@@ -17,8 +17,10 @@ import Footer from "./components/Footer/Footer.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import Register from "./pages/Register/Register.jsx";
 import WaitlistSlider from "./components/WaitlistSlider/WaitlistSlider.jsx";
+import Discounts from "./pages/Discounts/Discounts.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx";
 import Dashcategories from "./pages/Categories/Categories.jsx";
+import Inventory from "./pages/Inventory/Inventory.jsx";
 import Product from "./pages/Product/Product.jsx";
 import EditProduct from "./pages/EditProduct/EditProduct.jsx";
 import MobileStorefront from "./marketplace/pages/MobileStoreFront.jsx";
@@ -37,6 +39,7 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 import Collections from "./pages/Collections/Collections.jsx";
 import Customers from "./pages/Customers/Customers.jsx";
 import Orders from "./pages/Orders/Orders.jsx";
+import Settings from "./pages/Settings/SettingsCard.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -78,7 +81,10 @@ function AppWrapper() {
     "/launch",
     "/register-success",
     "/dashboard/product",
+    "/dashboard/inventory",
+    "/dashboard/discounts",
     "/dashboard/categories",
+    "/dashboard/settings",
     "/dashboard/customers",
     "/dashboard/sales",
     "/dashboard/collections",
@@ -144,9 +150,12 @@ function AppWrapper() {
             path="/dashboard/categories/edit/:id"
             element={<EditCategory />}
           />
+          <Route path="inventory" element={<Inventory />} />
+          <Route path="discounts" element={<Discounts />} />
           <Route path="collections" element={<Collections />} />
           <Route path="customers" element={<Customers />} />
           <Route path="sales" element={<Orders />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
       {!hideNavbar && <Footer />}

@@ -9,6 +9,7 @@ import google from "../../assets/google.png";
 import apple from "../../assets/apple.png";
 import view from "../../assets/view.png";
 import read from "../../assets/read.png";
+import logo from "../../assets/logo.png";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +78,15 @@ const Login = () => {
       <Sidebar />
       <div className="w-full lg:w-1/2 flex justify-center lg:block px-4 sm:px-6 lg:px-0 mt-[30px] lg:mt-[125px] lg:ml-[28px]">
         <div className="w-full max-w-md lg:max-w-none">
-
+          <div className="flex  mb-8 lg:hidden">
+            <Link to="/" className="flex items-center gap-2">
+              <img
+                src={logo}
+                alt="Storely Logo"
+                className="w-30 object-contain"
+              />
+            </Link>
+          </div>
           <form onSubmit={handleLogin} className="w-full lg:w-96 space-y-4">
 
             {/* Header */}

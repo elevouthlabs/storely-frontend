@@ -1,15 +1,33 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import logo from "../../assets/logo.png";
+
 
 function Navbar() {
     const [active, setActive] = useState("home");
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const { user, logout } = useContext(AuthContext);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    let business = {};
+
+    try {
+        const storedBusiness = localStorage.getItem("business");
+
+        if (storedBusiness && storedBusiness !== "undefined") {
+            business = JSON.parse(storedBusiness);
+        }
+    } catch {
+        localStorage.removeItem("business");
+    }
+
+    const logoUrl = business.logoUrl;
 
     const handleClick = (link) => {
         setActive(link);
-        setMenuOpen(false); 
+        setMenuOpen(false);
 
         if (link === "home") {
             navigate("/");
@@ -72,28 +90,109 @@ function Navbar() {
                     Pricing
                 </a>
             </div>
+            <div className="hidden lg:flex items-center">
+                {user ? (
+                    <div className="relative">
+                        <img
+                            src={logoUrl || "https://i.pravatar.cc/40"}
+                            alt="Business"
+                            className="w-11 h-11 rounded-full object-cover cursor-pointer border"
+                            onClick={() => setShowDropdown(!showDropdown)}
+                        />
 
-            {/* Desktop Buttons */}
-            <div className="hidden lg:flex gap-[16px] items-center">
-                <Link
-                    to="/login"
-                    className="w-[136px] h-[48px] bg-white border border-[#D9D9D9] rounded-[8px] px-[20px] py-[12px] font-Inter font-medium text-[16px] text-[#2E2E2E] leading-[24px] text-center"
-                >
-                    Login
-                </Link>
-                <Link
-                    to="/register"
-                    className="w-[202px] h-[48px] bg-[#2D1B4E] text-white rounded-[8px] px-[20px] py-[12px] font-Inter font-semibold text-[16px] leading-[24px] text-center"
-                >
-                    Create Store for Free
-                </Link>
+                        {showDropdown && (
+                            <div className="absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg border overflow-hidden">
+
+                                <button
+                                    onClick={() => {
+                                        navigate("/dashboard");
+                                        setShowDropdown(false);
+                                    }}
+                                    className="w-full text-left px-4 py-3 hover:bg-gray-100"
+                                >
+                                    Dashboard
+                                </button>
+
+                                <button
+                                    onClick={() => {
+                                        logout();
+                                        localStorage.removeItem("business");
+                                        localStorage.removeItem("storelyUser");
+                                        navigate("/");
+                                    }}
+                                    className="w-full text-left px-4 py-3 hover:bg-gray-100 text-red-600"
+                                >
+                                    Logout
+                                </button>
+
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <>
+                        <Link
+                            to="/login"
+                            className="w-[136px] h-[48px] bg-white border border-[#D9D9D9] rounded-[8px] px-[20px] py-[12px] text-center"
+                        >
+                            Login
+                        </Link>
+
+                        <Link
+                            to="/register"
+                            className="w-[202px] h-[48px] bg-[#2D1B4E] ml-5 text-white rounded-[8px] px-[20px] py-[12px] text-center"
+                        >
+                            Create Store for Free
+                        </Link>
+                    </>
+                )}
             </div>
 
-            {/* Hamburger */}
-            <div className="lg:hidden flex flex-col gap-1 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
-                <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "rotate-45 translate-y-[6px]" : ""}`}></span>
-                <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "opacity-0" : ""}`}></span>
-                <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}></span>
+            <div className="lg:hidden flex items-center gap-3">
+                {user && (
+                    <div className="relative">
+                        <img
+                            src={logoUrl || "https://i.pravatar.cc/40"}
+                            alt="Business"
+                            className="w-10 h-10 rounded-full object-cover border cursor-pointer"
+                            onClick={() => setShowDropdown(!showDropdown)}
+                        />
+
+                        {showDropdown && (
+                            <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-lg border z-50">
+                                <button
+                                    onClick={() => {
+                                        navigate("/dashboard");
+                                        setShowDropdown(false);
+                                    }}
+                                    className="w-full text-left px-4 py-3 hover:bg-gray-100"
+                                >
+                                    Dashboard
+                                </button>
+
+                                <button
+                                    onClick={() => {
+                                        logout();
+                                        localStorage.removeItem("business");
+                                        localStorage.removeItem("storelyUser");
+                                        navigate("/");
+                                    }}
+                                    className="w-full text-left px-4 py-3 hover:bg-gray-100 text-red-600"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    className="flex flex-col gap-1"
+                >
+                    <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "rotate-45 translate-y-[6px]" : ""}`}></span>
+                    <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "opacity-0" : ""}`}></span>
+                    <span className={`w-6 h-[2px] bg-black transition ${menuOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}></span>
+                </button>
             </div>
 
 
@@ -105,10 +204,23 @@ function Navbar() {
                     <a href="#community" onClick={() => handleClick("community")}>Community</a>
                     <a href="#pricing" onClick={() => handleClick("pricing")}>Pricing</a>
 
-                    <Link to="/login" className="w-[70%] text-center border py-2 rounded">Login</Link>
-                    <Link to="/register" className="w-[70%] text-center bg-[#2D1B4E] text-white py-2 rounded">
-                        Create Store
-                    </Link>
+                    {!user && (
+                        <>
+                            <Link
+                                to="/login"
+                                className="w-[70%] text-center border py-2 rounded"
+                            >
+                                Login
+                            </Link>
+
+                            <Link
+                                to="/register"
+                                className="w-[70%]  text-center bg-[#2D1B4E] text-white py-2 rounded"
+                            >
+                                Create Store
+                            </Link>
+                        </>
+                    )}
                 </div>
             )}
         </nav>
